@@ -11,58 +11,60 @@
 <body>
     <nav class="toolbar toolbar-sticky">
         <!-- TODO replace with personal icon -->
-        <a href="#" class="toolbar-brand">
+        <a href="#" class="toolbar-brand col-3">
             <div class="favicon-32x32"></div>
         </a>
-        <span class="toolbar-title">Spotify-Analyzer</span>
-        <span></span>
+        <h1 class="toolbar-title col-3">Spotify-Analyzer</h1>
+        <div class="toolbar-menu col-3">
+            <a href="#">Website</a>
+            <a href="https://github.com/flohero/spotify-analyzer"><div class="github-32x32"></div></a>
+        </div>
     </nav>
 
     <!-- Content -->
-    <div class="content-container">
-        <div class="card">
-            <div class="card-title">Team</div>
-            <div class="card-content">
-                <div class="flex flex-space-between">
-                    <div>
-                        Florian Weingartshofer (Backend)
-                        <!-- TODO add images -->
-                    </div>
 
-                    <div>
-                        Andreas Wenzelhuemer (Frontend)                  </div>
-                </div>
-            </div>
+    <section class="bg-secondary text-center">
+        <h2>Team</h2>
+        <p>
+            <i>Florian Weingartshofer (Backend)</i><br />
+            <i>Andreas Wenzelhuemer (Frontend)</i>
+            <!-- TODO add pictures -->
+        </p>
+    </section>
+    <section class="bg-blue text-center">
+        <h2>Project description</h2>
+        <div class="card-content">
+            <p>
+                The project is an web application for Spotify.<br />
+                With the web app it is possible to get a detailed view of your spotifiy history by using the spotify
+                api.
+            </p>
         </div>
-        <div class="card">
-            <div class="card-title">Project description</div>
-            <div class="card-content">
-                <p>
-                    The project is an web application for Spotify.<br />
-                    With the web app it is possible to get a detailed view of your spotifiy history by using the spotify api.
-                </p>
-            </div>
+    </section>
+    <section class="bg-orange text-center">
+        <h2>Technologies and libraries</h2>
+        <div>
+            <h3>Backend (API)</h3>
+            <ul>
+                <li>The server is implemented with Node-JS</li>
+                <li>It uses Typescript.</li>
+            </ul>
         </div>
-        <div class="card">
-            <div class="card-title">Technologies</div>
-            <div class="card-content">
-                <div class="flex flex-space-between">
-                    <div>
-                        Backend
-                        <ul>
-                            <li>The server is implemented with Node-JS</li>
-                            <li>It uses Typescript instead of Javascript.</li>
-                        </ul>
-                    </div>
 
-                    <div>
-                        Frontend
-                        <ul>
-                            <li>The website is implemented with simple HTML & JS.</li>
-                            <li>It also uses Typescript.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div>
+            <h3>Frontend (Website)</h3>
+            <ul>
+                <li>The website is implemented with simple HTML & CSS.</li>
+                <li>It also uses Typescript.</li>
+            </ul>
+        </div>
+    </section>
+    <section class="text-center">
+        <h2>Features</h2>
+    </section>
+    <section class="text-center">
+        <h2>Lessons learned</h2>
+        <!-- TODO -->
+    </section>
 </body>
 </html>
