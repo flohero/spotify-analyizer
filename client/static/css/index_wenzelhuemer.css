@@ -1,0 +1,151 @@
+:root {
+    --foreground: white;
+    --background: #191414;
+
+    --primary: #1DB954;
+    --secondary: #cb1582;
+}
+
+body {
+    margin: 0px;
+    background-color: var(--secondary);
+    color: var(--foreground);
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+a, a:visited {
+    color: var(--foreground);
+    text-decoration: none;;
+}
+
+a:focus, a:hover {
+    color: var(--primary);
+}
+
+.toolbar {
+    /* position */
+    position: relative;
+
+    /* padding */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    /* margin for content underneath */
+    margin-bottom: 2rem;
+
+    /* flex */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* color */
+    background-color: var(--background);
+
+    /* bottom shadow */
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+.toolbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.toolbar-brand {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.favicon-32x32 {
+    background-image: url("../assets/favicon-32x32.png");
+    width: 32px;
+    height: 32px;
+}
+
+.navbar-list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    list-style: none;
+}
+
+.toolbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.content-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media (min-width: 576px) {
+    .content-container {
+      max-width: 540px;
+    }
+}
+@media (min-width: 768px) {
+    .content-container {
+        max-width: 720px;
+    }
+}
+/* TODO remove if not needed */
+/* @media (min-width: 992px) {
+    .content-container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .content-container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1400px) {
+    .content-container {
+        max-width: 1320px;
+    }
+} */
+
+.card {
+    padding: 1rem;
+    background-color: var(--foreground);
+    color: var(--background);
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12); 
+    margin-bottom: 2rem;
+    border-radius: 4px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+
+    /* bottom line */
+    display: block;
+    margin: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+
+    margin-bottom: 12px;
+}
+
+.flex {
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
