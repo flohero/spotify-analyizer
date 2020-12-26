@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev:watch": "parcel index/*.html"
+    "dev:watch": "parcel index/*.html "
   },
   "dependencies": {},
   "devDependencies": {

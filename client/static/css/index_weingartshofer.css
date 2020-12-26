@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+@import "./font_baseline.css";
+
+:root {
+    --foreground: #fff;
+    --background: #191414;
+
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --gray-dark: #343a40;
+
+    --primary: #007bff;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+}
+
+html {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    margin: unset;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--green);
+}
+
+a {
+    color: var(--foreground);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-bottom: 0.3em;
+    background-image: linear-gradient(transparent 90%, var(--green) 40%);
+    background-repeat: no-repeat;
+    background-size: 0;
+    background-position: center;
+    transition: all 0.3s;
+
+}
+
+a:hover, a:active, a:focus {
+    color: var(--foreground);
+    background-size: 100%;
+    cursor: pointer;
+    outline: none;
+}
+
+nav {
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+}
+
+nav > ul {
+    list-style: none;
+    margin: 5vh 15%;
+    padding: 0;
+    text-align: right;
+}
+
+nav > ul > li {
+    margin-left: 1em;
+    display: inline-block;
+}
+
+header {
+    height: 100vh;
+    width: 100%;
+}
+
+#logo {
+    display: block;
+    fill: url(#rainbow);
+    font-size: 1rem;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sections */
+section {
+    text-align: center;
+}
+
+#team-container {
+    margin: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.team-member {
+    flex-grow: 0;
+    height: 100%;
+    width: 50%;
+}
+
+.team-member > h3 {
+    color: var(--foreground);
+}
+
+.team-member > img {
+    border-radius: 100%;
+    width: 100%;
+}
