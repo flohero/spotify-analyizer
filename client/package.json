@@ -1,0 +1,9 @@
+{
+  "name": "spotify-analyzer-client",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "github.com/flohero/spotify-analyzer",
+  "author": "Florian Weingartshofer, Andreas Wenzelhuemer",
+  "license": "none",
+  "private": false
+}
