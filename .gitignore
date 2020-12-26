@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,webstorm+all,vscode,linux,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,webstorm+all,vscode,linux,windows
+# Created by https://www.toptal.com/developers/gitignore/api/node,webstorm+all,vscode,linux,windows,yarn
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,webstorm+all,vscode,linux,windows,yarn
 
 ### Linux ###
 *~
@@ -251,5 +251,19 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/node,webstorm+all,vscode,linux,windows
+### yarn ###
+# https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# if you are NOT using Zero-installs, then:
+# comment the following lines
+!.yarn/cache
+
+# and uncomment the following lines
+# .pnp.*
 

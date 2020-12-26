@@ -4,6 +4,14 @@
   "main": "index.js",
   "repository": "github.com/flohero/spotify-analyzer",
   "author": "Florian Weingartshofer, Andreas Wenzelhuemer",
-  "license": "none",
-  "private": false
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev:watch": "parcel index/*.html"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^4.1.3"
+  }
 }
