@@ -2,6 +2,7 @@
 @import "./toolbar.css";
 @import "./theme.css";
 @import "./components.css";
+@import "./utilities.css";
 
 body {
     margin: 0px;
