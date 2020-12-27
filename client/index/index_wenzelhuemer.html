@@ -4,16 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <title>Spotify-Analyzer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/assets/favicon.ico">
     <link rel="stylesheet" href="../static/css/index_wenzelhuemer.css">
 </head>
 <body>
     <nav class="toolbar toolbar-sticky">
         <!-- TODO replace with personal icon -->
         <a href="#" class="image-link">
-            <div class="favicon-32x32"></div>
+            <div class="brand-32x32"></div>
         </a>
+        <div class="toolbar-menu toolbar-menu-hidden-md">
+            <a href="#team">Team</a>
+            <a href="#project-description">Project description</a>
+            <a href="#technologies">Technologies</a>
+            <a href="#features">Features</a>
+            <a href="#lessons-learned">Lessons learned</a>
+        </div>
         <div class="toolbar-menu">
-            <a href="#">Website</a>
+            <a href="#">Log in</a>
             <a class="image-link" href="https://github.com/flohero/spotify-analyzer">
                 <div class="github-32x32"></div>
             </a>
@@ -21,10 +29,10 @@
     </nav>
     <main>
         <h1 class="text-center">Spotify-Analyzer</h1>
-        <section class="bg-secondary text-center">
+        <section class="bg-pink text-center" id="team">
             <h2>Team</h2>
             <div class="flex justify-content-center">
-                <div class="team-member col-3 flex">
+                <div class="team-member col-3">
                     <img src="../static/assets/flo_christmas.jpg" class="team-member-image"
                         alt="Florain Weingartshofer">
                     <div>
@@ -33,8 +41,8 @@
                         <p><i>Database and web api.</i></p>
                     </div>
                 </div>
-                <div class="team-member col-3 flex">
-                    <img src="../static/assets/andi_christmas.jfif" class="team-member-image"
+                <div class="team-member col-3">
+                    <img src="../static/assets/trump.jpg" class="team-member-image"
                         alt="Andreas Wenzelhuemer">
                     <div>
                         <h3>Andreas Wenzelhuemer</h3>
@@ -44,7 +52,7 @@
                 </div>
             </div>
         </section>
-        <section class="bg-blue text-center">
+        <section class="bg-blue text-center"id="project-description">
             <h2>Project description</h2>
             <div class="card-content">
                 <p>
@@ -54,7 +62,7 @@
                 </p>
             </div>
         </section>
-        <section class="bg-orange text-center">
+        <section class="bg-orange text-center" id="technologies">
             <h2>Technologies and libraries</h2>
             <div>
                 <h3>Backend (API)</h3>
@@ -76,13 +84,13 @@
                 <span class="chip chip-dark">typescript</span>
             </div>
         </section>
-        <section class="bg-mixed text-center">
+        <section class="bg-purple-blue text-center" id="features">
             <h2>Features</h2>
-            <!-- TODO -->
+            <p>No features, only bugs in this one.</p>
         </section>
-        <section class="text-center">
+        <section class="text-center" id="lessons-learned">
             <h2>Lessons learned</h2>
-            <!-- TODO -->
+            <p>Yeaah, nothing so far.</p>
         </section>
     </main>
 </body>
