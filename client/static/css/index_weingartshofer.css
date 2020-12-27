@@ -22,6 +22,7 @@
     --info: #17a2b8;
     --warning: #ffc107;
     --danger: #dc3545;
+    --transition-duration: 0.3s;
 }
 
 html {
@@ -48,7 +49,7 @@ a {
     background-repeat: no-repeat;
     background-size: 0;
     background-position: center;
-    transition: all 0.3s;
+    transition: all var(--transition-duration);
 
 }
 
@@ -68,7 +69,7 @@ nav {
 
 nav > ul {
     list-style: none;
-    margin: 5vh 15%;
+    margin: 5vh 5vw;
     padding: 0;
     text-align: right;
 }
@@ -98,25 +99,68 @@ section {
 }
 
 #team-container {
-    margin: auto;
-    width: 70%;
+    padding-left: 10%;
+    padding-right: 10%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
 }
 
 .team-member {
-    flex-grow: 0;
-    height: 100%;
-    width: 50%;
+    margin: 1em auto auto;
+    padding-bottom: 1rem;
+    background: rgba(52, 58, 64, 0.3);
+    width: 100%
 }
 
-.team-member > h3 {
+@media only screen and (min-width: 1200px) {
+    #team-container {
+        flex-direction: row;
+    }
+
+    .team-member {
+        width: 40%
+    }
+}
+
+.team-member > p {
+    color: var(--foreground);
+    background: rgba(52, 58, 64, 0.3);
+    display: inline-block;
+    padding: 1vh 1vw;
+    border-radius: 2px;
+}
+
+.team-member > h2 {
     color: var(--foreground);
 }
 
-.team-member > img {
-    border-radius: 100%;
+.team-member > figure {
+    overflow: hidden;
+    box-shadow: 1px 1px 16px -2px rgba(0, 0, 0, 0.3);
+}
+
+.team-member > figure > img {
+    width: 100%;
+    height: 100%;
+}
+
+.chipset {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.chip {
+    background: var(--green);
+    color: var(--foreground);
+    border-radius: 3rem;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+}
+
+footer {
     width: 100%;
 }
