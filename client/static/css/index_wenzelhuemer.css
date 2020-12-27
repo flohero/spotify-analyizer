@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat");
+@import "./font_baseline.css";
 
 :root {
     /* spotify colors */
@@ -29,8 +30,6 @@ body {
     margin: 0px;
     background-color: var(--background);
     color: var(--foreground);
-    font-family: "Montserrat", sans-serif;
-    line-height: 1.65;
 }
 
 .text-center {
@@ -235,4 +234,10 @@ ul li {
         width: 100%;
         margin-bottom: 20px;
     }
+}
+
+.team-member-name {
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
