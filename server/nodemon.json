@@ -1,0 +1,11 @@
+{
+  "ignore": [
+    "node_modules"
+  ],
+  "watch": [
+    "src",
+    "app.ts"
+  ],
+  "exec": "npm start",
+  "ext": "ts"
+}

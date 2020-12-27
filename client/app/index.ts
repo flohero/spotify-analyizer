@@ -1,8 +1,13 @@
-
-import { User } from "./authorization/user";
+import {AuthService} from "./services/auth-service";
 
 window.onload = () => {
-
-  const tsUser = new User("Andreas Wenzelhuemer");
-  console.log(tsUser);
+    const auth = new AuthService("http://localhost:3000");
+    auth.getAuthUri()
+        .then(res => {
+            return res.json()
+        })
+        .then( uri => {
+            console.log(uri.url);
+            window.location.assign(uri.url);
+        });
 };
