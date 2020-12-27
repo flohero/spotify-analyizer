@@ -17,13 +17,19 @@ a:focus, a:hover, a:active {
     background-size: 100%;
 }
 
+.chipset {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 /* chip */
 .chip {
     transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
     padding: 4px 12px;
+    margin: 3px;
     border-radius: 16px;
     cursor: default;
-    
 }
 
 .chip-primary {
@@ -36,6 +42,3 @@ a:focus, a:hover, a:active {
     color: var(--foreground);
 }
 
-.chip:not(:last-child) {
-    margin-right: 10px;
-}
