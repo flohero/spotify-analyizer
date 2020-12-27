@@ -1,0 +1,15 @@
+@import "./font_baseline.css";
+@import "./toolbar.css";
+@import "./theme.css";
+@import "./components.css";
+
+body {
+    margin: 0px;
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.image-link {
+    display: flex;
+    align-items: center;
+}
