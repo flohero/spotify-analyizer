@@ -1,70 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <title>Spotify-Analyzer</title>
     <link rel="stylesheet" href="../static/css/index_wenzelhuemer.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 </head>
-
 <body>
     <nav class="toolbar toolbar-sticky">
         <!-- TODO replace with personal icon -->
-        <a href="#" class="toolbar-brand col-3">
+        <a href="#" class="image-link">
             <div class="favicon-32x32"></div>
         </a>
-        <h1 class="toolbar-title col-3">Spotify-Analyzer</h1>
-        <div class="toolbar-menu col-3">
+        <div class="toolbar-menu">
             <a href="#">Website</a>
-            <a href="https://github.com/flohero/spotify-analyzer"><div class="github-32x32"></div></a>
+            <a class="image-link" href="https://github.com/flohero/spotify-analyzer">
+                <div class="github-32x32"></div>
+            </a>
         </div>
     </nav>
+    <main>
+        <h1 class="text-center">Spotify-Analyzer</h1>
+        <section class="bg-secondary text-center">
+            <h2>Team</h2>
+            <div class="flex justify-content-center">
+                <div class="team-member col-3 flex">
+                    <img src="../static/assets/flo_christmas.jpg" class="team-member-image"
+                        alt="Florain Weingartshofer">
+                    <div>
+                        <h3>Florian Weingartshofer</h3>
+                        <div class="chip chip-dark">Backend developer</div>
+                        <p><i>Database and web api.</i></p>
+                    </div>
+                </div>
+                <div class="team-member col-3 flex">
+                    <img src="../static/assets/andi_christmas.jfif" class="team-member-image"
+                        alt="Andreas Wenzelhuemer">
+                    <div>
+                        <h3>Andreas Wenzelhuemer</h3>
+                        <div class="chip chip-dark">Frontend developer</div>
+                        <p><i>Design and stuff.</i></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-blue text-center">
+            <h2>Project description</h2>
+            <div class="card-content">
+                <p>
+                    The project is an web application for Spotify.<br />
+                    With the web app it is possible to get a detailed view of your spotifiy history by using the spotify
+                    api.
+                </p>
+            </div>
+        </section>
+        <section class="bg-orange text-center">
+            <h2>Technologies and libraries</h2>
+            <div>
+                <h3>Backend (API)</h3>
+                <ul>
+                    <li>Node-JS</li>
+                    <li>Typescript</li>
+                </ul>
+            </div>
+            <span class="chip chip-dark">parcel-bundler</span>
+            <span class="chip chip-dark">typescript</span>
 
-    <!-- Content -->
-
-    <section class="bg-secondary text-center">
-        <h2>Team</h2>
-        <p>
-            <i>Florian Weingartshofer (Backend)</i><br />
-            <i>Andreas Wenzelhuemer (Frontend)</i>
-            <!-- TODO add pictures -->
-        </p>
-    </section>
-    <section class="bg-blue text-center">
-        <h2>Project description</h2>
-        <div class="card-content">
-            <p>
-                The project is an web application for Spotify.<br />
-                With the web app it is possible to get a detailed view of your spotifiy history by using the spotify
-                api.
-            </p>
-        </div>
-    </section>
-    <section class="bg-orange text-center">
-        <h2>Technologies and libraries</h2>
-        <div>
-            <h3>Backend (API)</h3>
-            <ul>
-                <li>The server is implemented with Node-JS</li>
-                <li>It uses Typescript.</li>
-            </ul>
-        </div>
-
-        <div>
-            <h3>Frontend (Website)</h3>
-            <ul>
-                <li>The website is implemented with simple HTML & CSS.</li>
-                <li>It also uses Typescript.</li>
-            </ul>
-        </div>
-    </section>
-    <section class="text-center">
-        <h2>Features</h2>
-    </section>
-    <section class="text-center">
-        <h2>Lessons learned</h2>
-        <!-- TODO -->
-    </section>
+            <div>
+                <h3>Frontend (Website)</h3>
+                <ul>
+                    <li>HTML & CSS.</li>
+                    <li>Typescript.</li>
+                </ul>
+                <span class="chip chip-dark">parcel-bundler</span>
+                <span class="chip chip-dark">typescript</span>
+            </div>
+        </section>
+        <section class="bg-mixed text-center">
+            <h2>Features</h2>
+            <!-- TODO -->
+        </section>
+        <section class="text-center">
+            <h2>Lessons learned</h2>
+            <!-- TODO -->
+        </section>
+    </main>
 </body>
 </html>

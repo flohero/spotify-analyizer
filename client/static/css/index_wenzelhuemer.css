@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+
 :root {
     --foreground: white;
     --background: #191414;
@@ -6,6 +8,8 @@
     --secondary: #cb1582;
     --orange: #f59b23;
     --blue: #509bf5;
+
+    --light-gray: rgb(160, 195, 210);
 }
 
 .text-center {
@@ -32,6 +36,11 @@
     background-color: var(--blue);
 }
 
+.bg-mixed {
+    background-color: #509BF5;
+    background-image: linear-gradient(#c074b2, #8ab5e8);
+}
+
 body {
     margin: 0px;
     background-color: var(--background);
@@ -44,11 +53,19 @@ body {
 
 a, a:visited {
     color: var(--foreground);
-    text-decoration: none;;
+    text-decoration: none;
 }
 
-a:focus, a:hover {
-    color: var(--primary);
+a:not(.image-link) {
+    background-image: linear-gradient(transparent 90%, var(--primary) 40%);
+    background-repeat: no-repeat;
+    background-size: 0;
+    transition: all 0.3s;
+    background-position: center;
+}
+
+a:focus, a:hover, a:active {
+    background-size: 100%;
 }
 
 .toolbar {
@@ -60,7 +77,6 @@ a:focus, a:hover {
     padding-right: 2rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-
 
     /* flex */
     display: flex;
@@ -79,10 +95,6 @@ a:focus, a:hover {
     line-height: 48px;
 }
 
-.col-3 {
-    width: calc(100% / 3);
-}
-
 .toolbar-sticky {
     position: sticky;
     top: 0;
@@ -95,21 +107,25 @@ a:focus, a:hover {
     font-size: 1.25rem;
     text-decoration: none;
     white-space: nowrap;
-    
 }
 
 .toolbar-title {
     white-space: nowrap;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: bold;
     margin: 0px;
     padding: 0px;
 }
 
+@media(max-width: 500px) {
+    .toolbar-title {
+        display: none;
+    }
+}
+
 .toolbar-menu {
     display: flex;
-    justify-content: flex-end;
     line-height: 32px;
 }
 
@@ -140,30 +156,6 @@ section {
     padding: 40px;
 }
 
-/* TODO remove cards if not needed */
-/* .card {
-    padding: 1rem;
-    background-color: var(--foreground);
-    color: var(--background);
-    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12); 
-    margin-bottom: 2rem;
-    border-radius: 4px;
-}
-
-.card-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-align: center;
-
-
-    display: block;
-    margin: 0;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-
-    margin-bottom: 12px;
-} */
-
 .flex {
     flex-wrap: wrap;
     display: flex;
@@ -178,4 +170,57 @@ ul li {
     height: 48px;
     border-top-width: 1px;
     border-top-style: solid;
+}
+
+.chip {
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 4px 12px;
+    border-radius: 16px;
+    cursor: default;
+    
+}
+
+.chip-primary {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+.chip-dark {
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.chip:not(:last-child) {
+    margin-right: 10px;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+@media (max-width: 800px) {
+    .team-member.col-3 {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+}
+
+.team-member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-right: 20px;
 }
