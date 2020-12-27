@@ -11,14 +11,6 @@ body {
     color: var(--foreground);
 }
 
-.text-center {
-    text-align: center;
-}
-
-.text-left {
-    text-align: left;
-}
-
 .bg-pink {
     background-color: var(--pink);
 }
@@ -43,6 +35,7 @@ body {
 }
 
 section {
+    text-align: center;
     padding: 40px;
 }
 

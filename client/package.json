@@ -9,9 +9,6 @@
   "scripts": {
     "dev:watch": "parcel index/*.html app/*.html"
   },
-  "dependencies": {
-    "material-design-icons": "^3.0.1"
-  },
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
     "typescript": "^4.1.3"
