@@ -1,7 +1,8 @@
+
 html {font-size: 16px;}
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     line-height: 1.65;
 }
@@ -15,7 +16,7 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     line-height: 1.15;
 }
@@ -23,24 +24,24 @@ h5 {
 h1,
 .text-size-h1 {
     margin-top: 0;
-    font-size: 4.21em;
+    font-size: 3.05em;
 }
 
 h2,
-.text-size-h2 { font-size: 3.16em; }
+.text-size-h2 { font-size: 2.44em; }
 
 h3,
-.text-size-h3 { font-size: 2.37em; }
+.text-size-h3 { font-size: 1.95em; }
 
 h4,
-.text-size-h4 { font-size: 1.78em; }
+.text-size-h4 { font-size: 1.56em; }
 
 h5,
-.text-size-h5 { font-size: 1.33em; }
+.text-size-h5 { font-size: 1.25em; }
 
-.text-caption { font-size: 0.75em; }
+.text-caption { font-size: 0.8em; }
 
 small,
 .text-small {
-    font-size: 0.56em;
+    font-size: 0.64em;
 }
