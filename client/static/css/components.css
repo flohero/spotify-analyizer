@@ -1,0 +1,41 @@
+
+/* anchor */
+a, a:visited {
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+a:not(.image-link) {
+    background-image: linear-gradient(transparent 90%, var(--green) 40%);
+    background-repeat: no-repeat;
+    background-size: 0;
+    transition: all 0.3s;
+    background-position: center;
+}
+
+a:focus, a:hover, a:active {
+    background-size: 100%;
+}
+
+/* chip */
+.chip {
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 4px 12px;
+    border-radius: 16px;
+    cursor: default;
+    
+}
+
+.chip-primary {
+    background-color: var(--green);
+    color: var(--background);
+}
+
+.chip-dark {
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+.chip:not(:last-child) {
+    margin-right: 10px;
+}
