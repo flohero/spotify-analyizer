@@ -8,7 +8,8 @@
   "private": false,
   "scripts": {
     "dev": "nodemon",
-    "start": "ts-node app.ts"
+    "start": "ts-node app.ts",
+    "profile": "ts-node src/services/user-profile-service.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

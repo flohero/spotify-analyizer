@@ -1,5 +1,7 @@
 import * as querystring from "querystring";
 import * as fetch from "node-fetch";
+import {UserProfileService} from "../services/user-profile-service";
+import {IUser} from "../model/user-model";
 
 export class AuthController {
     private static client_id = process.env.SPOTIFY_CLIENT_ID;
@@ -22,7 +24,7 @@ export class AuthController {
         return AuthController.req_uri + "?" + query;
     }
 
-    public requestSessionToken(code: string): Promise<Response> {
+    public requestSessionToken(code: string): Promise<IUser> {
         const formData = new URLSearchParams();
         formData.append("code", code);
         formData.append("redirect_uri", AuthController.redirect_uri);
@@ -35,8 +37,18 @@ export class AuthController {
                         .toString('base64'))
             },
             body: formData
-        }).then(res => {
-            return res.json();
-        });
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then(token => {
+                const userProfileService: UserProfileService = new UserProfileService(token["access_token"])
+                return userProfileService.details()
+                    .then(user => {
+                        user.refresh_token = token["refresh_token"];
+                        user.expires_at = new Date(Date.now() + token["expires_in"] * 1000);
+                        return user;
+                    });
+            });
     }
 }

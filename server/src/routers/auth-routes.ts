@@ -35,11 +35,10 @@ export class AuthRoutesConfig {
                     }
 
                     this.authController.requestSessionToken(code)
-                        .then(tokens => {
+                        .then(user => {
                             res.status(200);
                             res.redirect(`http://localhost:1234/app/dashboard.html?${querystring.stringify({
-                                access_token: tokens["access_token"],
-                                refresh_token: tokens["refresh_token"]
+                                id: user._id.toString()
                             })}`);
                         });
                 }
