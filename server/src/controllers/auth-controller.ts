@@ -2,11 +2,11 @@ import * as querystring from "querystring";
 import * as fetch from "node-fetch";
 
 export class AuthController {
-    static client_id = process.env.SPOTIFY_CLIENT_ID;
-    static client_secret = process.env.SPOTIFY_CLIENT_SECRET;
-    static redirect_uri = "http://localhost:3000/callback";
-    static req_uri = "https://accounts.spotify.com/authorize";
-    static scope = "user-read-private user-read-email user-read-recently-played";
+    private static client_id = process.env.SPOTIFY_CLIENT_ID;
+    private static client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+    private static redirect_uri = "http://localhost:3000/callback";
+    private static req_uri = "https://accounts.spotify.com/authorize";
+    private static scope = "user-read-private user-read-email user-read-recently-played";
 
     constructor() {
     }
