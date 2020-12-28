@@ -3,13 +3,14 @@ import * as winston from "winston";
 import * as expressWinston from "express-winston";
 import * as cors from "cors";
 import {AuthRoutesConfig} from "./src/routers/auth-routes";
+import {MongoConfig} from "./src/config/mongo-config";
 
 const app: express.Application = express();
 const PORT = 3000;
 
 app.use(cors());
 
-const auth = new AuthRoutesConfig(app);
+new AuthRoutesConfig(app);
 
 app.use(expressWinston.errorLogger({
     transports: [
@@ -24,7 +25,6 @@ app.use(expressWinston.errorLogger({
 const logger = winston.createLogger({
     level: "info",
     format: winston.format.json(),
-    defaultMeta: {service: "user-service"},
     transports: [
         //
         // - Write all logs with level `error` and below to `error.log`
@@ -39,4 +39,13 @@ logger.add(new winston.transports.Console({
     format: winston.format.simple(),
 }));
 
-app.listen(PORT, () => {});
+// Connect to MongoDB
+const mongoConfig: MongoConfig = new MongoConfig(logger);
+mongoConfig.connect();
+
+// Start Web Server
+app.listen(PORT, () => {
+});
+process.on('exit', () => {
+    mongoConfig.disconnect();
+});
