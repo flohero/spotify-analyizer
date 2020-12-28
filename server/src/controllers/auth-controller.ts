@@ -2,11 +2,11 @@ import * as querystring from "querystring";
 import * as fetch from "node-fetch";
 
 export class AuthController {
-    static client_id = process.env.SPOTIFY_CLIENT_ID; // Your client id
-    static client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
-    static redirect_uri = "http://localhost:3000/callback"; // Your redirect uri
+    static client_id = process.env.SPOTIFY_CLIENT_ID;
+    static client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+    static redirect_uri = "http://localhost:3000/callback";
     static req_uri = "https://accounts.spotify.com/authorize";
-    static scope = "user-read-private user-read-email";
+    static scope = "user-read-private user-read-email user-read-recently-played";
 
     constructor() {
     }
@@ -31,7 +31,7 @@ export class AuthController {
             method: 'POST',
             headers: {
                 'Authorization': 'Basic ' + (
-                    new Buffer(AuthController.client_id + ':' + AuthController.client_secret)
+                    Buffer.from(AuthController.client_id + ':' + AuthController.client_secret)
                         .toString('base64'))
             },
             body: formData

@@ -36,7 +36,6 @@ export class AuthRoutesConfig {
 
                 this.authController.requestSessionToken(code)
                     .then(tokens => {
-                        console.log(tokens);
                         res.status(200);
                         res.redirect(`http://localhost:1234/app/dashboard.html?${querystring.stringify({
                             access_token: tokens["access_token"],
