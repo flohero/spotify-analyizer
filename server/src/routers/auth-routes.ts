@@ -1,6 +1,7 @@
 import "express"
 import {Application} from "express";
 import {AuthController} from "../controllers/auth-controller";
+import * as querystring from "querystring";
 
 
 export class AuthRoutesConfig {
@@ -13,7 +14,7 @@ export class AuthRoutesConfig {
     }
 
     configureRoutes(): Application {
-        this.app
+        return this.app
             .get("/auth_uri",
                 (req, res) => {
                     res.type("json");
@@ -23,17 +24,25 @@ export class AuthRoutesConfig {
                 }
             )
             .get("/callback", (req, res) => {
-                const code = req.headers.code as string || null;
-                if(!code) {
+                const code = req.query.code as string || null;
+                if (!code) {
                     res.status(400);
+                    res.type("json");
+                    res.send({
+                        "error": "Missing Query Param 'code'"
+                    })
                     return;
                 }
+
                 this.authController.requestSessionToken(code)
                     .then(tokens => {
-                       console.log(tokens);
-                       res.status(200);
+                        console.log(tokens);
+                        res.status(200);
+                        res.redirect(`http://localhost:1234/app/dashboard.html?${querystring.stringify({
+                            access_token: tokens["access_token"],
+                            refresh_token: tokens["refresh_token"]
+                        })}`);
                     });
             });
-        return this.app;
     }
 }

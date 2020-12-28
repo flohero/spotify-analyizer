@@ -32,12 +32,10 @@ export class AuthController {
             headers: {
                 'Authorization': 'Basic ' + (
                     new Buffer(AuthController.client_id + ':' + AuthController.client_secret)
-                        .toString('base64')),
-                'Content-Type': 'multipart/form-data',
+                        .toString('base64'))
             },
             body: formData
         }).then(res => {
-            console.log(res);
             return res.json();
         });
     }
