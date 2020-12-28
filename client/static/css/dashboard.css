@@ -2,36 +2,44 @@
 
 .dashboard {
     display: grid;
-    grid-gap: 10px;
+    margin: 1rem;
+    grid-gap: 1rem;
+    height: 500px;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
     grid-template-areas:
-            'item1'
-            'item2'
-            'top-artist-area';
+            'user-area'
+            'top-artist-area'
+            'timeline-area';
 }
 
 @media only screen and (min-width: 1024px) {
     .dashboard {
+        grid-template-columns: 400px auto;
         grid-template-areas:
-            'top-artist-area item1'
-            'top-artist-area item2';
+            'user-area top-artist-area'
+            'timeline-area timeline-area';
     }
 }
 
 .top-artist-area {
     grid-area: top-artist-area;
-    height: 100%;
 }
 
-.item1 {
-    grid-area: item1;
-    height: 50%;
+.user-area {
+    grid-area: user-area;
 }
 
-.item2 {
-    grid-area: item2;
-    height: 50%;
+.timeline-area {
+    grid-area: timeline-area;
 }
 
-.top-artist-area, .item1, .item2 {
+.area {
     border: var(--gray-dark) thin solid;
+}
+
+.area__title {
+    margin-top: 30px;
+    text-align: center;
+    border-bottom: var(--gray-dark) thin solid;
 }
