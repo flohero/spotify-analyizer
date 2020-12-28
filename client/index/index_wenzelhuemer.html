@@ -9,99 +9,101 @@
     <link rel="stylesheet" href="../static/css/index_wenzelhuemer.css">
 </head>
 <body>
-    <nav class="navbar navbar--sticky">
-        <!-- TODO replace with personal icon -->
+<nav class="navbar navbar--sticky">
+    <!-- TODO replace with personal icon -->
+    <div class="navbar__entries">
         <a href="#" class="image-link">
             <div class="brand--32x32"></div>
         </a>
-        <div class="navbar__entries navbar__entries--md">
-            <a href="#team">Team</a>
-            <a href="#project-description">Project description</a>
-            <a href="#technologies">Technologies</a>
-            <a href="#features">Features</a>
-            <a href="#lessons-learned">Lessons learned</a>
-        </div>
-        <div class="navbar__entries">
-            <a href="../app/index.html">Log in</a>
-            <a class="image-link" href="https://github.com/flohero/spotify-analyzer">
-                <div class="github-32x32"></div>
-            </a>
-        </div>
-    </nav>
-    <main>
-        <h1 class="text-center">Spotify-Analyzer</h1>
-        <section class="bg-pink" id="team">
-            <h2>Team</h2>
-            <div class="flex justify-content-center">
-                <div class="team-member col-3">
-                    <img src="../static/assets/flo256x256.jpg" class="team-member-image"
-                        alt="Florian Weingartshofer">
-                    <div>
-                        <div class="team-member-name">Florian Weingartshofer</div>
-                        <div class="chipset">
-                            <div class="chip chip--dark">Backend</div>
-                            <div class="chip chip--dark">Database</div>
-                            <div class="chip chip--dark">Frontend</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-member col-3">
-                    <img src="../static/assets/andi256x256.jpg" class="team-member-image"
-                        alt="Andreas Wenzelhuemer">
-                    <div>
-                        <div class="team-member-name">Andreas Wenzelhuemer</div>
-                        <div class="chipset">
-                            <div class="chip chip--dark">Backend</div>
-                            <div class="chip chip--dark">Database</div>
-                            <div class="chip chip--dark">Frontend</div>
-                        </div>
+    </div>2
+    <div class="navbar__entries navbar__entries--md">
+        <a href="#team">Team</a>
+        <a href="#project-description">Project description</a>
+        <a href="#technologies">Technologies</a>
+        <a href="#features">Features</a>
+        <a href="#lessons-learned">Lessons learned</a>
+    </div>
+    <div class="navbar__entries">
+        <a href="../app/index.html">Log in</a>
+        <a class="image-link" href="https://github.com/flohero/spotify-analyzer">
+            <div class="github-32x32"></div>
+        </a>
+    </div>
+</nav>
+<main>
+    <h1 class="text-center">Spotify-Analyzer</h1>
+    <section class="bg-pink" id="team">
+        <h2>Team</h2>
+        <div class="flex justify-content-center">
+            <div class="team-member col-3">
+                <img src="../static/assets/flo256x256.jpg" class="team-member-image"
+                     alt="Florian Weingartshofer">
+                <div>
+                    <div class="team-member-name">Florian Weingartshofer</div>
+                    <div class="chipset">
+                        <div class="chip chip--dark">Backend</div>
+                        <div class="chip chip--dark">Database</div>
+                        <div class="chip chip--dark">Frontend</div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="bg-blue" id="project-description">
-            <h2>Project description</h2>
-            <div class="card-content">
-                <p>
-                    The project is an web application for Spotify.<br />
-                    In the background it uses the spotify api to access your personal music history and show it graphically.<br />
-                </p>
+            <div class="team-member col-3">
+                <img src="../static/assets/andi256x256.jpg" class="team-member-image"
+                     alt="Andreas Wenzelhuemer">
+                <div>
+                    <div class="team-member-name">Andreas Wenzelhuemer</div>
+                    <div class="chipset">
+                        <div class="chip chip--dark">Backend</div>
+                        <div class="chip chip--dark">Database</div>
+                        <div class="chip chip--dark">Frontend</div>
+                    </div>
+                </div>
             </div>
-        </section>
-        <section class="bg-orange" id="technologies">
-            <h2>Technologies and libraries</h2>
-            <div>
-                <h3>Backend (API)</h3>
-                <ul>
-                    <li>Node-JS</li>
-                    <li>Typescript</li>
-                </ul>
-            </div>
+        </div>
+    </section>
+    <section class="bg-blue" id="project-description">
+        <h2>Project description</h2>
+        <div class="card-content">
+            <p>
+                The project is an web application for Spotify.<br/>
+                In the background it uses the spotify api to access your personal music history and show it graphically.<br/>
+            </p>
+        </div>
+    </section>
+    <section class="bg-orange" id="technologies">
+        <h2>Technologies and libraries</h2>
+        <div>
+            <h3>Backend (API)</h3>
+            <ul>
+                <li>Node-JS</li>
+                <li>Typescript</li>
+            </ul>
+        </div>
+        <div class="chipset">
+            <div class="chip chip--dark">parcel-bundler</div>
+            <div class="chip chip--dark">typescript</div>
+        </div>
+
+        <div>
+            <h3>Frontend (Website)</h3>
+            <ul>
+                <li>HTML & CSS</li>
+                <li>Typescript</li>
+            </ul>
             <div class="chipset">
                 <div class="chip chip--dark">parcel-bundler</div>
                 <div class="chip chip--dark">typescript</div>
             </div>
-
-            <div>
-                <h3>Frontend (Website)</h3>
-                <ul>
-                    <li>HTML & CSS</li>
-                    <li>Typescript</li>
-                </ul>
-                <div class="chipset">
-                    <div class="chip chip--dark">parcel-bundler</div>
-                    <div class="chip chip--dark">typescript</div>
-                </div>
-            </div>
-        </section>
-        <section class="bg-purple-blue" id="features">
-            <h2>Features</h2>
-            <p>No features, only bugs in this one.</p>
-        </section>
-        <section id="lessons-learned">
-            <h2>Lessons learned</h2>
-            <p>Yeaah, nothing so far.</p>
-        </section>
-    </main>
+        </div>
+    </section>
+    <section class="bg-purple-blue" id="features">
+        <h2>Features</h2>
+        <p>No features, only bugs in this one.</p>
+    </section>
+    <section id="lessons-learned">
+        <h2>Lessons learned</h2>
+        <p>Yeaah, nothing so far.</p>
+    </section>
+</main>
 </body>
 </html>
