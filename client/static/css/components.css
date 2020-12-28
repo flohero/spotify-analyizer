@@ -25,19 +25,18 @@ a:focus, a:hover, a:active {
 
 /* chip */
 .chip {
-    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
     padding: 4px 12px;
     margin: 3px;
     border-radius: 16px;
     cursor: default;
 }
 
-.chip-primary {
+.chip--primary {
     background-color: var(--green);
     color: var(--background);
 }
 
-.chip-dark {
+.chip--dark {
     background-color: var(--background);
     color: var(--foreground);
 }

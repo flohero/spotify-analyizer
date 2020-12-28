@@ -1,15 +1,12 @@
 @import "./theme.css";
 
-/* toolbar */
-.toolbar {
+/* navbar */
+.navbar {
     /* position */
     position: relative;
 
     /* padding */
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 2rem;
 
     margin-bottom: 1.5rem;
 
@@ -30,28 +27,33 @@
     background: var(--background);
 }
 
-.toolbar-sticky {
+.navbar--sticky {
     position: sticky;
     top: 0;
     z-index: 1020;
 }
 
-.toolbar-menu {
+.navbar__entries {
     display: flex;
-    line-height: 32px;
+    text-transform: uppercase;
+    list-style: none;
 }
 
-@media(max-width: 1024px) {
-    .toolbar-menu-hidden-md {
-        display: none;
+.navbar__entries--md, .navbar__entry--md {
+    display: none;
+}
+
+@media(min-width: 1024px) {
+    .navbar__entries--md, .navbar__entry--md {
+        display: initial;
     }
 }
 
-.toolbar-menu a:not(:last-child) {
+.navbar__entries a:not(:last-child) {
     margin-right: 25px;
 }
 
-.brand-32x32 {
+.brand--32x32 {
     background-image: url("../assets/brand-32x32.png");
     width: 32px;
     height: 32px;
