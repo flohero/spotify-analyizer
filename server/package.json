@@ -11,7 +11,6 @@
     "start": "ts-node app.ts"
   },
   "dependencies": {
-    "@types/request": "^2.48.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
