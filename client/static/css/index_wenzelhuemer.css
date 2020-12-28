@@ -11,6 +11,10 @@ body {
     color: var(--foreground);
 }
 
+.image-link {
+    align-self: center;
+}
+
 .bg-pink {
     background-color: var(--pink);
 }
