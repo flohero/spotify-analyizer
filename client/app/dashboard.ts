@@ -1,6 +1,8 @@
-import {User, UserService} from "./services/user-service";
+import {UserService} from "./services/user-service";
+import {UserView} from "../../common/src/view/user-view";
 
-function initUserProfileView(user: User): void {
+function initUserProfileView(user: UserView): void {
+    console.log(user);
     const img = document.getElementById("profile-image") as HTMLImageElement;
     const name = document.getElementById("profile-name");
     const email = document.getElementById("profile-email");

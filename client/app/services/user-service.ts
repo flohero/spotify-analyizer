@@ -1,3 +1,5 @@
+import {UserView} from "../../../common/src/view/user-view";
+
 export class UserService {
     private readonly endpoint: string;
 
@@ -5,7 +7,7 @@ export class UserService {
         this.endpoint = endpoint + "/user/";
     }
 
-    public getUser(id: string): Promise<User> {
+    public getUser(id: string): Promise<UserView> {
         return fetch(this.endpoint + id)
             .then( res => {
                 if(res.status == 404) {
@@ -14,12 +16,7 @@ export class UserService {
                 return res.json();
             })
             .then(userData => {
-                return new User(userData.name, userData.email, userData.profile_image);
-            })
-    }
-}
-
-export class User {
-    constructor(readonly name, readonly email, readonly image) {
+                return new UserView(userData.name, userData.email, userData.image);
+            });
     }
 }

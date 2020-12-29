@@ -15,19 +15,18 @@ export class UserProfileService {
             }
         })
             .then(res => {
-                if(res.statusCode > 400) {
-                    throw new Error("Was not able to call /me: "+ res.statusText);
+                if (res.statusCode >= 400) {
+                    throw new Error("Was not able to call /me: " + res.statusText);
                 }
                 return res.json();
             })
             .then(res => {
-                return User.findOne({ name: res.id })
+                return User.findOne({name: res.id})
                     .then(user => {
-                        if(!user) {
-                            user =  new User({
+                        if (!user) {
+                            user = new User({
                                 name: res.id,
                                 email: res.email,
-                                profile_image: res.images[0].url
                             });
                         }
                         user.access_token = accessToken;
@@ -39,7 +38,21 @@ export class UserProfileService {
     public details(id: string): Promise<IUser> {
         return User.findOne({_id: id})
             .then(user => {
-                return user;
+                return fetch(this.endPoint, {
+                    headers: {
+                        "Authorization": "Bearer " + user.access_token
+                    }
+                })
+                    .then(res => {
+                        if (res.statusCode >= 400) {
+                            throw new Error("Was not able to call /me: " + res.statusText);
+                        }
+                        return res.json();
+                    })
+                    .then(res => {
+                        user.profile_image = res.images[0].url;
+                        return user;
+                    });
             });
     }
 }
