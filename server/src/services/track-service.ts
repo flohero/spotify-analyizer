@@ -14,7 +14,6 @@ export class TrackService extends SpotifyBaseService {
         .then(res => this._handleErrors(res))
         .then(res => res.json())
         .then(res => res.items) // only items needed
-        .catch(error => console.log(error)); // TODO handle errors
     }
 
     public getAudioFeatures(accessToken: string, trackIds: string[]): Promise<AudioFeature[]> {
@@ -26,6 +25,5 @@ export class TrackService extends SpotifyBaseService {
         .then(res => this._handleErrors(res))
         .then(result => result.json())
         .then(result => result.audio_features) // only audio_features needed
-        .catch(error => console.log(error)); // TODO handle errors
     }
 }
