@@ -7,7 +7,7 @@ export interface IUser extends Document {
     access_token?: string;
     refresh_token?: string;
     expires_at?: Date;
-    profile_image?: string
+    profile_image?: string;
 }
 
 const UserSchema: Schema = new Schema({
