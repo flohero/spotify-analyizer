@@ -1,11 +1,22 @@
-import {AuthService} from "./services/auth-service";
+import {User, UserService} from "./services/user-service";
+
+function initUserProfileView(user: User): void {
+    const img = document.getElementById("profile-image") as HTMLImageElement;
+    const name = document.getElementById("profile-name");
+    const email = document.getElementById("profile-email");
+    img.src = user.image;
+    name.innerText = user.name;
+    email.innerText = user.email;
+}
 
 window.onload = () => {
     const params = new URLSearchParams(window.location.search);
-    const code = params.get("code") || localStorage.getItem("code") || null;
+    const code = params.get("id") || localStorage.getItem("id") || null;
     if(!code) {
-        window.location.assign("https://accounts.spotify.com/authorize?response_type=code&client_id=92ff963153ef4dcb9357a0b11c5aad48&scope=user-read-private user-read-email&redirect_uri=http://localhost:1234/app/dashboard.html");
+        window.location.assign("/app/index.html");
     }
-    localStorage.setItem("code", params.get("code"));
-    const auth = new AuthService("http://localhost:3000");
+    localStorage.setItem("id", params.get("id"));
+    const userService = new UserService("http://localhost:3000");
+    userService.getUser(params.get("id"))
+        .then(initUserProfileView);
 }

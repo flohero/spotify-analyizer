@@ -38,6 +38,7 @@ body {
 h1, h2, h3, h4, h5 {
     color: var(--green);
     text-transform: uppercase;
+    word-wrap: anywhere;
 }
 
 a {
@@ -66,11 +67,13 @@ nav {
     width: 100%;
     overflow: hidden;
     position: fixed;
+    background: var(--background);
+    border-bottom: var(--gray-dark) thin solid;
 }
 
 nav > ul {
     list-style: none;
-    margin: 5vh 5vw;
+    margin: 3vh 5vw;
     padding: 0;
     text-align: right;
 }
@@ -124,6 +127,10 @@ section {
 
     .team-member {
         width: 40%
+    }
+
+    nav {
+        display: initial;
     }
 }
 
