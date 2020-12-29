@@ -1,21 +1,15 @@
-import * as fetch from "node-fetch";
 import User, {IUser} from "../model/user-model";
+import { SpotifyBaseService } from "./spotify-base-service";
 
-export class UserProfileService {
-    private readonly endPoint = "https://api.spotify.com/v1/me";
-
-    constructor() {
-    }
+export class UserProfileService extends SpotifyBaseService {
 
     public detailsWithAccessToken(accessToken: string): Promise<IUser> {
 
         return fetch(this.endPoint, {
-            headers: {
-                "Authorization": "Bearer " + accessToken
-            }
+            headers: this._getHeaders(accessToken)
         })
             .then(res => {
-                if(res.statusCode > 400) {
+                if(res.status > 400) {
                     throw new Error("Was not able to call /me: "+ res.statusText);
                 }
                 return res.json();
@@ -37,8 +31,7 @@ export class UserProfileService {
     }
 
     public details(id: string): Promise<IUser> {
-        return User.findOne({_id: id})
-            .then(user => {
+        return User.findOne({_id: id}).then(user => {
                 return user;
             });
     }

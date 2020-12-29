@@ -58,3 +58,14 @@ a:focus, a:hover, a:active {
     transition: background 0s;
 }
 
+.progressbar {
+    background-color: #ddd;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.progressbar__progress {
+    height: 10px;
+    border-radius: 5px;
+}
+

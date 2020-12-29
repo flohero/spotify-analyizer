@@ -10,6 +10,7 @@
     grid-template-areas:
             'user-area'
             'top-artist-area'
+            'audio-feature-area'
             'timeline-area';
 }
 
@@ -18,7 +19,7 @@
         grid-template-columns: 400px auto;
         grid-template-areas:
             'user-area top-artist-area'
-            'timeline-area timeline-area';
+            'audio-feature-area timeline-area';
     }
 }
 
@@ -34,6 +35,10 @@
     grid-area: timeline-area;
 }
 
+.audio-feature-area {
+    grid-area: audio-feature-area;
+}
+
 .area {
     border: var(--gray-dark) thin solid;
 }
@@ -42,4 +47,8 @@
     margin-top: 30px;
     text-align: center;
     border-bottom: var(--gray-dark) thin solid;
+}
+
+.area__content {
+    margin: 10px;
 }
