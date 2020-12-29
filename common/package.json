@@ -1,0 +1,12 @@
+{
+  "name": "spotify-analyzer-common",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "github.com/flohero/spotify-analyzer",
+  "author": "Florian Weingartshofer, Andreas Wenzelhuemer",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
