@@ -7,9 +7,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon",
-    "start": "ts-node app.ts",
-    "profile": "ts-node src/services/user-profile-service.ts"
+    "serve": "nodemon",
+    "start": "ts-node app.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

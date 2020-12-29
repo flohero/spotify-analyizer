@@ -42,12 +42,12 @@ export class AuthController {
                 return res.json();
             })
             .then(token => {
-                const userProfileService: UserProfileService = new UserProfileService(token["access_token"])
-                return userProfileService.details()
+                const userProfileService: UserProfileService = new UserProfileService()
+                return userProfileService.detailsWithAccessToken(token["access_token"])
                     .then(user => {
                         user.refresh_token = token["refresh_token"];
                         user.expires_at = new Date(Date.now() + token["expires_in"] * 1000);
-                        return user;
+                        return user.save();
                     });
             });
     }

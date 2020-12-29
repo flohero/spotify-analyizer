@@ -2,17 +2,16 @@ import * as fetch from "node-fetch";
 import User, {IUser} from "../model/user-model";
 
 export class UserProfileService {
-    private readonly accessToken: string;
+    private readonly endPoint = "https://api.spotify.com/v1/me";
 
-    constructor(accessToken: string) {
-        this.accessToken = accessToken;
+    constructor() {
     }
 
-    public details(): Promise<IUser> {
+    public detailsWithAccessToken(accessToken: string): Promise<IUser> {
 
-        return fetch(" https://api.spotify.com/v1/me", {
+        return fetch(this.endPoint, {
             headers: {
-                "Authorization": "Bearer " + this.accessToken
+                "Authorization": "Bearer " + accessToken
             }
         })
             .then(res => {
@@ -28,11 +27,19 @@ export class UserProfileService {
                             user =  new User({
                                 name: res.id,
                                 email: res.email,
+                                profile_image: res.images[0].url
                             });
                         }
-                        user.access_token = this.accessToken;
+                        user.access_token = accessToken;
                         return user.save();
                     });
+            });
+    }
+
+    public details(id: string): Promise<IUser> {
+        return User.findOne({_id: id})
+            .then(user => {
+                return user;
             });
     }
 }
