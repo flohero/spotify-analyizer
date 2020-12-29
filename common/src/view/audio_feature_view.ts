@@ -1,4 +1,4 @@
-export interface AudioFeature  {
+export interface AudioFeatureView  {
     valence: number; // in other words happiness
     danceability: number;
     energy: number;

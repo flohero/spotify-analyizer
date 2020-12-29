@@ -1,5 +1,7 @@
 import {UserService} from "./services/user-service";
 import {UserView} from "../../common/src/view/user-view";
+import { TrackService } from "./services/track-service";
+import { AudioFeatureView } from "../../common/src/view/audio_feature_view";
 
 function initUserProfileView(user: UserView): void {
     console.log(user);
@@ -9,6 +11,10 @@ function initUserProfileView(user: UserView): void {
     img.src = user.image;
     name.innerText = user.name;
     email.innerText = user.email;
+}
+
+function initAudioFeatures(features: AudioFeatureView[]) {
+    console.log(features);
 }
 
 window.onload = () => {
@@ -21,4 +27,7 @@ window.onload = () => {
     const userService = new UserService("http://localhost:3000");
     userService.getUser(params.get("id"))
         .then(initUserProfileView);
+
+    const trackService = new TrackService("http://localhost:3000");
+    trackService.getAudioFeatures(params.get("id")).then(initAudioFeatures);
 }

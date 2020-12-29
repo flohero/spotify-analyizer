@@ -1,5 +1,5 @@
 import * as querystring from "querystring";
-import * as fetch from "node-fetch";
+import fetch from "node-fetch";
 import {UserProfileService} from "../services/user-profile-service";
 import {IUser} from "../model/user-model";
 

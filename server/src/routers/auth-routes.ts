@@ -3,7 +3,6 @@ import {Application} from "express";
 import {AuthController} from "../controllers/auth-controller";
 import * as querystring from "querystring";
 
-
 export class AuthRoutesConfig {
     private readonly app: Application;
     private readonly authController: AuthController = new AuthController();
