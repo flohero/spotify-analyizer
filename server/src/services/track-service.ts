@@ -14,12 +14,8 @@ export class TrackService extends SpotifyBaseService {
                     "Authorization": "Bearer " + user.access_token
                 }
             })
-                .then(res => {
-                    if (res.status >= 400) {
-                        throw new Error("Was not able to call /me/top/tracks: " + res.statusText);
-                    }
-                    return res.json()
-                })
+                .then(this.handleErrors)
+                .then(res => res.json())
                 .then(res => res.items) // only items needed
         })
     }
@@ -32,15 +28,11 @@ export class TrackService extends SpotifyBaseService {
                         "Authorization": "Bearer " + user.access_token
                     }
                 })
+                    .then(this.handleErrors)
+                    .then(res => res.json())
                     .then(res => {
-                        if (res.status >= 400) {
-                            throw new Error("Was not able to call /audio-features: " + res.statusText);
-                        }
-                        return res.json()
-                    })
-                    .then(result => {
 
-                        var features = result.audio_features;
+                        var features = res.audio_features;
 
                         return {
                             acousticness: features.map(f => f.acousticness).reduce((a, b) => a + b, 0) / features.length,

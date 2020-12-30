@@ -11,12 +11,8 @@ export class UserProfileService extends SpotifyBaseService {
                 "Authorization": "Bearer " + accessToken
             }
         })
-            .then(res => {
-                if (res.status >= 400) {
-                    throw new Error("Was not able to call /me: " + res.statusText);
-                }
-                return res.json()
-            })
+            .then(this.handleErrors)
+            .then(res => res.json())
             .then(res => {
                 return User.findOne({name: res.id})
                     .then(user => {
@@ -40,14 +36,9 @@ export class UserProfileService extends SpotifyBaseService {
                         "Authorization": "Bearer " + user.access_token
                     }
                 })
+                    .then(this.handleErrors)
+                    .then(res => res.json())
                     .then(res => {
-                        if (res.status >= 400) {
-                            throw new Error("Was not able to call /me: " + res.statusText);
-                        }
-                        return res.json();
-                    })
-                    .then(res => {
-                        console.log(res);
                         user.profile_image = res.images.length > 0 ? res.images[0].url : null;
                         return user;
                     });
