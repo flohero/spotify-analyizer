@@ -1,18 +1,18 @@
 import fetch from 'node-fetch';
-import { SpotifyBaseService } from "./spotify-base-service";
-import User from "../model/user-model";
-import { AudioFeatureView } from "../../../common/src/view/audio-feature-view";
+import {SpotifyBaseService} from "./spotify-base-service";
+import {AudioFeatureView} from "../../../common/src/view/audio-feature-view";
+import {AccessTokenService} from "./access-token-service";
 
 export class TrackService extends SpotifyBaseService {
 
+    private readonly accessTokenService: AccessTokenService = new AccessTokenService();
+
     public getTopTracks(userId: string) {
 
-        return User.findOne({ _id: userId }).then(user => {
+        return this.accessTokenService.getAccessTokenById(userId).then(accessToken => {
             const time_range: string = "medium_term";
             return fetch(`${this.endPoint}/me/top/tracks?time_range=${time_range}&limit=${this.resultLimit}`, {
-                headers: {
-                    "Authorization": "Bearer " + user.access_token
-                }
+                headers: this.getAuthenticationHeader(accessToken)
             })
                 .then(this.handleErrors)
                 .then(res => res.json())
@@ -21,18 +21,16 @@ export class TrackService extends SpotifyBaseService {
     }
 
     public getAudioFeatures(userId: string, trackIds: string[]) {
-        return User.findOne({ _id: userId })
-            .then(user => {
+        return this.accessTokenService.getAccessTokenById(userId)
+            .then(accessToken => {
                 return fetch(`${this.endPoint}/audio-features?ids=${trackIds.toString()}`, {
-                    headers: {
-                        "Authorization": "Bearer " + user.access_token
-                    }
+                    headers: this.getAuthenticationHeader(accessToken)
                 })
                     .then(this.handleErrors)
                     .then(res => res.json())
                     .then(res => {
 
-                        var features = res.audio_features;
+                        const features = res.audio_features;
 
                         return {
                             acousticness: features.map(f => f.acousticness).reduce((a, b) => a + b, 0) / features.length,

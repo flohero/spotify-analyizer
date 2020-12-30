@@ -9,4 +9,10 @@ export abstract class SpotifyBaseService {
         }
         return response;
     }
+
+    protected getAuthenticationHeader(accessToken: string): any {
+        return {
+            "Authorization": "Bearer " + accessToken
+        }
+    }
 }

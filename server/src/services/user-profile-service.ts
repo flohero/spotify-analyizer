@@ -5,11 +5,8 @@ import { SpotifyBaseService } from "./spotify-base-service";
 export class UserProfileService extends SpotifyBaseService {
 
     public detailsWithAccessToken(accessToken: string): Promise<IUser> {
-
         return fetch(`${this.endPoint}/me`, {
-            headers: {
-                "Authorization": "Bearer " + accessToken
-            }
+            headers: this.getAuthenticationHeader(accessToken)
         })
             .then(this.handleErrors)
             .then(res => res.json())
@@ -32,9 +29,7 @@ export class UserProfileService extends SpotifyBaseService {
         return User.findOne({_id: id})
             .then(user => {
                 return fetch(`${this.endPoint}/me`, {
-                    headers: {
-                        "Authorization": "Bearer " + user.access_token
-                    }
+                    headers: this.getAuthenticationHeader(user.access_token)
                 })
                     .then(this.handleErrors)
                     .then(res => res.json())
