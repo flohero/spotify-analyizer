@@ -13,8 +13,31 @@ function initUserProfileView(user: UserView): void {
     email.innerText = user.email;
 }
 
-function initAudioFeatures(features: AudioFeatureView[]) {
-    console.log(features);
+function createFeatureItem(name: string, value: number) {
+    const percent = Math.round(value * 100);
+        
+    return `
+        <div>
+            ${name} ${Math.round(percent)}/100
+            <div class="progressbar">
+                <div class="progressbar__progress " style="width:${percent}%; background-color: #1db954;"></div>
+            </div>
+        </div>`;
+}
+
+function initAudioFeature(feature: AudioFeatureView) {
+    console.log(feature);
+
+    var featureHTML = "";
+    featureHTML += createFeatureItem("Acousticness", feature.acousticness);
+    featureHTML += createFeatureItem("Energy", feature.energy);
+    featureHTML += createFeatureItem("Happiness", feature.valence);
+    featureHTML += createFeatureItem("Instrumentalness", feature.instrumentalness);
+    featureHTML += createFeatureItem("Liveness", feature.liveness);
+    featureHTML += createFeatureItem("Speechiness", feature.speechiness);
+    featureHTML += createFeatureItem("Danceability", feature.danceability);
+
+    document.getElementById("featureContainer").innerHTML = featureHTML;
 }
 
 window.onload = () => {
@@ -31,5 +54,5 @@ window.onload = () => {
         .then(initUserProfileView);
 
     const trackService = new TrackService("http://localhost:3000");
-    trackService.getAudioFeatures(params.get("id")).then(initAudioFeatures);
+    trackService.getAudioFeature(params.get("id")).then(initAudioFeature);
 }

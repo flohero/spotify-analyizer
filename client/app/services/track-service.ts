@@ -6,7 +6,7 @@ export class TrackService {
         this.endpoint = `${endpoint}/track/audio-features`;
     }
     
-    public async getAudioFeatures(id: string): Promise<AudioFeatureView[]> {
+    public getAudioFeature(id: string): Promise<AudioFeatureView> {
         return fetch(`${this.endpoint}/${id}`)
             .then(r => r.json());
     }

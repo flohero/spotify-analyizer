@@ -65,6 +65,7 @@ a:focus, a:hover, a:active {
 }
 
 .progressbar__progress {
+    background-color: var(--green);
     height: 10px;
     border-radius: 5px;
 }

@@ -47,7 +47,8 @@ export class UserProfileService extends SpotifyBaseService {
                         return res.json();
                     })
                     .then(res => {
-                        user.profile_image = res.images[0].url;
+                        console.log(res);
+                        user.profile_image = res.images.length > 0 ? res.images[0].url : null;
                         return user;
                     });
             });
