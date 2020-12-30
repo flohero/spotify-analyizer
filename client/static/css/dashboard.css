@@ -29,6 +29,12 @@
 
 .user-area {
     grid-area: user-area;
+    text-align: center;
+}
+
+.user-area__image {
+    width: 100%;
+    object-fit: cover;
 }
 
 .timeline-area {

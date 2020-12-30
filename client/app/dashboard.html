@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dashboard</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/assets/favicon.ico">
     <script type="text/javascript" src="dashboard.ts"></script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Montserrat">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
     <link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">
 </head>
@@ -25,8 +28,8 @@
 </nav>
 <main class="dashboard">
     <div class="area user-area">
-        <p id="profile-name"></p>
-        <img id="profile-image" src="" alt="Profile Image">
+        <img class="user-area__image material-icons" id="profile-image" src="" alt="broken_image">
+        <p id="profile-name" class="text-size-h3"></p>
         <p id="profile-email"></p>
     </div>
     <div class="area top-artist-area">

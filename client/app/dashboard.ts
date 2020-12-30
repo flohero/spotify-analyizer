@@ -1,21 +1,25 @@
 import {UserService} from "./services/user-service";
 import {UserView} from "../../common/src/view/user-view";
-import { TrackService } from "./services/track-service";
-import { AudioFeatureView } from "../../common/src/view/audio-feature-view";
+import {TrackService} from "./services/track-service";
+import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
 
 function initUserProfileView(user: UserView): void {
     console.log(user);
     const img = document.getElementById("profile-image") as HTMLImageElement;
     const name = document.getElementById("profile-name");
     const email = document.getElementById("profile-email");
-    img.src = user.image;
+    if (user.image) {
+        img.alt = "Profile Picture";
+        img.src = user.image;
+        img.height = img.width;
+    }
     name.innerText = user.name;
     email.innerText = user.email;
 }
 
 function createFeatureItem(name: string, value: number) {
     const percent = Math.round(value * 100);
-        
+
     return `
         <div>
             ${name} ${Math.round(percent)}/100
@@ -43,7 +47,7 @@ function initAudioFeature(feature: AudioFeatureView) {
 window.onload = () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("id") || localStorage.getItem("id") || null;
-    if(!code) {
+    if (!code) {
         window.location.assign("/app/index.html");
     }
     localStorage.setItem("id", params.get("id"));
