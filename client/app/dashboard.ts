@@ -47,7 +47,7 @@ window.onload = () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("id")  || null;
     if (!code) {
-        window.location.assign("/app/index.html");
+        window.location.assign("login.html");
     }
     const userService = new UserService(EndpointService.getEndpoint());
     userService.getUser(params.get("id"))

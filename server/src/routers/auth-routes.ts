@@ -35,7 +35,7 @@ export class AuthRoutesConfig {
 
                     this.authController.requestSessionToken(code)
                         .then(user => {
-                            res.redirect(`http://localhost:1234/app/dashboard.html?${querystring.stringify({
+                            res.redirect(`http://localhost:1234/dashboard.html?${querystring.stringify({
                                 id: user.id
                             })}`);
                         });
