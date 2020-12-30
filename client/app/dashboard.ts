@@ -1,9 +1,11 @@
-import { UserService } from "./services/user-service";
-import { UserView } from "../../common/src/view/user-view";
-import { TrackService } from "./services/track-service";
-import { AudioFeatureView } from "../../common/src/view/audio-feature-view";
-import { EndpointService } from "./services/endpoint-service";
-import Chart from "chart.js";
+import {UserService} from "./services/user-service";
+import {UserView} from "../../common/src/view/user-view";
+import {TrackService} from "./services/track-service";
+import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
+import {EndpointService} from "./services/endpoint-service";
+import {Chart} from "chart.js";
+import {ArtistService} from "./services/artist-service";
+import {ArtistView} from "../../common/src/view/artist-view";
 
 function initUserProfileView(user: UserView): void {
     const img = document.getElementById("profile-image") as HTMLImageElement;
@@ -32,9 +34,9 @@ function createFeatureItem(name: string, value: number) {
 }
 
 function createFeatureChart(feature: AudioFeatureView) {
-    var chartCanvas = document.getElementById("feature-chart") as HTMLCanvasElement;
+    const chartCanvas = document.getElementById("feature-chart") as HTMLCanvasElement;
 
-    var chartData = {
+    const chartData = {
         labels: ["ACOUSTICNESS", "ENERGY", "HAPPINESS", "INSTRUMENTALNESS", "LIVENESS", "SPEECHINESS", "DANCEABILITY"],
         datasets: [{
             label: "",
@@ -56,8 +58,8 @@ function createFeatureChart(feature: AudioFeatureView) {
     Chart.defaults.global.legend.display = false;
     Chart.defaults.scale.ticks.display = false;
 
-    var chartOptions = {
-        title: { text: "RADAR", display: true },
+    const chartOptions = {
+        title: {text: "RADAR", display: true},
         responsive: true,
         scale: {
             angleLines: {
@@ -78,7 +80,7 @@ function createFeatureChart(feature: AudioFeatureView) {
 
 function initAudioFeatureView(feature: AudioFeatureView) {
 
-    var featureHTML = "";
+    let featureHTML = "";
     featureHTML += createFeatureItem("Acousticness", feature.acousticness);
     featureHTML += createFeatureItem("Energy", feature.energy);
     featureHTML += createFeatureItem("Happiness", feature.valence);
@@ -92,17 +94,34 @@ function initAudioFeatureView(feature: AudioFeatureView) {
     createFeatureChart(feature);
 }
 
+function initTopArtistView(artists: ArtistView[]) {
+    console.log(artists);
+    const artistTable = document.getElementById("artists");
+    artists.forEach(artist => {
+        artistTable.innerHTML +=
+            `<tr>
+                <td>${artist.name}</td>
+                <td>${artist.popularity}</td>
+                <td>${artist.genres[0]}</td>
+            </tr>`
+    });
+}
+
 window.onload = () => {
     const params = new URLSearchParams(window.location.search);
-    const code = params.get("id")  || null;
-    if (!code) {
+    const id = params.get("id") || null;
+    if (!id) {
         window.location.assign("login.html");
     }
     const userService = new UserService(EndpointService.getEndpoint());
-    userService.getUser(code)
+    userService.getUser(id)
         .then(initUserProfileView);
 
     const trackService = new TrackService(EndpointService.getEndpoint());
-    trackService.getAudioFeature(code)
+    trackService.getAudioFeature(id)
         .then(initAudioFeatureView);
+
+    const artistService = new ArtistService(EndpointService.getEndpoint());
+    artistService.getTopArtists(id)
+        .then(initTopArtistView)
 }
