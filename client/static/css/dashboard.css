@@ -73,3 +73,31 @@
     margin-right: auto;
     padding: 20px 0;
 }
+
+.valence {
+    background-color: var(--blue);
+}
+
+.danceability {
+    background-color: var(--green);
+}
+
+.energy {
+    background-color: var(--pink);
+}
+
+.acousticness {
+    background-color: var(--orange);
+}
+
+.instrumentalness {
+    background-color: var(--indigo);
+}
+
+.liveness {
+    background-color: var(--red);
+}
+
+.speechiness {
+    background-color: var(--info);
+}

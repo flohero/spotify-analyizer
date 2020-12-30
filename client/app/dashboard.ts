@@ -20,11 +20,13 @@ function initUserProfileView(user: UserView): void {
 function createFeatureItem(name: string, value: number) {
     const percent = Math.round(value * 100);
 
+    const cssClass = name == "Happiness" ? "valence" : name.toLowerCase();
+
     return `
         <div>
             ${name} ${Math.round(percent)}/100
             <div class="progressbar">
-                <div class="progressbar__progress " style="width:${percent}%; background-color: #1db954;"></div>
+                <div class="progressbar__progress ${cssClass}" style="width:${percent}%;"></div>
             </div>
         </div>`;
 }
