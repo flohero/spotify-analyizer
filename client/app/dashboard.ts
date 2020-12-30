@@ -94,7 +94,7 @@ function initAudioFeatureView(feature: AudioFeatureView) {
     createFeatureChart(feature);
 }
 
-function initTopArtistView(artists: ArtistView[]) {
+function initTopArtistView(artists: ArtistView[]): void {
     console.log(artists);
     const artistTable = document.getElementById("artists");
     artists.forEach(artist => {
@@ -102,7 +102,14 @@ function initTopArtistView(artists: ArtistView[]) {
             `<tr>
                 <td>${artist.name}</td>
                 <td>${artist.popularity}</td>
-                <td>${artist.genres[0]}</td>
+                <td>
+                    ${artist.genres.reduce((prev, cur, idx) => {
+                        if (idx == 1) {
+                            prev = `<div class="chip chip--primary">${prev}</div>`;
+                        }
+                        return prev + `<div class="chip chip--primary">${cur}</div>`;
+                    })}
+                </td>
             </tr>`
     });
 }

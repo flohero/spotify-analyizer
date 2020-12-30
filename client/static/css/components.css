@@ -33,7 +33,7 @@ a:focus, a:hover, a:active {
 
 .chip--primary {
     background-color: var(--green);
-    color: var(--foreground);
+    color: var(--background);
 }
 
 .chip--dark {
