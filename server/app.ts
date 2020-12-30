@@ -5,6 +5,7 @@ import * as cors from "cors";
 import {AuthRoutesConfig} from "./src/routers/auth-routes";
 import {MongoConfig} from "./src/config/mongo-config";
 import {UserProfileRouter} from "./src/routers/user-profile-router";
+import {TrackRouter} from "./src/routers/track-router";
 
 const app: express.Application = express();
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.use(cors());
 
 new AuthRoutesConfig(app);
 new UserProfileRouter(app);
+new TrackRouter(app);
 
 app.use(expressWinston.errorLogger({
     transports: [

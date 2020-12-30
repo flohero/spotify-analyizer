@@ -22,11 +22,12 @@ export class UserProfileRouter {
                         }
                         res.status(200);
                         res.type("json");
-                        res.send(new UserView(
-                            user.name,
-                            user.email,
-                            user.profile_image
-                        ));
+                        console.log(user);
+                        res.send(<UserView>{
+                            name: user.name,
+                            email: user.email,
+                            image: user.profile_image
+                        });
                     })
                     .catch(() => {
                         res.sendStatus(401);

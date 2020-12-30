@@ -8,7 +8,7 @@ export class AuthController {
     private static client_secret = process.env.SPOTIFY_CLIENT_SECRET;
     private static redirect_uri = "http://localhost:3000/callback";
     private static req_uri = "https://accounts.spotify.com/authorize";
-    private static scope = "user-read-private user-read-email user-read-recently-played";
+    private static scope = "user-read-private user-read-email user-read-recently-played user-top-read";
 
     constructor() {
     }

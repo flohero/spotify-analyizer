@@ -9,14 +9,14 @@ export class UserService {
 
     public getUser(id: string): Promise<UserView> {
         return fetch(this.endpoint + id)
-            .then( res => {
-                if(res.status == 404) {
+            .then(res => {
+                if (res.status == 404) {
                     throw new Error("User not found");
                 }
                 return res.json();
             })
             .then(userData => {
-                return new UserView(userData.name, userData.email, userData.image);
+                return <UserView>{name: userData.name, email: userData.email, image: userData.image};
             });
     }
 }

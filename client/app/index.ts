@@ -1,7 +1,9 @@
 import {AuthService} from "./services/auth-service";
 
 window.onload = () => {
-    const auth = new AuthService("http://localhost:3000");
+    const PORT = 3000;
+    const hostname = window.location.hostname;
+    const auth = new AuthService(`http://${hostname}:${PORT}`);
     auth.getAuthUri()
         .then(res => {
             return res.json()
