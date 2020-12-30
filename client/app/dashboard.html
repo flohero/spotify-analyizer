@@ -27,28 +27,33 @@
     </ul>
 </nav>
 <main class="dashboard">
-    <div class="area area--gray user-area">
+    <div class="area area--gray area--user">
         <img class="user-area__image" id="profile-image" src="../static/assets/broken_image-white-18dp.svg" alt="Profile Image">
         <p id="profile-name" class="text-size-h3 user-area__name"></p>
         <p id="profile-email"></p>
     </div>
-    <div class="area area--gray top-artist-area">
+    <div class="area area--gray area--top-artist">
         <div class="area__title">
             <h2>Top artists</h2>
         </div>
     </div>
-    <div class="area timeline-area">
+    <div class="area area--gray area--timeline">
         <div class="area__title">
             <h2>Timeline</h2>
         </div>
     </div>
-    <div class="area area--gray audio-feature-area">
+    <div class="area area--gray area--audio-feature">
         <div class="area__title">
             <h2>Overall mood</h2>
         </div>
 
-        <div class="area__content" id="featureContainer"  ></div>
-        <canvas id="audioFeatureChart"></canvas>
+        <div class="area__content">
+            <div id="feature-percentage"></div>
+            <div class="feature-chart-container">
+                <canvas id="feature-chart"></canvas>
+            </div>
+    </div>
+
     </div>
 </main>
 </body>

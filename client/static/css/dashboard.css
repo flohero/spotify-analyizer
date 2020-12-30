@@ -8,45 +8,43 @@
     grid-template-rows: auto;
     grid-template-columns: auto;
     grid-template-areas:
-            'user-area'
-            'top-artist-area'
-            'audio-feature-area'
-            'timeline-area';
+            'area--user'
+            'area--top-artist'
+            'area--audio-feature'
+            'area--timeline';
 }
 
 @media only screen and (min-width: 1024px) {
     .dashboard {
-        grid-template-columns: 400px auto;
+        grid-template-columns: 500px auto;
         grid-template-areas:
-            'user-area top-artist-area'
-            'audio-feature-area timeline-area';
+            'area--user area--top-artist'
+            'area--audio-feature area--timeline';
     }
 }
 
 .top-artist-area {
-    grid-area: top-artist-area;
+    grid-area: area--top-artist;
 }
 
-.user-area {
-    grid-area: user-area;
+.area--user {
+    grid-area: area--user;
     text-align: center;
     padding-bottom: 1em;
 }
 
-.user-area__image {
+.area--user__image {
     width: 100%;
     object-fit: cover;
 }
 
-.timeline-area {
-    grid-area: timeline-area;
+.area--timeline {
+    grid-area: area--timeline;
 }
 
-.audio-feature-area {
-    grid-area: audio-feature-area;
+.area--audio-feature {
+    grid-area: area--audio-feature;
 }
-
-.area {}
 
 .area--gray {
     background: rgba(52, 58, 64, 0.3);
@@ -67,4 +65,11 @@
     padding: 0.3em;
     background: rgba(52, 58, 64, 0.3);
     border-radius: 4px;
+}
+
+.feature-chart-container {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 0;
 }

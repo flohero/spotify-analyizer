@@ -30,7 +30,7 @@ function createFeatureItem(name: string, value: number) {
 }
 
 function createFeatureChart(feature: AudioFeatureView) {
-    var chartCanvas = document.getElementById("audioFeatureChart") as HTMLCanvasElement;
+    var chartCanvas = document.getElementById("feature-chart") as HTMLCanvasElement;
 
     var chartData = {
         labels: ["ACOUSTICNESS", "ENERGY", "HAPPINESS", "INSTRUMENTALNESS", "LIVENESS", "SPEECHINESS", "DANCEABILITY"],
@@ -57,7 +57,6 @@ function createFeatureChart(feature: AudioFeatureView) {
     var chartOptions = {
         title: { text: "RADAR", display: true },
         responsive: true,
-        maintainAspectRatio: true,
         scale: {
             angleLines: {
                 color: "gray",
@@ -86,7 +85,7 @@ function initAudioFeatureView(feature: AudioFeatureView) {
     featureHTML += createFeatureItem("Speechiness", feature.speechiness);
     featureHTML += createFeatureItem("Danceability", feature.danceability);
 
-    document.getElementById("featureContainer").innerHTML = featureHTML;
+    document.getElementById("feature-percentage").innerHTML = featureHTML;
 
     createFeatureChart(feature);
 }
