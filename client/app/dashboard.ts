@@ -1,8 +1,9 @@
-import {UserService} from "./services/user-service";
-import {UserView} from "../../common/src/view/user-view";
-import {TrackService} from "./services/track-service";
-import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
-import {EndpointService} from "./services/endpoint-service";
+import { UserService } from "./services/user-service";
+import { UserView } from "../../common/src/view/user-view";
+import { TrackService } from "./services/track-service";
+import { AudioFeatureView } from "../../common/src/view/audio-feature-view";
+import { EndpointService } from "./services/endpoint-service";
+import Chart from "chart.js";
 
 function initUserProfileView(user: UserView): void {
     const img = document.getElementById("profile-image") as HTMLImageElement;
@@ -28,8 +29,53 @@ function createFeatureItem(name: string, value: number) {
         </div>`;
 }
 
-function initAudioFeature(feature: AudioFeatureView) {
-    console.log(feature);
+function createFeatureChart(feature: AudioFeatureView) {
+    var chartCanvas = document.getElementById("audioFeatureChart") as HTMLCanvasElement;
+
+    var chartData = {
+        labels: ["ACOUSTICNESS", "ENERGY", "HAPPINESS", "INSTRUMENTALNESS", "LIVENESS", "SPEECHINESS", "DANCEABILITY"],
+        datasets: [{
+            label: "",
+            backgroundColor: "rgba(29, 185, 84, 0.1)",
+            borderColor: "#1db954",
+            data: [
+                Math.round(feature.acousticness * 100)
+                , Math.round(feature.energy * 100)
+                , Math.round(feature.valence * 100)
+                , Math.round(feature.instrumentalness * 100)
+                , Math.round(feature.liveness * 100)
+                , Math.round(feature.speechiness * 100)
+                , Math.round(feature.danceability * 100)
+            ]
+        }]
+    };
+
+    Chart.defaults.global.defaultFontColor = 'white';
+    Chart.defaults.global.legend.display = false;
+    Chart.defaults.scale.ticks.display = false;
+
+    var chartOptions = {
+        title: { text: "RADAR", display: true },
+        responsive: true,
+        maintainAspectRatio: true,
+        scale: {
+            angleLines: {
+                color: "gray",
+            },
+            gridLines: {
+                color: "gray"
+            }
+        }
+    } as Chart.ChartOptions;
+
+    new Chart(chartCanvas, {
+        type: 'radar',
+        data: chartData,
+        options: chartOptions
+    });
+}
+
+function initAudioFeatureView(feature: AudioFeatureView) {
 
     var featureHTML = "";
     featureHTML += createFeatureItem("Acousticness", feature.acousticness);
@@ -41,6 +87,8 @@ function initAudioFeature(feature: AudioFeatureView) {
     featureHTML += createFeatureItem("Danceability", feature.danceability);
 
     document.getElementById("featureContainer").innerHTML = featureHTML;
+
+    createFeatureChart(feature);
 }
 
 window.onload = () => {
@@ -50,9 +98,10 @@ window.onload = () => {
         window.location.assign("login.html");
     }
     const userService = new UserService(EndpointService.getEndpoint());
-    userService.getUser(params.get("id"))
+    userService.getUser(code)
         .then(initUserProfileView);
 
     const trackService = new TrackService(EndpointService.getEndpoint());
-    trackService.getAudioFeature(params.get("id")).then(initAudioFeature);
+    trackService.getAudioFeature(code)
+        .then(initAudioFeatureView);
 }
