@@ -6,6 +6,7 @@ import {AuthRoutesConfig} from "./src/routers/auth-routes";
 import {MongoConfig} from "./src/config/mongo-config";
 import {UserProfileRouter} from "./src/routers/user-profile-router";
 import {TrackRouter} from "./src/routers/track-router";
+import {ArtistRoutes} from "./src/routers/artist-routes";
 
 const app: express.Application = express();
 const PORT = 3000;
@@ -15,6 +16,7 @@ app.use(cors());
 new AuthRoutesConfig(app);
 new UserProfileRouter(app);
 new TrackRouter(app);
+new ArtistRoutes(app);
 
 app.use(expressWinston.errorLogger({
     transports: [
@@ -50,6 +52,7 @@ mongoConfig.connect();
 // Start Web Server
 app.listen(PORT, () => {
 });
+
 process.on('exit', () => {
     mongoConfig.disconnect();
 });
