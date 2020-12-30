@@ -1,22 +1,25 @@
-import {UserService} from "./services/user-service";
-import {UserView} from "../../common/src/view/user-view";
+import { UserService } from "./services/user-service";
+import { UserView } from "../../common/src/view/user-view";
 import { TrackService } from "./services/track-service";
 import { AudioFeatureView } from "../../common/src/view/audio-feature-view";
+import { EndpointService } from "./services/endpoint-service";
 import Chart from "chart.js";
 
 function initUserProfileView(user: UserView): void {
-    console.log(user);
     const img = document.getElementById("profile-image") as HTMLImageElement;
     const name = document.getElementById("profile-name");
     const email = document.getElementById("profile-email");
-    img.src = user.image;
+    img.height = img.width;
+    if (user.image) {
+        img.src = user.image;
+    }
     name.innerText = user.name;
     email.innerText = user.email;
 }
 
 function createFeatureItem(name: string, value: number) {
     const percent = Math.round(value * 100);
-        
+
     return `
         <div>
             ${name} ${Math.round(percent)}/100
@@ -32,20 +35,20 @@ function createFeatureChart(feature: AudioFeatureView) {
     var chartData = {
         labels: ["ACOUSTICNESS", "ENERGY", "HAPPINESS", "INSTRUMENTALNESS", "LIVENESS", "SPEECHINESS", "DANCEABILITY"],
         datasets: [{
-          label: "",
-          backgroundColor: "rgba(29, 185, 84, 0.1)",
-          borderColor: "#1db954",
-          data: [
-              Math.round(feature.acousticness * 100)
-            , Math.round(feature.energy * 100)
-            , Math.round(feature.valence * 100)
-            , Math.round(feature.instrumentalness * 100)
-            , Math.round(feature.liveness * 100)
-            , Math.round(feature.speechiness * 100)
-            , Math.round(feature.danceability * 100)
+            label: "",
+            backgroundColor: "rgba(29, 185, 84, 0.1)",
+            borderColor: "#1db954",
+            data: [
+                Math.round(feature.acousticness * 100)
+                , Math.round(feature.energy * 100)
+                , Math.round(feature.valence * 100)
+                , Math.round(feature.instrumentalness * 100)
+                , Math.round(feature.liveness * 100)
+                , Math.round(feature.speechiness * 100)
+                , Math.round(feature.danceability * 100)
             ]
         }]
-      };
+    };
 
     Chart.defaults.global.defaultFontColor = 'white';
     Chart.defaults.global.legend.display = false;
@@ -90,17 +93,15 @@ function initAudioFeatureView(feature: AudioFeatureView) {
 
 window.onload = () => {
     const params = new URLSearchParams(window.location.search);
-    const code = params.get("id") || localStorage.getItem("id") || null;
-    if(!code) {
-        window.location.assign("/app/index.html");
+    const code = params.get("id")  || null;
+    if (!code) {
+        window.location.assign("login.html");
     }
-    localStorage.setItem("id", params.get("id"));
-    const PORT = 3000;
-    const hostname = window.location.hostname;
-    const userService = new UserService(`http://${hostname}:${PORT}`);
-    userService.getUser(params.get("id"))
+    const userService = new UserService(EndpointService.getEndpoint());
+    userService.getUser(code)
         .then(initUserProfileView);
 
-    const trackService = new TrackService("http://localhost:3000");
-    trackService.getAudioFeature(params.get("id")).then(initAudioFeatureView);
+    const trackService = new TrackService(EndpointService.getEndpoint());
+    trackService.getAudioFeature(code)
+        .then(initAudioFeatureView);
 }

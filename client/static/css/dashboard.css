@@ -30,6 +30,7 @@
 .user-area {
     grid-area: user-area;
     text-align: center;
+    padding-bottom: 1em;
 }
 
 .user-area__image {
@@ -45,8 +46,10 @@
     grid-area: audio-feature-area;
 }
 
-.area {
-    border: var(--gray-dark) thin solid;
+.area {}
+
+.area--gray {
+    background: rgba(52, 58, 64, 0.3);
 }
 
 .area__title {
@@ -57,4 +60,11 @@
 
 .area__content {
     margin: 10px;
+}
+
+.user-area__name {
+    display: inline-block;
+    padding: 0.3em;
+    background: rgba(52, 58, 64, 0.3);
+    border-radius: 4px;
 }

@@ -1,9 +1,8 @@
 import {AuthService} from "./services/auth-service";
+import {EndpointService} from "./services/endpoint-service";
 
 window.onload = () => {
-    const PORT = 3000;
-    const hostname = window.location.hostname;
-    const auth = new AuthService(`http://${hostname}:${PORT}`);
+    const auth = new AuthService(EndpointService.getEndpoint());
     auth.getAuthUri()
         .then(res => {
             return res.json()
