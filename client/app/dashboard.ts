@@ -99,14 +99,16 @@ function initTopArtistView(artists: ArtistView[]): void {
     const artistTable = document.getElementById("artists");
     artists.forEach(artist => {
         artistTable.innerHTML +=
-            `<tr>
-                <td><img class="artist-table__img" src="${artist.image}" alt="${artist.name} Image"></td>
-                <td class="text-size-h4">${artist.name}</td>
-                <td>${artist.popularity}</td>
-                <td class="artist-table__genres">
-                    ${artist.genres.slice(0, 3).map(genre => {
-                        return `<div class="chip chip--primary">${genre}</div>`;
-                    }).join("")}
+            `<tr class="artist-table__row">
+                <td class="artist-table__cell"><img class="artist-table__img" src="${artist.image}" alt="${artist.name} Image"></td>
+                <td class="text-size-h4 artist-table__cell">${artist.name}</td>
+                <td class="artist-table__cell">${artist.popularity}</td>
+                <td class="artist-table__cell">
+                    <div class="artist-table__genres">
+                        ${artist.genres.map(genre => {
+                            return `<div class="chip chip--primary">${genre}</div>`;
+                        }).join("")}
+                    <div>
                 </td>
             </tr>`
     });

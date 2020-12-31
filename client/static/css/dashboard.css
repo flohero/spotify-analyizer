@@ -109,6 +109,14 @@
     padding: 2em;
 }
 
+.artist-table__row {
+
+}
+
+.artist-table__cell {
+    text-align: center;
+}
+
 .artist-table__img {
     height: 3em;
     display: inline-block;
@@ -116,7 +124,6 @@
 
 .artist-table__genres {
     display: none;
-    height: 100%;
 }
 
 @media only screen and (min-width: 500px) {
@@ -125,7 +132,9 @@
     }
 
     .artist-table__genres {
-        display: table-cell;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
     }
 
     .artist-table__genres div:first-child {
