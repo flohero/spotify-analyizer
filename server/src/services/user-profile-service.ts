@@ -34,6 +34,7 @@ export class UserProfileService extends SpotifyBaseService {
                     .then(this.handleErrors)
                     .then(res => res.json())
                     .then(res => {
+                        user.display_name = res.display_name;
                         user.profile_image = res.images.length > 0 ? res.images[0].url : null;
                         return user;
                     });

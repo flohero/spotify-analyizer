@@ -15,7 +15,7 @@ function initUserProfileView(user: UserView): void {
     if (user.image) {
         img.src = user.image;
     }
-    name.innerText = user.name;
+    name.innerText = user.display_name ?? user.name;
     email.innerText = user.email;
 }
 

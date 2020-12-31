@@ -2,11 +2,11 @@ import * as express from "express";
 import * as winston from "winston";
 import * as expressWinston from "express-winston";
 import * as cors from "cors";
-import {AuthRoutesConfig} from "./src/routers/auth-routes";
+import {AuthRoutesConfig} from "./src/routers/auth-router";
 import {MongoConfig} from "./src/config/mongo-config";
 import {UserProfileRouter} from "./src/routers/user-profile-router";
 import {TrackRouter} from "./src/routers/track-router";
-import {ArtistRoutes} from "./src/routers/artist-routes";
+import {ArtistRouter} from "./src/routers/artist-router";
 
 const app: express.Application = express();
 const PORT = 3000;
@@ -16,7 +16,7 @@ app.use(cors());
 new AuthRoutesConfig(app);
 new UserProfileRouter(app);
 new TrackRouter(app);
-new ArtistRoutes(app);
+new ArtistRouter(app);
 
 app.use(expressWinston.errorLogger({
     transports: [
