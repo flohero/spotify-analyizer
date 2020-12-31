@@ -4,8 +4,8 @@
     display: grid;
     margin: 1rem;
     grid-gap: 1rem;
-    height: 500px;
-    grid-template-rows: auto;
+    height: auto;
+    grid-template-rows: 100%;
     grid-template-columns: auto;
     grid-template-areas:
             'area--user'
@@ -16,7 +16,7 @@
 
 @media only screen and (min-width: 1024px) {
     .dashboard {
-        grid-template-columns: 500px auto;
+        grid-template-columns: 30% auto;
         grid-template-areas:
             'area--user area--top-artist'
             'area--audio-feature area--timeline';
@@ -36,6 +36,8 @@
 .area--user__image {
     width: 100%;
     object-fit: cover;
+    display: block;
+    margin: auto;
 }
 
 .area--timeline {
@@ -105,4 +107,38 @@
 .artist-table {
     width: 100%;
     padding: 2em;
+}
+
+.artist-table__img {
+    height: 3em;
+    display: inline-block;
+}
+
+.artist-table__genres {
+    display: none;
+    height: 100%;
+}
+
+@media only screen and (min-width: 500px) {
+    .artist-table__img {
+        height: 5em;
+    }
+
+    .artist-table__genres {
+        display: table-cell;
+    }
+
+    .artist-table__genres div:first-child {
+        display: inherit;
+    }
+
+    .artist-table__genres div:not(:first-child) {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    .artist-table__genres div:not(:first-child) {
+        display: inherit;
+    }
 }

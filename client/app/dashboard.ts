@@ -100,15 +100,13 @@ function initTopArtistView(artists: ArtistView[]): void {
     artists.forEach(artist => {
         artistTable.innerHTML +=
             `<tr>
-                <td>${artist.name}</td>
+                <td><img class="artist-table__img" src="${artist.image}" alt="${artist.name} Image"></td>
+                <td class="text-size-h4">${artist.name}</td>
                 <td>${artist.popularity}</td>
-                <td>
-                    ${artist.genres.reduce((prev, cur, idx) => {
-                        if (idx == 1) {
-                            prev = `<div class="chip chip--primary">${prev}</div>`;
-                        }
-                        return prev + `<div class="chip chip--primary">${cur}</div>`;
-                    })}
+                <td class="artist-table__genres">
+                    ${artist.genres.slice(0, 3).map(genre => {
+                        return `<div class="chip chip--primary">${genre}</div>`;
+                    }).join("")}
                 </td>
             </tr>`
     });
