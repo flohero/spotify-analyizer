@@ -16,7 +16,12 @@ export class UserService {
                 return res.json();
             })
             .then(userData => {
-                return <UserView>{name: userData.name, email: userData.email, image: userData.image};
+                return {
+                    name: userData.name,
+                    email: userData.email,
+                    image: userData.image,
+                    display_name: userData.display_name
+                } as UserView;
             });
     }
 }

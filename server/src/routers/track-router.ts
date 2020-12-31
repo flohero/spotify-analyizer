@@ -1,20 +1,20 @@
-import {Application} from "express";
-import {TrackService} from "../services/track-service";
+import { Application } from "express";
+import { TrackService } from "../services/track-service";
+import { BaseRouter } from "./base-router";
 
-export class TrackRouter {
-    private readonly _app: Application;
-    private readonly _trackService = new TrackService();
+export class TrackRouter extends BaseRouter {
+    private readonly trackService = new TrackService();
+    
     constructor(app: Application) {
-        this._app = app;
-        this.configureRoutes();
+        super(app);
     }
 
-    private configureRoutes(): Application {
-        return this._app
+    protected configureRoutes(): Application {
+        return this.app
             .get("/track/audio-features/:id", (req, res) => {
-                this._trackService.getTopTracks(req.params.id).then(topTracks => {
+                this.trackService.getTopTracks(req.params.id).then(topTracks => {
                     const ids = topTracks.map(tt => tt.id) as string[];
-                    this._trackService.getAudioFeatures(req.params.id, ids).then(features => {
+                    this.trackService.getAudioFeatures(req.params.id, ids).then(features => {
                         res.status(200);
                         res.type("json");
                         res.send(features);

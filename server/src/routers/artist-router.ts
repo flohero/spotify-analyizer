@@ -1,16 +1,15 @@
-import {Application} from "express";
-import {ArtistService} from "../services/artist-service";
+import { Application } from "express";
+import { ArtistService } from "../services/artist-service";
+import { BaseRouter } from "./base-router";
 
-export class ArtistRoutes {
-    private readonly app: Application;
+export class ArtistRouter extends BaseRouter {
     private readonly artistService: ArtistService = new ArtistService();
 
     constructor(app: Application) {
-        this.app = app;
-        this.configureRoutes();
+        super(app);
     }
 
-    private configureRoutes(): Application {
+    protected configureRoutes(): Application {
         return this.app
             .get("/artists/top/:id", (req, res) => {
                 const id = req.params.id;
