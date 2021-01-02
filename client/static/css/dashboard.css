@@ -32,14 +32,19 @@
     grid-area: area--user;
     text-align: center;
     padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .area--user__image {
-    width: 100%;
+    width: 60vw;
+    height: 60vw;
     object-fit: cover;
+    border-radius: 50%;
     display: block;
+    background-color: rgba(52, 58, 64, 0.3);
     margin: auto;
-    background-color:  rgba(52, 58, 64, 0.3);
 }
 
 .area--user__property {
@@ -56,6 +61,10 @@
 
 .area--gray {
     background: rgba(52, 58, 64, 0.3);
+}
+
+.area--rounded-corners {
+    border-radius: 10px;
 }
 
 .area__title {
@@ -88,6 +97,11 @@
         margin-left: auto;
         margin-right: auto;
         padding: 20px 0;
+    }
+
+    .area--user__image {
+        width: 20vw;
+        height: 20vw;
     }
 }
 
@@ -159,7 +173,10 @@
 
 .artist-table__img {
     height: 3em;
+    width: 3em;
     display: inline-block;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .artist-table__genres {
@@ -177,6 +194,7 @@
 @media only screen and (min-width: 750px) {
     .artist-table__img {
         height: 5em;
+        width: 5em;
     }
 
     .artist-table__genres {
@@ -202,7 +220,7 @@
     }
 
     .artist-table__header--md {
-        display: table-caption;
+        display: table-cell;
     }
 }
 
@@ -225,5 +243,5 @@
 }
 
 .text--wrap {
-    word-wrap: anywhere;
+    word-wrap: break-word;
 }
