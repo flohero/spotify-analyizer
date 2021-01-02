@@ -2,7 +2,6 @@
     /* spotify colors */
     --foreground: #fff;
     --background: #191414;
-
     --blue: #509bf5;
     --green: #1db954;
     --pink: #cb1582;
@@ -16,9 +15,9 @@
     --teal: #20c997;
     --cyan: #17a2b8;
     --gray-dark: #343a40;
-    --primary: #007bff;
-    --success: #28a745;
-    --info: #17a2b8;
-    --warning: #ffc107;
-    --danger: #dc3545;
+    --primary: var(--green);
+    --success: var(--blue);
+    --info: var(--yellow);
+    --warning: var(--orange);
+    --danger: var(--red);
 }
