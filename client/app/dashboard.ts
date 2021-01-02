@@ -12,6 +12,7 @@ function initUserProfileView(user: UserView): void {
     const name = document.getElementById("profile-name");
     const email = document.getElementById("profile-email");
     img.height = img.width;
+    window.onresize = () => img.height = img.width;
     if (user.image) {
         img.src = user.image;
     }
