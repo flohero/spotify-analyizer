@@ -61,7 +61,7 @@
 }
 
 .area__content {
-    margin: 10px;
+    padding: 2em;
 }
 
 .user-area__name {
@@ -90,7 +90,7 @@
 }
 
 .danceability {
-    background-color: var(--green);
+    background-color: #8e25ad;
 }
 
 .energy {

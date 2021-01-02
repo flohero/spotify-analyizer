@@ -18,3 +18,7 @@
 .mr-auto {
     margin-right: auto !important;
 }
+
+.bold {
+    font-weight: bold;
+}

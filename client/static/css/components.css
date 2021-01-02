@@ -62,10 +62,12 @@ a:focus, a:hover, a:active {
 .progressbar {
     border-radius: 5px;
     margin: 5px 0;
+    background-color: var(--gray-dark);
 }
 
 .progressbar__progress {
     height: 10px;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
