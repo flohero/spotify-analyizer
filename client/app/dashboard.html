@@ -30,11 +30,15 @@
     <div class="area area--gray area--user">
         <img class="area--user__image" id="profile-image" src="../static/assets/broken_image-white-18dp.svg"
              alt="Profile Image">
-        <p id="profile-name" class="text-size-h3 user-area__name"></p>
-        <p class="text-size-h4 text--wrap text--info" id="profile-email"></p>
-        <p class="top-genre text--info">
-            <span class="text-size-h4">Top Genre: <span class="top-genre__element" id="top-genre"></span></span>
-        </p>
+        <div id="profile-name" class="text-size-h3 user-area__name"></div>
+        <div class="area--user__property">
+            <label class="label" for="profile-email">E-Mail</label>
+            <span class="text-size-h4 text--wrap text--info" id="profile-email"></span>
+        </div>
+        <div class="area--user__property">
+            <label class="label" for="top-genre">Top Genre</label>
+            <span class="text-size-h4 top-genre__element text--info" id="top-genre"></span>
+        </div>
     </div>
     <div class="area area--gray area--top-artist">
         <div class="area__title">

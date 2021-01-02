@@ -39,6 +39,11 @@
     object-fit: cover;
     display: block;
     margin: auto;
+    background-color:  rgba(52, 58, 64, 0.3);
+}
+
+.area--user__property {
+    margin-bottom: 1em;
 }
 
 .area--timeline {
@@ -66,9 +71,10 @@
 
 .user-area__name {
     display: inline-block;
-    padding: 0.3em;
+    width: 100%;
+    padding: 0.5em 0;
     background: rgba(52, 58, 64, 0.3);
-    border-radius: 4px;
+    margin-bottom: 1em;
 }
 
 .feature-chart-container {
