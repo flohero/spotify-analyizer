@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import User, {IUser} from "../model/user-model";
-import { SpotifyBaseService } from "./spotify-base-service";
+import {SpotifyBaseService} from "./spotify-base-service";
 
 export class UserProfileService extends SpotifyBaseService {
 
@@ -26,7 +26,7 @@ export class UserProfileService extends SpotifyBaseService {
     }
 
     public details(id: string): Promise<IUser> {
-        return User.findOne({_id: id})
+        return User.findById(id)
             .then(user => {
                 return fetch(`${this.endPoint}/me`, {
                     headers: this.getAuthenticationHeader(user.access_token)
