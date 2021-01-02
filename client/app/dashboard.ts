@@ -131,8 +131,8 @@ function initTopArtistView(artists: ArtistView[]): ArtistView[] {
             `<tr class="artist-table__row">
                 <td class="artist-table__count artist-table__cell text-size-h5"></td>
                 <td class="artist-table__cell"><img class="artist-table__img" src="${artist.image}" alt="${artist.name} Image"></td>
-                <td class="text-size-h4 artist-table__cell">${artist.name}</td>
-                <td class="artist-table__cell ${artist.popularity > 66 ? "artist-table__cell--red" : artist.popularity > 33 ? "artist-table__cell--orange" : "artist-table__cell--blue" }">${artist.popularity}</td>
+                <td class="text-size-h5 artist-table__cell">${artist.name}</td>
+                <td class="artist-table__cell artist-table__popularity ${artist.popularity > 66 ? "artist-table__cell--red" : artist.popularity > 33 ? "artist-table__cell--orange" : "artist-table__cell--blue" }">${artist.popularity}</td>
                 <td class="artist-table__cell">
                     <div class="artist-table__genres">
                         ${artist.genres.map(genre => {

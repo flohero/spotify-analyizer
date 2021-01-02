@@ -121,7 +121,6 @@
 
 .artist-table__cell {
     text-align: center;
-    padding-left: 1em;
     padding-bottom: 2em;
 }
 
@@ -155,7 +154,11 @@
     display: none;
 }
 
-@media only screen and (min-width: 500px) {
+.artist-table__popularity {
+    display: none;
+}
+
+@media only screen and (min-width: 750px) {
     .artist-table__img {
         height: 5em;
     }
@@ -173,6 +176,14 @@
     .artist-table__genres div:not(:first-child) {
         display: none;
     }
+
+    .artist-table__popularity {
+        display: inherit;
+    }
+
+    .artist-table__cell {
+        padding-left: 1em;
+    }
 }
 
 @media only screen and (min-width: 1600px) {
@@ -189,6 +200,10 @@
     text-transform: uppercase;
 }
 
-.text--info{
+.text--info {
     color: var(--info);
+}
+
+.text--wrap {
+    word-wrap: anywhere;
 }
