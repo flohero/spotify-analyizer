@@ -18,7 +18,7 @@ export class TrackService {
             .then(r => r.json());
     }
 
-    public getGenresOfLastHeardTracks(id: string): Promise<GenreHistoryView> {
+    public getGenresOfLastHeardTracks(id: string): Promise<GenreHistoryView[]> {
         return fetch(`${this.endpoint}/track-history/${id}`)
             .then(r => r.json());
     }

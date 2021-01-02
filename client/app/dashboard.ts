@@ -3,9 +3,13 @@ import {UserView} from "../../common/src/view/user-view";
 import {TrackService} from "./services/track-service";
 import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
 import {EndpointService} from "./services/endpoint-service";
-import {Chart} from "chart.js";
+import Chart from "chart.js";
 import {ArtistService} from "./services/artist-service";
 import {ArtistView} from "../../common/src/view/artist-view";
+import { GenreHistoryView } from "../../common/src/view/genre-history-view";
+import moment from "moment";
+import { Dictionary } from "./models/dictionary";
+import { GenreSum } from "../app/models/genre-sum";
 
 // set chart defaults
 Chart.defaults.global.defaultFontColor = 'white';
@@ -147,44 +151,82 @@ function initTopArtistView(artists: ArtistView[]): ArtistView[] {
     return artists;
 }
 
-function initTimelineView() {
+function groupGenreHistory(history: GenreHistoryView[]): Dictionary<GenreSum[]> {
 
-    // TODO fill chart with real data
-    var data = {
-        labels: [
-            new Date(2020, 1, 1),
-            new Date(2021, 1, 2),
-            new Date(2021, 1, 3),
-            new Date(2021, 1, 7),
-            new Date(2021, 1, 8),
-            new Date(2021, 1, 9),
-            new Date(2021, 1, 10),
-            new Date(2021, 1, 11),
-            new Date(2021, 1, 12),
-            new Date(2021, 1, 13),
-            new Date(2021, 1, 14),
-            new Date(2021, 1, 15),
-            new Date(2021, 1, 16),
-            new Date(2021, 1, 17),
-            new Date(2021, 1, 18),
-            new Date(2021, 1, 19),
-            new Date(2021, 1, 20)
-        ],
-        datasets: [
-            {
-                data: [107, 111, 133],
-                label: "Hardstyle",
-                borderColor: "#3e95cd",
-                fill: false
-            },
-            { 
-                data: [50, 70, 10],
-                label: "Electro Swing",
-                borderColor: "green",
-                fill: false
+    let dict = new Dictionary<GenreSum[]>();
+    
+    history.forEach(h => {
+        // HACK fix date
+        let date_string = (h.timestamp as any) as string;
+        let date = moment(date_string).startOf('day').toISOString();
+
+        if(dict.containsKey(date)) { // date entry already exists
+            var value = dict.getItem(date);
+            h.genres.forEach(genre => {
+                
+                if(value.filter(i => i.genre == genre).length == 0) { // genre is new
+                    dict.getItem(date).push({genre: genre, count: 1});
+                } else { // genre already exists
+                    dict.getItem(date).filter(i => i.genre == genre)[0].count++;
+                }
+            })
+        } else { // new date entry
+            dict.add(date, h.genres.map(genre => ({genre: genre, count: 1})));
+        }
+    });
+
+    return dict;
+  };
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
+    const genres = groupGenreHistory(history);
+    const keys = genres.getKeys();
+
+    const data = {
+        labels: keys,
+        datasets: []
+    } as Chart.ChartData;
+
+    const max = 5;
+
+    keys.forEach(k => {
+        const itemsWithSum = genres.getItem(k).slice(0, max);
+
+        // console.log(groupedSums);
+
+        itemsWithSum.forEach(itemWithSum => {
+            
+            let dataset = data.datasets.filter(dataset => itemWithSum.genre == dataset.label)?.[0];
+            if(dataset) { // dataset already exists
+                dataset.data.push(itemWithSum.count);
+            } else { // new dataset is necessary
+                data.datasets.push({
+                    label: itemWithSum.genre,
+                    data: [ itemWithSum.count ],
+                    borderColor: getRandomColor(), // TODO random color from given color set
+                    fill: false
+                });
             }
-        ]
-      } as Chart.ChartData;
+        });
+        // genre does not exist with current date
+        data.datasets.filter(d => itemsWithSum.map(s => s.genre).indexOf(d.label) == -1)
+                     .forEach(d => d.data.push(null));
+
+  });
+
+  return data;
+}
+
+function initTimelineView(history: GenreHistoryView[]) {
 
     var options = {
         responsive: true,
@@ -205,6 +247,7 @@ function initTimelineView() {
                     maxTicksLimit: 10,
                 },
                 time: {
+                    tooltipFormat: "YYYY/MM/DD",
                     minUnit: "day",
                     displayFormats: {
                         day: "YYYY/MM/DD"
@@ -216,7 +259,7 @@ function initTimelineView() {
 
       new Chart("timeline-chart", {
         type: 'line',
-        data: data,
+        data: createTimelineChartData(history),
         options: options
       });
 }
@@ -241,11 +284,5 @@ window.onload = () => {
         .then(initTopArtistView)
         .then(initTopGenre);
 
-    // TODO call service function for history
-    initTimelineView();
-    trackService.getGenresOfLastHeardTracks(id)
-        .then(res => {
-            console.log(res);
-
-        })
+    trackService.getGenresOfLastHeardTracks(id).then(initTimelineView);
 }
