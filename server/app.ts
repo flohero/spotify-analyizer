@@ -2,7 +2,7 @@ import * as express from "express";
 import * as winston from "winston";
 import * as expressWinston from "express-winston";
 import * as cors from "cors";
-import {AuthRoutesConfig} from "./src/routers/auth-router";
+import {AuthRouter} from "./src/routers/auth-router";
 import {MongoConfig} from "./src/config/mongo-config";
 import {UserProfileRouter} from "./src/routers/user-profile-router";
 import {TrackRouter} from "./src/routers/track-router";
@@ -13,7 +13,7 @@ const PORT = 3000;
 
 app.use(cors());
 
-new AuthRoutesConfig(app);
+new AuthRouter(app);
 new UserProfileRouter(app);
 new TrackRouter(app);
 new ArtistRouter(app);

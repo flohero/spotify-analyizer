@@ -1,11 +1,11 @@
 import "express"
 import { Application } from "express";
-import { AuthController } from "../controllers/auth-controller";
+import { AuthService } from "../services/auth-service";
 import * as querystring from "querystring";
 import { BaseRouter } from "./base-router";
 
-export class AuthRoutesConfig extends BaseRouter {
-    private readonly authController: AuthController = new AuthController();
+export class AuthRouter extends BaseRouter {
+    private readonly authController: AuthService = new AuthService();
 
     constructor(app: Application) {
         super(app);

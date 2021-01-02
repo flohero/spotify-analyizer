@@ -4,7 +4,7 @@ export abstract class BaseRouter {
 
     protected readonly app: Application;
 
-    constructor(app: Application) {
+    protected constructor(app: Application) {
         this.app = app;
         this.configureRoutes();
     }

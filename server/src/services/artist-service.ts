@@ -16,9 +16,10 @@ export class ArtistService extends SpotifyBaseService {
             .then(res => res.json())
             .then(artists => {
                 return artists.items.map(item => {
+                    const image = item.images[0] ? item.images[0].url : null;
                     return <ArtistView>{
                         name: item.name,
-                        image: item.images[0].url,
+                        image: image,
                         popularity: item.popularity,
                         genres: item.genres
                     }
