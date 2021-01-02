@@ -164,6 +164,10 @@
     display: none;
 }
 
+.artist-table__header--md {
+    display: none;
+}
+
 @media only screen and (min-width: 750px) {
     .artist-table__img {
         height: 5em;
@@ -184,11 +188,15 @@
     }
 
     .artist-table__popularity {
-        display: inherit;
+        display: table-cell;
     }
 
     .artist-table__cell {
         padding-left: 1em;
+    }
+
+    .artist-table__header--md {
+        display: table-caption;
     }
 }
 
