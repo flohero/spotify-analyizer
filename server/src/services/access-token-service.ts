@@ -8,7 +8,7 @@ export class AccessTokenService extends SpotifyBaseService {
     private readonly credentialService: CredentialService = new CredentialService();
 
     public getAccessTokenById(id: string): Promise<string> {
-        return User.findOne({_id: id})
+        return User.findById(id)
             .then(user => {
                 if (!user) {
                     throw new UserNotFoundError();
