@@ -1,6 +1,6 @@
-import { Application } from "express";
-import { ArtistService } from "../services/artist-service";
-import { BaseRouter } from "./base-router";
+import {Application} from "express";
+import {ArtistService} from "../services/artist-service";
+import {BaseRouter} from "./base-router";
 
 export class ArtistRouter extends BaseRouter {
     private readonly artistService: ArtistService = new ArtistService();
@@ -17,12 +17,15 @@ export class ArtistRouter extends BaseRouter {
                     res.sendStatus(422);
                     return;
                 }
-                this.artistService.getTopArtists(id)
+                const limit: Number = Number(req.query.limit);
+                (limit
+                    ? this.artistService.getTopArtists(id, limit)
+                    : this.artistService.getTopArtists(id))
                     .then(artists => {
                         res.status(200);
                         res.type("json");
                         res.send(artists);
-                    })
-            })
+                    });
+            });
     }
 }

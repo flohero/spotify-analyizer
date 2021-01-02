@@ -21,7 +21,6 @@ export class UserProfileRouter extends BaseRouter {
                         }
                         res.status(200);
                         res.type("json");
-                        console.log(user);
                         res.send({
                             name: user.name,
                             email: user.email,

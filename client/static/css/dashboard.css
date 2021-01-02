@@ -56,6 +56,7 @@
     margin-top: 30px;
     text-align: center;
     border-bottom: var(--gray-dark) thin solid;
+    text-transform: uppercase;
 }
 
 .area__content {
@@ -114,14 +115,34 @@
 .artist-table {
     width: 100%;
     padding: 2em;
-}
-
-.artist-table__row {
-
+    counter-increment: rowNumber;
 }
 
 .artist-table__cell {
     text-align: center;
+    padding-left: 1em;
+    padding-bottom: 2em;
+}
+
+.artist-table__cell--red {
+    color: var(--red);
+}
+
+.artist-table__cell--orange {
+    color: var(--orange);
+}
+
+.artist-table__cell--blue {
+    color: var(--blue);
+}
+
+.artist-table__row:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+.artist-table__count::before {
+    margin-right: 2em;
+    content: '#' counter(rowNumber);
 }
 
 .artist-table__img {
@@ -157,4 +178,12 @@
     .artist-table__genres div:not(:first-child) {
         display: inherit;
     }
+}
+
+.top-genre {
+    text-align: center;
+}
+
+.top-genre__element {
+    text-transform: uppercase;
 }

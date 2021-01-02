@@ -95,24 +95,41 @@ function initAudioFeatureView(feature: AudioFeatureView) {
     createFeatureChart(feature);
 }
 
-function initTopArtistView(artists: ArtistView[]): void {
-    console.log(artists);
+function initTopGenre(artists: ArtistView[]) {
+    const genreContainer = document.getElementById("top-genre");
+    const genres = artists
+        .map(artist => artist.genres)
+        .reduce((flat, flatten) => {
+            return flat.concat(flatten)
+        });
+    genreContainer.innerText = genres
+        .sort((a, b) =>
+            genres.filter(v => v === a).length
+            - genres.filter(v => v === b).length
+        )
+        .pop();
+}
+
+function initTopArtistView(artists: ArtistView[]): ArtistView[] {
     const artistTable = document.getElementById("artists");
-    artists.forEach(artist => {
+    artists.slice(0, 6).forEach(artist => {
         artistTable.innerHTML +=
             `<tr class="artist-table__row">
+                <td class="artist-table__count artist-table__cell text-size-h5"></td>
                 <td class="artist-table__cell"><img class="artist-table__img" src="${artist.image}" alt="${artist.name} Image"></td>
                 <td class="text-size-h4 artist-table__cell">${artist.name}</td>
-                <td class="artist-table__cell">${artist.popularity}</td>
+                <td class="artist-table__cell ${artist.popularity > 66 ? "artist-table__cell--red" : artist.popularity > 33 ? "artist-table__cell--orange" : "artist-table__cell--blue" }">${artist.popularity}</td>
                 <td class="artist-table__cell">
                     <div class="artist-table__genres">
                         ${artist.genres.map(genre => {
                             return `<div class="chip chip--primary">${genre}</div>`;
-                        }).join("")}
+                        })
+                        .join("")}
                     <div>
                 </td>
             </tr>`
     });
+    return artists;
 }
 
 window.onload = () => {
@@ -132,4 +149,5 @@ window.onload = () => {
     const artistService = new ArtistService(EndpointService.getEndpoint());
     artistService.getTopArtists(id)
         .then(initTopArtistView)
+        .then(initTopGenre);
 }

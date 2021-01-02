@@ -28,15 +28,25 @@
 </nav>
 <main class="dashboard">
     <div class="area area--gray area--user">
-        <img class="area--user__image" id="profile-image" src="../static/assets/broken_image-white-18dp.svg" alt="Profile Image">
+        <img class="area--user__image" id="profile-image" src="../static/assets/broken_image-white-18dp.svg"
+             alt="Profile Image">
         <p id="profile-name" class="text-size-h3 user-area__name"></p>
         <p id="profile-email"></p>
     </div>
     <div class="area area--gray area--top-artist">
         <div class="area__title">
-            <h2>Top artists</h2>
+            <h1>Top artists</h1>
         </div>
         <table class="artist-table">
+            <thead>
+                <tr>
+                    <th class="artist-table__cell">#</th>
+                    <th class="artist-table__cell">Image</th>
+                    <th class="artist-table__cell">Name</th>
+                    <th class="artist-table__cell">Popularity</th>
+                    <th class="artist-table__cell">Genres</th>
+                </tr>
+            </thead>
             <tbody id="artists">
 
             </tbody>
@@ -44,21 +54,23 @@
     </div>
     <div class="area area--gray area--timeline">
         <div class="area__title">
-            <h2>Timeline</h2>
+            <h1>Timeline</h1>
         </div>
     </div>
     <div class="area area--gray area--audio-feature">
         <div class="area__title">
-            <h2>Overall mood</h2>
+            <h1>Overall mood</h1>
         </div>
 
         <div class="area__content">
+            <div class="top-genre">
+                <h2>Top Genre: <span class="top-genre__element" id="top-genre"></span></h2>
+            </div>
             <div id="feature-percentage"></div>
             <div class="feature-chart-container">
                 <canvas id="feature-chart"></canvas>
             </div>
-    </div>
-
+        </div>
     </div>
 </main>
 </body>
