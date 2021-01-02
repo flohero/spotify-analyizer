@@ -12,13 +12,8 @@ export class ArtistService extends SpotifyBaseService {
                 return fetch(`${this.endPoint}/me/top/artists?limit=${limit}&time_range=${timeRange}`,
                     {headers: this.getAuthenticationHeader(accessToken)});
             })
-            .then(res => {
-                if (res.status != 200) {
-                    throw new Error(res.statusText + res.status);
-                }
-
-                return res.json();
-            })
+            .then(this.handleErrors)
+            .then(res => res.json())
             .then(artists => {
                 return artists.items.map(item => {
                     return <ArtistView>{
