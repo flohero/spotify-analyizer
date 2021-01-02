@@ -30,9 +30,10 @@ export class ArtistService extends SpotifyBaseService {
     }
 
     public getGenresOfArtists(userId: string, artists: ArtistPlayedOnView[]) {
+        artists = artists.slice(0, 50);
         return this.accessTokenService.getAccessTokenById(userId)
             .then(accessToken => {
-                return fetch(`${this.endPoint}/artists?ids=${artists.map(artist => artist.artist).slice(0, 50).join(",")}`,
+                return fetch(`${this.endPoint}/artists?ids=${artists.map(artist => artist.artist).join(",")}`,
                     {headers: this.getAuthenticationHeader(accessToken)});
             })
             .then(this.handleErrors)
@@ -40,8 +41,6 @@ export class ArtistService extends SpotifyBaseService {
             .then(content => {
                 return artists.map(artist => {
                     const el = content.artists.find(element => element.id == artist.artist);
-                    console.log(el);
-                    console.log(artist);
                     return <GenreHistoryView>{
                         timestamp: artist.timestamp,
                         genres: el ? el.genres : []
