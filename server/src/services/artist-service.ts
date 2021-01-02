@@ -44,7 +44,7 @@ export class ArtistService extends SpotifyBaseService {
                     console.log(artist);
                     return <GenreHistoryView>{
                         timestamp: artist.timestamp,
-                        genres: el.genres
+                        genres: el ? el.genres : []
                     }
                 })
             });

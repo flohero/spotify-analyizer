@@ -243,4 +243,9 @@ window.onload = () => {
 
     // TODO call service function for history
     initTimelineView();
+    trackService.getGenresOfLastHeardTracks(id)
+        .then(res => {
+            console.log(res);
+
+        })
 }
