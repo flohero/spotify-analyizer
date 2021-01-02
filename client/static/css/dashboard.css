@@ -188,3 +188,7 @@
 .top-genre__element {
     text-transform: uppercase;
 }
+
+.text--info{
+    color: var(--info);
+}
