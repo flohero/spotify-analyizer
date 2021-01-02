@@ -146,6 +146,50 @@ function initTopArtistView(artists: ArtistView[]): ArtistView[] {
     return artists;
 }
 
+function initTimelineView() {
+
+    // TODO fill chart with real data
+    var data = {
+        labels: ["Jan 20", "Feb 20", "March 20", "April 20", "Juni 20", "Juli 20", "August 20"],
+        datasets: [
+            { 
+                data: [107,111,133,221],
+                label: "Hardstyle",
+                borderColor: "#3e95cd",
+                fill: false
+            },
+            { 
+                data: [,,500,1000,900],
+                label: "Electro Swing",
+                borderColor: "green",
+                fill: false
+            }
+        ]
+      } as Chart.ChartData;
+
+    var options = {
+        responsive: true,
+        legend: {
+            position: "bottom"
+        },
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: true,
+              lineWidth: 1,
+              color: 'gray'
+            }
+          }]
+        }
+      } as Chart.ChartOptions;
+
+      new Chart("timeline-chart", {
+        type: 'line',
+        data: data,
+        options: options
+      });
+}
+
 window.onload = () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id") || null;
@@ -165,4 +209,7 @@ window.onload = () => {
     artistService.getTopArtists(id)
         .then(initTopArtistView)
         .then(initTopGenre);
+
+    // TODO call service function for history
+    initTimelineView();
 }
