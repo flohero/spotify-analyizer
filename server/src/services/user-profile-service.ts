@@ -40,4 +40,9 @@ export class UserProfileService extends SpotifyBaseService {
                     });
             });
     }
+
+    public findById(id: string): Promise<IUser> {
+        return User.findById(id)
+            .then(user => user);
+    }
 }

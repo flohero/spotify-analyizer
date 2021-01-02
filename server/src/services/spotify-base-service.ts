@@ -5,7 +5,7 @@ export abstract class SpotifyBaseService {
 
     protected handleErrors(response) {
         if (!response.ok) {
-            throw Error(response.statusText);
+            throw Error(response.status + " " + response.statusText);
         }
         return response;
     }

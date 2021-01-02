@@ -1,6 +1,8 @@
 import {SpotifyBaseService} from "./spotify-base-service";
 import {AccessTokenService} from "./access-token-service";
 import {ArtistView} from "../../../common/src/view/artist-view";
+import {ArtistPlayedOnView} from "../../../common/src/view/artist-played-on-view";
+import {GenreHistoryView} from "../../../common/src/view/genre-history-view";
 import fetch from "node-fetch";
 
 export class ArtistService extends SpotifyBaseService {
@@ -22,6 +24,27 @@ export class ArtistService extends SpotifyBaseService {
                         image: image,
                         popularity: item.popularity,
                         genres: item.genres
+                    }
+                })
+            });
+    }
+
+    public getGenresOfArtists(userId: string, artists: ArtistPlayedOnView[]) {
+        return this.accessTokenService.getAccessTokenById(userId)
+            .then(accessToken => {
+                return fetch(`${this.endPoint}/artists?ids=${artists.map(artist => artist.artist).slice(0, 50).join(",")}`,
+                    {headers: this.getAuthenticationHeader(accessToken)});
+            })
+            .then(this.handleErrors)
+            .then(res => res.json())
+            .then(content => {
+                return artists.map(artist => {
+                    const el = content.artists.find(element => element.id == artist.artist);
+                    console.log(el);
+                    console.log(artist);
+                    return <GenreHistoryView>{
+                        timestamp: artist.timestamp,
+                        genres: el.genres
                     }
                 })
             });

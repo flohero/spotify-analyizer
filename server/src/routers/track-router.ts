@@ -28,6 +28,14 @@ export class TrackRouter extends BaseRouter {
                         res.send(features);
                     });
                 });
+            })
+            .get("/track/track-history/:id", (req, res) => {
+                this.trackService.getGenresOfAllPlayedTracks(req.params.id)
+                    .then(userHistory => {
+                        res.status(200);
+                        res.type("json");
+                        res.send(userHistory);
+                    });
             });
     }
 }
