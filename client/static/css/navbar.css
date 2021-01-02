@@ -53,12 +53,12 @@
     }
 }
 
-.navbar__entries a:not(:last-child), .navbar__entries li:not(:last-child) {
-    margin-right: 25px;
+.navbar__entry:not(.navbar__entry--md) {
+    display: flex;
 }
 
-.navbar__entries--first-left li:first-child {
-    flex-grow: 1;
+.navbar__entries a:not(:last-child), .navbar__entries li:not(:last-child) {
+    margin-right: 25px;
 }
 
 .navbar__entries--right {
