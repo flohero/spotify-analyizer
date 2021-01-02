@@ -27,7 +27,7 @@ function createFeatureItem(name: string, value: number) {
 
     return `
         <div>
-            ${name} ${Math.round(percent)}/100
+            <div class="bold">${name} ${Math.round(percent)}/100</div>
             <div class="progressbar">
                 <div class="progressbar__progress ${cssClass}" style="width:${percent}%;"></div>
             </div>
@@ -56,8 +56,8 @@ function createFeatureChart(recentFeature: AudioFeatureView, feature: AudioFeatu
             },
             {
                 label: "Overall",
-                backgroundColor: "rgb(203, 21, 130, 0.1)",
-                borderColor: "#cb1582",
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                borderColor: "#fff",
                 data: [
                     Math.round(feature.acousticness * 100)
                     , Math.round(feature.energy * 100)
