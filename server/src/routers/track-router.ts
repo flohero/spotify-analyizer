@@ -11,10 +11,18 @@ export class TrackRouter extends BaseRouter {
 
     protected configureRoutes(): Application {
         return this.app
+            .get("/track/recent-audio-features/:id", (req, res) => {
+                this.trackService.getTopTracks(req.params.id, "short_term").then(topTracks => {
+                    this.trackService.getAudioFeatures(req.params.id, topTracks.map(track => track.id)).then(features => {
+                        res.status(200);
+                        res.type("json");
+                        res.send(features);
+                    });
+                });
+            })
             .get("/track/audio-features/:id", (req, res) => {
-                this.trackService.getTopTracks(req.params.id).then(topTracks => {
-                    const ids = topTracks.map(tt => tt.id) as string[];
-                    this.trackService.getAudioFeatures(req.params.id, ids).then(features => {
+                this.trackService.getTopTracks(req.params.id, "long_term").then(topTracks => {
+                    this.trackService.getAudioFeatures(req.params.id, topTracks.map(track => track.id)).then(features => {
                         res.status(200);
                         res.type("json");
                         res.send(features);

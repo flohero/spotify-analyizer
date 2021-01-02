@@ -34,33 +34,47 @@ function createFeatureItem(name: string, value: number) {
         </div>`;
 }
 
-function createFeatureChart(feature: AudioFeatureView) {
+function createFeatureChart(recentFeature: AudioFeatureView, feature: AudioFeatureView) {
     const chartCanvas = document.getElementById("feature-chart") as HTMLCanvasElement;
 
     const chartData = {
         labels: ["ACOUSTICNESS", "ENERGY", "HAPPINESS", "INSTRUMENTALNESS", "LIVENESS", "SPEECHINESS", "DANCEABILITY"],
-        datasets: [{
-            label: "",
-            backgroundColor: "rgba(29, 185, 84, 0.1)",
-            borderColor: "#1db954",
-            data: [
-                Math.round(feature.acousticness * 100)
-                , Math.round(feature.energy * 100)
-                , Math.round(feature.valence * 100)
-                , Math.round(feature.instrumentalness * 100)
-                , Math.round(feature.liveness * 100)
-                , Math.round(feature.speechiness * 100)
-                , Math.round(feature.danceability * 100)
-            ]
-        }]
-    };
+        datasets: [
+            {
+                label: "Last 4 weeks",
+                backgroundColor: "rgba(29, 185, 84, 0.1)",
+                borderColor: "#1db954",
+                data: [
+                    Math.round(recentFeature.acousticness * 100)
+                    , Math.round(recentFeature.energy * 100)
+                    , Math.round(recentFeature.valence * 100)
+                    , Math.round(recentFeature.instrumentalness * 100)
+                    , Math.round(recentFeature.liveness * 100)
+                    , Math.round(recentFeature.speechiness * 100)
+                    , Math.round(recentFeature.danceability * 100)
+                ]
+            },
+            {
+                label: "Overall",
+                backgroundColor: "rgb(203, 21, 130, 0.1)",
+                borderColor: "#cb1582",
+                data: [
+                    Math.round(feature.acousticness * 100)
+                    , Math.round(feature.energy * 100)
+                    , Math.round(feature.valence * 100)
+                    , Math.round(feature.instrumentalness * 100)
+                    , Math.round(feature.liveness * 100)
+                    , Math.round(feature.speechiness * 100)
+                    , Math.round(feature.danceability * 100)
+                ]
+            }
+        ]
+    } as Chart.ChartData;
 
     Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.global.legend.display = false;
     Chart.defaults.scale.ticks.display = false;
 
     const chartOptions = {
-        title: {text: "RADAR", display: true},
         responsive: true,
         scale: {
             angleLines: {
@@ -79,20 +93,20 @@ function createFeatureChart(feature: AudioFeatureView) {
     });
 }
 
-function initAudioFeatureView(feature: AudioFeatureView) {
+function initAudioFeatureView(recentFeature: AudioFeatureView, feature: AudioFeatureView) {
 
     let featureHTML = "";
-    featureHTML += createFeatureItem("Acousticness", feature.acousticness);
-    featureHTML += createFeatureItem("Energy", feature.energy);
-    featureHTML += createFeatureItem("Happiness", feature.valence);
-    featureHTML += createFeatureItem("Instrumentalness", feature.instrumentalness);
-    featureHTML += createFeatureItem("Liveness", feature.liveness);
-    featureHTML += createFeatureItem("Speechiness", feature.speechiness);
-    featureHTML += createFeatureItem("Danceability", feature.danceability);
+    featureHTML += createFeatureItem("Acousticness", recentFeature.acousticness);
+    featureHTML += createFeatureItem("Energy", recentFeature.energy);
+    featureHTML += createFeatureItem("Happiness", recentFeature.valence);
+    featureHTML += createFeatureItem("Instrumentalness", recentFeature.instrumentalness);
+    featureHTML += createFeatureItem("Liveness", recentFeature.liveness);
+    featureHTML += createFeatureItem("Speechiness", recentFeature.speechiness);
+    featureHTML += createFeatureItem("Danceability", recentFeature.danceability);
 
     document.getElementById("feature-percentage").innerHTML = featureHTML;
 
-    createFeatureChart(feature);
+    createFeatureChart(recentFeature, feature);
 }
 
 function initTopArtistView(artists: ArtistView[]): void {
@@ -126,8 +140,9 @@ window.onload = () => {
         .then(initUserProfileView);
 
     const trackService = new TrackService(EndpointService.getEndpoint());
-    trackService.getAudioFeature(id)
-        .then(initAudioFeatureView);
+    trackService.getRecentAudioFeature(id).then(recentFeature => {
+        trackService.getAudioFeature(id).then(feature => initAudioFeatureView(recentFeature, feature));
+    });
 
     const artistService = new ArtistService(EndpointService.getEndpoint());
     artistService.getTopArtists(id)

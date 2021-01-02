@@ -7,10 +7,9 @@ export class TrackService extends SpotifyBaseService {
 
     private readonly accessTokenService: AccessTokenService = new AccessTokenService();
 
-    public getTopTracks(userId: string) {
+    public getTopTracks(userId: string, time_range: string) {
 
         return this.accessTokenService.getAccessTokenById(userId).then(accessToken => {
-            const time_range: string = "medium_term";
             return fetch(`${this.endPoint}/me/top/tracks?time_range=${time_range}&limit=${this.resultLimit}`, {
                 headers: this.getAuthenticationHeader(accessToken)
             })
