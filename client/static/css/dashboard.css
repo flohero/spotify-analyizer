@@ -70,10 +70,17 @@
 }
 
 .feature-chart-container {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px 0;
+    display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+    .feature-chart-container {
+        display: inherit;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px 0;
+    }
 }
 
 .valence {
