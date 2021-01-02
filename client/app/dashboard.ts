@@ -7,6 +7,9 @@ import {Chart} from "chart.js";
 import {ArtistService} from "./services/artist-service";
 import {ArtistView} from "../../common/src/view/artist-view";
 
+// set chart defaults
+Chart.defaults.global.defaultFontColor = 'white';
+
 function initUserProfileView(user: UserView): void {
     const img = document.getElementById("profile-image") as HTMLImageElement;
     const name = document.getElementById("profile-name");
@@ -37,7 +40,7 @@ function createFeatureItem(name: string, value: number) {
 function createFeatureChart(recentFeature: AudioFeatureView, feature: AudioFeatureView) {
     const chartCanvas = document.getElementById("feature-chart") as HTMLCanvasElement;
 
-    const chartData = {
+    const data = {
         labels: ["ACOUSTICNESS", "ENERGY", "HAPPINESS", "INSTRUMENTALNESS", "LIVENESS", "SPEECHINESS", "DANCEABILITY"],
         datasets: [
             {
@@ -71,10 +74,7 @@ function createFeatureChart(recentFeature: AudioFeatureView, feature: AudioFeatu
         ]
     } as Chart.ChartData;
 
-    Chart.defaults.global.defaultFontColor = 'white';
-    Chart.defaults.scale.ticks.display = false;
-
-    const chartOptions = {
+    const options = {
         responsive: true,
         scale: {
             angleLines: {
@@ -82,14 +82,17 @@ function createFeatureChart(recentFeature: AudioFeatureView, feature: AudioFeatu
             },
             gridLines: {
                 color: "gray"
+            },
+            ticks: {
+                display: false
             }
         }
     } as Chart.ChartOptions;
 
     new Chart(chartCanvas, {
         type: 'radar',
-        data: chartData,
-        options: chartOptions
+        data: data,
+        options: options
     });
 }
 
@@ -150,16 +153,34 @@ function initTimelineView() {
 
     // TODO fill chart with real data
     var data = {
-        labels: ["Jan 20", "Feb 20", "March 20", "April 20", "Juni 20", "Juli 20", "August 20"],
+        labels: [
+            new Date(2020, 1, 1),
+            new Date(2021, 1, 2),
+            new Date(2021, 1, 3),
+            new Date(2021, 1, 7),
+            new Date(2021, 1, 8),
+            new Date(2021, 1, 9),
+            new Date(2021, 1, 10),
+            new Date(2021, 1, 11),
+            new Date(2021, 1, 12),
+            new Date(2021, 1, 13),
+            new Date(2021, 1, 14),
+            new Date(2021, 1, 15),
+            new Date(2021, 1, 16),
+            new Date(2021, 1, 17),
+            new Date(2021, 1, 18),
+            new Date(2021, 1, 19),
+            new Date(2021, 1, 20)
+        ],
         datasets: [
-            { 
-                data: [107,111,133,221],
+            {
+                data: [107, 111, 133],
                 label: "Hardstyle",
                 borderColor: "#3e95cd",
                 fill: false
             },
             { 
-                data: [,,500,1000,900],
+                data: [50, 70, 10],
                 label: "Electro Swing",
                 borderColor: "green",
                 fill: false
@@ -173,13 +194,25 @@ function initTimelineView() {
             position: "bottom"
         },
         scales: {
-          yAxes: [{
-            gridLines: {
-              display: true,
-              lineWidth: 1,
-              color: 'gray'
-            }
-          }]
+            yAxes: [{
+                gridLines: {
+                    display: true,
+                    lineWidth: 1,
+                    color: "gray"
+                }
+            }],
+            xAxes: [{
+                type: "time",
+                ticks: {
+                    maxTicksLimit: 10,
+                },
+                time: {
+                    minUnit: "day",
+                    displayFormats: {
+                        day: "YYYY/MM/DD"
+                    },          
+                }
+            }]
         }
       } as Chart.ChartOptions;
 
