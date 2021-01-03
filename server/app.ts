@@ -7,6 +7,7 @@ import {MongoConfig} from "./src/config/mongo-config";
 import {UserProfileRouter} from "./src/routers/user-profile-router";
 import {TrackRouter} from "./src/routers/track-router";
 import {ArtistRouter} from "./src/routers/artist-router";
+import {PlaylistRouter} from "./src/routers/playlist-router";
 
 const app: express.Application = express();
 const PORT = 3000;
@@ -17,6 +18,7 @@ new AuthRouter(app);
 new UserProfileRouter(app);
 new TrackRouter(app);
 new ArtistRouter(app);
+new PlaylistRouter(app);
 
 app.use(expressWinston.errorLogger({
     transports: [

@@ -5,7 +5,7 @@ import * as querystring from "querystring";
 import { BaseRouter } from "./base-router";
 
 export class AuthRouter extends BaseRouter {
-    private readonly authController: AuthService = new AuthService();
+    private readonly authService: AuthService = new AuthService();
 
     constructor(app: Application) {
         super(app);
@@ -17,7 +17,7 @@ export class AuthRouter extends BaseRouter {
                 (req, res) => {
                     res.type("json");
                     res.send({
-                        "url": this.authController.buildUri()
+                        "url": this.authService.buildUri()
                     });
                 }
             )
@@ -32,7 +32,7 @@ export class AuthRouter extends BaseRouter {
                     return;
                 }
 
-                this.authController.requestSessionToken(code)
+                this.authService.requestSessionToken(code)
                     .then(user => {
                         res.redirect(`http://localhost:1234/dashboard.html?${querystring.stringify({
                             id: user.id

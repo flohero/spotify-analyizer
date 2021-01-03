@@ -8,7 +8,7 @@ import {SpotifyBaseService} from "./spotify-base-service";
 export class AuthService extends SpotifyBaseService {
     private static redirectUri = "http://localhost:3000/callback";
     private static endpoint = "https://accounts.spotify.com/authorize";
-    private static scope = "user-read-private user-read-email user-read-recently-played user-top-read";
+    private static scope = "user-read-private user-read-email user-read-recently-played user-top-read playlist-modify-public";
 
     private readonly credentialService: CredentialService = new CredentialService();
 
