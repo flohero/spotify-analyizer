@@ -78,7 +78,7 @@ export class TrackService extends SpotifyBaseService {
             .then(histories => {
                 histories.map(track => {
                     return UserHistory.create(track, () => {
-                        console.log("Duplicated Keys");
+
                     });
                 });
                 return histories;
