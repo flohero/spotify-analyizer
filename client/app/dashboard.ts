@@ -11,7 +11,6 @@ import moment from "moment";
 import {Dictionary} from "./models/dictionary";
 import {GenreSum} from "./models/genre-sum";
 
-// set chart defaults
 Chart.defaults.global.defaultFontColor = 'white';
 
 function initUserProfileView(user: UserView): void {
@@ -222,7 +221,7 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
                 let items: number[] = [];
 
                 for (let i = 0; i < count; i++) {
-                    items.push(null);               
+                    items.push(0);               
                 }
 
                 items.push(itemWithSum.count);
@@ -231,14 +230,14 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
                     label: itemWithSum.genre,
                     data: items,
                     borderColor: getRandomColor(),
-                    fill: false
+                    radius: 5
                 });
             }
             count++;
         });
         // genre does not exist with current date
         data.datasets.filter(d => genres.getItem(k).map(s => s.genre).indexOf(d.label) == -1)
-                     .forEach(d => d.data.push(null));
+                     .forEach(d => d.data.push(0));
     });
 
     return data;
@@ -258,11 +257,14 @@ function initTimelineView(history: GenreHistoryView[]) {
                 },
                 gridLines: {
                     display: true,
-                    lineWidth: 1,
-                    color: "gray"
+                    color: "gray",
+                    zeroLineColor: "gray"
                 }
             }],
             xAxes: [{
+                gridLines: {
+                    display: false
+                },
                 type: "time",
                 ticks: {
                     maxTicksLimit: 5,
