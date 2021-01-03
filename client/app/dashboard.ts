@@ -183,6 +183,7 @@ function getRandomColor() {
     return color;
 }
 
+
 function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
 
     history = history.reverse();
@@ -207,38 +208,38 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
         datasets: []
     } as Chart.ChartData;
 
+    // console.log(data);
+
+    let index = 0;
+
     keys.forEach(k => {
 
-        let count = 0;
+        const genreSums = genres.getItem(k).filter(i => i.count > 0);
 
-        genres.getItem(k).forEach(itemWithSum => {
+        genreSums.forEach(itemWithSum => {
 
             const dataset = data.datasets.filter(dataset => itemWithSum.genre == dataset.label)?.[0];
+            
             if (dataset) { // dataset already exists
-                dataset.data.push(itemWithSum.count);
+                dataset.data.splice(index, 1, itemWithSum.count);
             } else { // new dataset is necessary
-
-                let items: number[] = [];
-
-                for (let i = 0; i < count; i++) {
-                    items.push(0);               
-                }
-
-                items.push(itemWithSum.count);
+                const items = new Array(keys.length).fill(0);
+                items.splice(index, 1, itemWithSum.count);
+                const randomColor = getRandomColor();
 
                 data.datasets.push({
                     label: itemWithSum.genre,
                     data: items,
-                    borderColor: getRandomColor(),
-                    radius: 5
+                    backgroundColor: randomColor,
+                    borderColor: randomColor,
+                    fill: false
                 });
             }
-            count++;
         });
-        // genre does not exist with current date
-        data.datasets.filter(d => genres.getItem(k).map(s => s.genre).indexOf(d.label) == -1)
-                     .forEach(d => d.data.push(0));
+        index++;
+        
     });
+
 
     return data;
 }
