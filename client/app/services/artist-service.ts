@@ -1,10 +1,10 @@
 import {ArtistView} from "../../../common/src/view/artist-view";
+import { BaseService } from "./base-service";
 
-export class ArtistService {
-    private readonly endpoint: string;
+export class ArtistService extends BaseService {
 
     constructor(endpoint: string) {
-        this.endpoint = `${endpoint}/artists/top`
+        super(`${endpoint}/artists/top`);
     }
 
     public getTopArtists(id: string, limit: Number = 50): Promise<ArtistView[]> {

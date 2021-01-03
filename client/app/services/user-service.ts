@@ -1,14 +1,14 @@
 import {UserView} from "../../../common/src/view/user-view";
+import { BaseService } from "./base-service";
 
-export class UserService {
-    private readonly endpoint: string;
+export class UserService extends BaseService {
 
     constructor(endpoint: string) {
-        this.endpoint = endpoint + "/user/";
+        super(`${endpoint}/user`);
     }
 
     public getUser(id: string): Promise<UserView> {
-        return fetch(this.endpoint + id)
+        return fetch(`${this.endpoint}/${id}`)
             .then(res => {
                 if (res.status == 404) {
                     throw new Error("User not found");

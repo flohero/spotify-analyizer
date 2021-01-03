@@ -1,11 +1,12 @@
-export class AuthService {
-    private readonly endpoint: string;
+import { BaseService } from "./base-service";
+
+export class AuthService extends BaseService {
 
     constructor(endpoint: string) {
-        this.endpoint = endpoint;
+        super(endpoint);
     }
 
     getAuthUri(): Promise<Response> {
-        return fetch(this.endpoint + "/auth_uri");
+        return fetch(`${this.endpoint}/auth_uri`);
     }
 }

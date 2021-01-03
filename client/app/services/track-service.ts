@@ -1,11 +1,10 @@
 import {AudioFeatureView} from "../../../common/src/view/audio-feature-view";
 import {GenreHistoryView} from "../../../common/src/view/genre-history-view";
-
-export class TrackService {
-    private readonly endpoint: string;
+import { BaseService } from "./base-service";
+export class TrackService extends BaseService {
 
     constructor(endpoint: string) {
-        this.endpoint = `${endpoint}/track`;
+        super(`${endpoint}/track`);
     }
 
     public getRecentAudioFeature(id: string): Promise<AudioFeatureView> {
