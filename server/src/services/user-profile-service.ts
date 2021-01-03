@@ -1,8 +1,11 @@
 import fetch from "node-fetch";
 import User, {IUser} from "../model/user-model";
 import {SpotifyBaseService} from "./spotify-base-service";
+import {AccessTokenService} from "./access-token-service";
 
 export class UserProfileService extends SpotifyBaseService {
+
+    private readonly accessTokenService: AccessTokenService = new AccessTokenService();
 
     public detailsWithAccessToken(accessToken: string): Promise<IUser> {
         return fetch(`${this.endPoint}/me`, {
@@ -25,13 +28,15 @@ export class UserProfileService extends SpotifyBaseService {
             });
     }
 
-    // TODO: Use AccessTokenService
     public details(id: string): Promise<IUser> {
         return User.findById(id)
             .then(user => {
-                return fetch(`${this.endPoint}/me`, {
-                    headers: this.getAuthenticationHeader(user.access_token)
-                })
+                return this.accessTokenService.getAccessTokenById(user.id)
+                    .then(accessToken => {
+                        return fetch(`${this.endPoint}/me`, {
+                            headers: this.getAuthenticationHeader(accessToken)
+                        })
+                    })
                     .then(this.handleErrors)
                     .then(res => res.json())
                     .then(res => {
