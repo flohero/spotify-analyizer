@@ -185,8 +185,6 @@ function getRandomColor() {
 }
 
 function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
-    
-    // history = [];
 
     if(history.length == 0) {
         return {
@@ -210,10 +208,9 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
 
     keys.forEach(k => {
         const max = 5;
-        const itemsWithSum = genres.getItem(k).slice(0, max);
-
-        // console.log(itemsWithSum);
-
+        const itemsWithSum = genres.getItem(k)
+                                   .slice(0, max)
+                                   .filter(i => i.count > 1);
         let count = 0;
 
         itemsWithSum.forEach(itemWithSum => {
@@ -257,6 +254,9 @@ function initTimelineView(history: GenreHistoryView[]) {
         },
         scales: {
             yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
                 gridLines: {
                     display: true,
                     lineWidth: 1,
