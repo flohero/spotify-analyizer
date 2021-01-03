@@ -244,16 +244,10 @@ function initTimelineView(history: GenreHistoryView[]) {
         options: options
     });
 
-    let hidden = false;
-
     const toggleButton = document.getElementById("toggleGenres");
 
     toggleButton.addEventListener("click", function() {
-        toggleButton.innerText = hidden ? "Hide all Genres" : "Show all Genres"
-        hidden = !hidden
-        timelineChart.data.datasets.forEach(ds => {
-            ds.hidden = hidden;
-        });
+        timelineChart.data.datasets.forEach(ds => ds.hidden = !ds.hidden);
         timelineChart.update();
     });
 }
