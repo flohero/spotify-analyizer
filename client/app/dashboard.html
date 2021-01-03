@@ -6,9 +6,7 @@
     <title>Dashboard</title>
     <link rel="shortcut icon" type="image/x-icon" href="../static/assets/favicon.ico">
     <script type="text/javascript" src="dashboard.ts"></script>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Montserrat">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">
 </head>
 <body>
@@ -34,15 +32,21 @@
             </a>
         </li>
         <li>
-            <a href="#" class="navbar__entry navbar__entry--md">Genre-Timeline</a>
+            <a href="#user" class="navbar__entry navbar__entry--md">User info</a>
         </li>
         <li>
-            <a href="#" class="navbar__entry navbar__entry--md">Playlists</a>
+            <a href="#top-artist" class="navbar__entry navbar__entry--md">Top artists</a>
+        </li>
+        <li>
+            <a href="#audio-feature" class="navbar__entry navbar__entry--md">Features</a>
+        </li>
+        <li>
+            <a href="#timeline" class="navbar__entry navbar__entry--md">Timeline</a>
         </li>
     </ul>
 </nav>
 <main class="dashboard">
-    <div class="area area--rounded-corners area--gray area--user">
+    <div class="area area--rounded-corners area--gray area--user" id="user">
         <img class="area--user__image" id="profile-image" src="../static/assets/broken_image-white-18dp.svg"
              alt="Profile Image">
         <div id="profile-name" class="text-size-h2 user-area__name"></div>
@@ -58,7 +62,7 @@
             <button class="chip chip--primary chip--btn">Top Tracks To Playlist</button>
         </div>
     </div>
-    <div class="area area--rounded-corners area--gray area--top-artist">
+    <div class="area area--rounded-corners area--gray area--top-artist" id="top-artist">
         <div class="area__title">
             <h1>Top artists</h1>
         </div>
@@ -77,25 +81,25 @@
             </tbody>
         </table>
     </div>
-    <div class="area area--rounded-corners area--gray area--timeline">
+    <div class="area area--rounded-corners area--gray area--audio-feature" id="audio-feature">
         <div class="area__title">
-            <h1>Timeline</h1>
-        </div>
-        <div class="area__content">
-            <div class="timeline-chart-container">
-                <canvas id="timeline-chart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="area area--rounded-corners area--gray area--audio-feature">
-        <div class="area__title">
-            <h1>Overall mood</h1>
+            <h1>Features</h1>
         </div>
 
         <div class="area__content">
             <div id="feature-percentage"></div>
             <div class="feature-chart-container">
                 <canvas id="feature-chart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="area area--rounded-corners area--gray area--timeline" id="timeline">
+        <div class="area__title">
+            <h1>Timeline</h1>
+        </div>
+        <div class="area__content">
+            <div class="timeline-chart-container">
+                <canvas id="timeline-chart"></canvas>
             </div>
         </div>
     </div>
