@@ -208,8 +208,6 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
         datasets: []
     } as Chart.ChartData;
 
-    // console.log(data);
-
     let index = 0;
 
     keys.forEach(k => {
@@ -219,7 +217,7 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
         genreSums.forEach(itemWithSum => {
 
             const dataset = data.datasets.filter(dataset => itemWithSum.genre == dataset.label)?.[0];
-            
+
             if (dataset) { // dataset already exists
                 dataset.data.splice(index, 1, itemWithSum.count);
             } else { // new dataset is necessary
@@ -230,9 +228,8 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
                 data.datasets.push({
                     label: itemWithSum.genre,
                     data: items,
-                    backgroundColor: randomColor,
                     borderColor: randomColor,
-                    fill: false
+                    radius: 5
                 });
             }
         });
@@ -246,6 +243,8 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
 
 function initTimelineView(history: GenreHistoryView[]) {
 
+    const gridColor = "gray";
+
     const options = {
         responsive: true,
         legend: {
@@ -253,16 +252,24 @@ function initTimelineView(history: GenreHistoryView[]) {
         },
         scales: {
             yAxes: [{
+                scaleLabel: {
+                    labelString: "Plays",
+                    display: true
+                },
                 ticks: {
                     beginAtZero: true,
                 },
                 gridLines: {
                     display: true,
-                    color: "gray",
-                    zeroLineColor: "gray"
+                    color: gridColor,
+                    zeroLineColor: gridColor
                 }
             }],
             xAxes: [{
+                scaleLabel: {
+                    labelString: "Listen time",
+                    display: true
+                },
                 gridLines: {
                     display: false
                 },
@@ -275,7 +282,7 @@ function initTimelineView(history: GenreHistoryView[]) {
                     minUnit: "hour",
                     displayFormats: {
                         day: "YYYY/MM/DD"
-                    },
+                    }
                 }
             }]
         }
