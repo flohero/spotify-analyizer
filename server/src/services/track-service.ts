@@ -7,6 +7,7 @@ import {AccessTokenService} from "./access-token-service";
 import UserHistory, {IUserHistory} from "../model/user-history-model";
 import {UserProfileService} from "./user-profile-service";
 import {ArtistService} from "./artist-service";
+import * as mongoose from "mongoose";
 
 export class TrackService extends SpotifyBaseService {
 
@@ -87,7 +88,8 @@ export class TrackService extends SpotifyBaseService {
     public getAllPlayedTracks(userId: string): Promise<IUserHistory[]> {
         return this.updateRecentlyPlayedTracks(userId)
             .then(() => {
-                return UserHistory.find({}).sort({played_at: 'descending'})
+                // @ts-ignore
+                return UserHistory.find({"user": mongoose.Types.ObjectId(userId)}).sort({played_at: 'descending'})
                     .then(res => {
                         return res;
                     });
