@@ -209,13 +209,10 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
     } as Chart.ChartData;
 
     keys.forEach(k => {
-        const max = 5;
-        const itemsWithSum = genres.getItem(k)
-                                   .slice(0, max)
-                                   .filter(i => i.count > 1);
+
         let count = 0;
 
-        itemsWithSum.forEach(itemWithSum => {
+        genres.getItem(k).forEach(itemWithSum => {
 
             const dataset = data.datasets.filter(dataset => itemWithSum.genre == dataset.label)?.[0];
             if (dataset) { // dataset already exists
@@ -240,7 +237,7 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
             count++;
         });
         // genre does not exist with current date
-        data.datasets.filter(d => itemsWithSum.map(s => s.genre).indexOf(d.label) == -1)
+        data.datasets.filter(d => genres.getItem(k).map(s => s.genre).indexOf(d.label) == -1)
                      .forEach(d => d.data.push(null));
     });
 
