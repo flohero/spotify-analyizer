@@ -1,28 +1,15 @@
-import {UserService} from "./services/user-service";
-import {UserView} from "../../common/src/view/user-view";
 import {TrackService} from "./services/track-service";
 import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
 import {EndpointService} from "./services/endpoint-service";
 import Chart from "chart.js";
-import {ArtistService} from "./services/artist-service";
-import {ArtistView} from "../../common/src/view/artist-view";
 import {GenreHistoryView} from "../../common/src/view/genre-history-view";
 import moment from "moment";
 import {Dictionary} from "./models/dictionary";
 import {GenreSum} from "./models/genre-sum";
+import {UserProfileViewController} from "./controllers/user-profile-view-controller";
+import {TopArtistViewController} from "./controllers/top-artist-view-controller";
 
 Chart.defaults.global.defaultFontColor = 'white';
-
-function initUserProfileView(user: UserView): void {
-    const img = document.getElementById("profile-image") as HTMLImageElement;
-    const name = document.getElementById("profile-name");
-    const email = document.getElementById("profile-email");
-    if (user.image) {
-        img.src = user.image;
-    }
-    name.innerText = user.display_name ?? user.name;
-    email.innerText = user.email;
-}
 
 function createFeatureItem(name: string, value: number) {
     const percent = Math.round(value * 100);
@@ -110,43 +97,6 @@ function initAudioFeatureView(recentFeature: AudioFeatureView, feature: AudioFea
     document.getElementById("feature-percentage").innerHTML = featureHTML;
 
     createFeatureChart(recentFeature, feature);
-}
-
-function initTopGenre(artists: ArtistView[]) {
-    const genreContainer = document.getElementById("top-genre");
-    const genres = artists
-        .map(artist => artist.genres)
-        .reduce((flat, flatten) => {
-            return flat.concat(flatten)
-        });
-    genreContainer.innerText = genres
-        .sort((a, b) =>
-            genres.filter(v => v === a).length
-            - genres.filter(v => v === b).length
-        )
-        .pop();
-}
-
-function initTopArtistView(artists: ArtistView[]): ArtistView[] {
-    const artistTable = document.getElementById("artists");
-    artists.slice(0, 6).forEach(artist => {
-        artistTable.innerHTML +=
-            `<tr class="artist-table__row">
-                <td class="artist-table__count artist-table__cell text-size-h5"></td>
-                <td class="artist-table__cell"><img class="artist-table__img" src="${artist.image}" alt="${artist.name} Image"></td>
-                <td class="text-size-h5 artist-table__cell">${artist.name}</td>
-                <td class="artist-table__cell artist-table__popularity ${artist.popularity > 66 ? "artist-table__cell--red" : artist.popularity > 33 ? "artist-table__cell--orange" : "artist-table__cell--blue"}">${artist.popularity}</td>
-                <td class="artist-table__cell">
-                    <div class="artist-table__genres">
-                        ${artist.genres.map(genre => {
-                return `<div class="chip chip--primary">${genre}</div>`;
-            })
-                .join("")}
-                    <div>
-                </td>
-            </tr>`
-    });
-    return artists;
 }
 
 function groupGenreHistory(history: GenreHistoryView[], groupByHours: boolean): Dictionary<GenreSum[]> {
@@ -301,19 +251,12 @@ window.onload = () => {
     if (!id) {
         window.location.assign("login.html");
     }
-    const userService = new UserService(EndpointService.getEndpoint());
-    userService.getUser(id)
-        .then(initUserProfileView);
-
+    new UserProfileViewController(id);
+    new TopArtistViewController(id);
     const trackService = new TrackService(EndpointService.getEndpoint());
     trackService.getRecentAudioFeature(id).then(recentFeature => {
         trackService.getAudioFeature(id).then(feature => initAudioFeatureView(recentFeature, feature));
     });
-
-    const artistService = new ArtistService(EndpointService.getEndpoint());
-    artistService.getTopArtists(id)
-        .then(initTopArtistView)
-        .then(initTopGenre);
 
     trackService.getGenresOfLastHeardTracks(id).then(initTimelineView);
 }

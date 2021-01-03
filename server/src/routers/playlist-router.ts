@@ -11,9 +11,15 @@ export class PlaylistRouter extends BaseRouter {
 
     protected configureRoutes(): void {
         this.app
-            .get("/playlists/create/:id", (res, req) => {
-                this.playlistService.createPlaylist(res.params.id);
-                req.sendStatus(201);
+            .get("/playlists/create/:id", (req, res) => {
+                this.playlistService.createPlaylist(req.params.id)
+                    .then(() => {
+                        res.sendStatus(201);
+                    })
+                    .catch(() => {
+                        res.sendStatus(400);
+                    });
+
             });
     }
 
