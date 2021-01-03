@@ -76,9 +76,3 @@
     justify-content: center;
     width: 16rem;
 }
-
-.brand--32x32 {
-    background-image: url("../assets/brand-32x32.png");
-    width: 32px;
-    height: 32px;
-}

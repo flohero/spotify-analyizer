@@ -10,11 +10,8 @@
 </head>
 <body>
 <nav class="navbar navbar--sticky">
-    <!-- TODO replace with personal icon -->
     <div class="navbar__entries">
-        <a href="#" class="image-link">
-            <div class="brand--32x32"></div>
-        </a>
+        <a href="#">Spotify-Analyser</a>
     </div>
     <div class="navbar__entries navbar__entries--center navbar__entries--md">
         <a href="#team">Team</a>
@@ -22,6 +19,7 @@
         <a href="#technologies">Technologies</a>
         <a href="#features">Features</a>
         <a href="#lessons-learned">Lessons learned</a>
+        <a href="#screenshots">Screenshots</a>
     </div>
     <div class="navbar__entries navbar__entries--right">
         <a href="../login.html">Log in</a>
@@ -31,11 +29,10 @@
     </div>
 </nav>
 <main>
-    <h1 class="text-center">Spotify-Analyzer</h1>
     <section class="bg-pink" id="team">
         <h2>Team</h2>
         <div class="flex justify-content-center">
-            <div class="team-member col-3">
+            <div class="team-member w-25">
                 <img src="../../static/assets/flo256x256.jpg" class="team-member-image"
                      alt="Florian Weingartshofer">
                 <div>
@@ -45,9 +42,12 @@
                         <div class="chip chip--dark">Database</div>
                         <div class="chip chip--dark">Frontend</div>
                     </div>
+                    <div class="chipset">
+                        <div class="chip chip--primary">~34h Development</div>
+                    </div>
                 </div>
             </div>
-            <div class="team-member col-3">
+            <div class="team-member w-25">
                 <img src="../../static/assets/andi256x256.jpg" class="team-member-image"
                      alt="Andreas Wenzelhuemer">
                 <div>
@@ -57,6 +57,9 @@
                         <div class="chip chip--dark">Database</div>
                         <div class="chip chip--dark">Frontend</div>
                     </div>
+                    <div class="chipset">
+                        <div class="chip chip--primary">~30h Development</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,8 +68,8 @@
         <h2>Project description</h2>
         <div class="card-content">
             <p>
-                The project is an web application for Spotify.<br/>
-                In the background it uses the spotify api to access your personal music history and show it graphically.<br/>
+                The project is an <strong>WEB-APP</strong> which uses spotify data to provide the user with infos about personal music categories or top artists.<br/>
+                The data gets provided by the spotify api where you can authenticate users via access tokens.
             </p>
         </div>
     </section>
@@ -88,7 +91,7 @@
         </div>
 
         <div>
-            <h3>Frontend (Website)</h3>
+            <h3>Frontend (Web-App)</h3>
             <ul>
                 <li>HTML & CSS</li>
                 <li>Typescript</li>
@@ -97,21 +100,38 @@
                 <div class="chip chip--dark">parcel-bundler</div>
                 <div class="chip chip--dark">typescript</div>
                 <div class="chip chip--dark">chart.js</div>
+                <div class="chip chip--dark">moment.js</div>
+                <div class="chip chip--dark">material-icons</div>
             </div>
         </div>
     </section>
     <section class="bg-purple-blue" id="features">
         <h2>Features</h2>
-        <p>No features, only bugs in this one.</p>
+        <ul>
+            <li>Show spotify profile info and top genre</li>
+            <li>Show top artists of last few weeks (with popularity, name and genre)</li>
+            <li>Show song infos like acousticness, energy or danceability (also with radar chart)</li>
+            <li>Timeline of last 50 songs with a line chart</li>
+            <li>Create playlist of recent top tracks</li>
+        </ul>
     </section>
-    <section id="lessons-learned">
+    <section class="bg-dark-gray" id="lessons-learned">
         <h2>Lessons learned</h2>
         <ul>
             <li>Some new libraries (like chart.js or the parcel-bundler)</li>
             <li>Importance of well structured CSS (Different files like theme.css or font_baseline.css)</li>
             <li>General structure of a client & server web project</li>
-            <li>Awesomeness of css grids</li>
+            <li>Awesomeness of css grid layouts</li>
+            <li>Difficulty of meaningful naming</li>
+            <li>Frameworks can be extremely helpful and save a lot of time (like Angular)</li>
         </ul>
+    </section>
+    <section id="screenshots">
+        <h2>Screenshots</h2>
+        <h3>Mobile layout</h3>
+        <img src="../../static/assets/webapp_mobile_layout.png" alt="website" /><br/>
+        <h3>Timeline</h3>
+        <img src="../../static/assets/webapp_timeline.png" alt="timeline" />
     </section>
 </main>
 </body>

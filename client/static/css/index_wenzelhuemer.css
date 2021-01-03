@@ -32,6 +32,10 @@ body {
     background-image: linear-gradient(#c074b2, #8ab5e8);
 }
 
+.bg-dark-gray {
+    background-color: var(--gray-dark);
+}
+
 .github-32x32 {
     background-image: url("../assets/github-32x32.png");
     width: 32px;
@@ -55,12 +59,8 @@ ul li {
     border-top-style: solid;
 }
 
-.col-3 {
+.w-25 {
     width: 25%;
-}
-
-.col-6 {
-    width: 50%;
 }
 
 .team-member-image {
@@ -73,7 +73,6 @@ ul li {
 
 .team-member {
     display: flex;
-    
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -86,6 +85,7 @@ ul li {
 }
 
 .team-member-name {
+    font-weight: bold;
     text-transform: uppercase;
     margin-top: 10px;
     margin-bottom: 10px;
