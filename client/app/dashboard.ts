@@ -8,6 +8,7 @@ import {Dictionary} from "./models/dictionary";
 import {GenreSum} from "./models/genre-sum";
 import {UserProfileViewController} from "./controllers/user-profile-view-controller";
 import {TopArtistViewController} from "./controllers/top-artist-view-controller";
+import {ExportPlaylistController} from "./controllers/export-playlist-controller";
 
 // global chart configuration
 Chart.defaults.global.defaultFontColor = "white";
@@ -265,6 +266,7 @@ window.onload = () => {
     }
     new UserProfileViewController(id);
     new TopArtistViewController(id);
+    new ExportPlaylistController(id);
     const trackService = new TrackService(EndpointService.getEndpoint());
     trackService.getRecentAudioFeature(id).then(recentFeature => {
         trackService.getAudioFeature(id).then(feature => initAudioFeatureView(recentFeature, feature));
