@@ -11,6 +11,27 @@ body {
     color: var(--foreground);
 }
 
+.header {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.main {
+    text-align: center;
+}
+
+.content {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .content {
+        margin-left: auto;
+        margin-right: auto;
+        width: 50vw;
+    }
+}
+
 .image-link {
     align-self: center;
 }
@@ -43,7 +64,6 @@ body {
 }
 
 section {
-    text-align: center;
     padding: 40px;
 }
 
@@ -60,26 +80,22 @@ ul li {
     border-top-style: solid;
 }
 
-.w-25 {
-    width: 25%;
-}
-
 .team-member-image {
     width: 150px;
     height: 150px;
     border-radius: 100%;
     margin-right: 20px;
-    border: 1px solid var(--gray-dark);
 }
 
-.team__member {
+.team-member {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 20px;
 }
 
-@media (max-width: 800px) {
-    .team__member.col-3 {
+@media (max-width: 512px) {
+    .team-member {
         width: 100%;
         margin-bottom: 20px;
     }
@@ -90,4 +106,18 @@ ul li {
     text-transform: uppercase;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.webapp-image {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .webapp-image {
+        width: initial;
+    }
+}
+
+.chipset {
+    margin: 0.5rem;
 }

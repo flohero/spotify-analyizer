@@ -42,6 +42,10 @@ a:focus, a:hover, a:active {
     color: var(--foreground);
 }
 
+.chip--outline {
+    border: var( --foreground) solid;
+}
+
 .chip--btn {
     background-position: center;
     transition: background 0.7s;
