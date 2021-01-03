@@ -25,6 +25,7 @@ export class UserProfileService extends SpotifyBaseService {
             });
     }
 
+    // TODO: Use AccessTokenService
     public details(id: string): Promise<IUser> {
         return User.findById(id)
             .then(user => {

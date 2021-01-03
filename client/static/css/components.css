@@ -44,7 +44,7 @@ a:focus, a:hover, a:active {
 
 .chip--btn {
     background-position: center;
-    transition: background 0.5s;
+    transition: background 0.7s;
     background-color: var(--green);
     cursor: pointer;
     border: none;
