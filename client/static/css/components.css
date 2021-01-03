@@ -47,6 +47,9 @@ a:focus, a:hover, a:active {
     transition: background 0.5s;
     background-color: var(--green);
     cursor: pointer;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
 }
 
 .chip--btn:hover {
