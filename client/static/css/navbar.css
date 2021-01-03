@@ -67,9 +67,6 @@
     justify-content: flex-end;
 }
 
-.navbar__entry__logo {
-}
-
 .navbar__entry__logo-container {
     display: flex;
     flex-direction: column;
