@@ -1,4 +1,4 @@
 export interface GenreHistoryView {
-    timestamp: Date;
+    timestamp: string;
     genres: string[];
 }

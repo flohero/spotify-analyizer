@@ -42,7 +42,7 @@ export class ArtistService extends SpotifyBaseService {
                 return artists.map(artist => {
                     const el = content.artists.find(element => element.id == artist.artist);
                     return <GenreHistoryView>{
-                        timestamp: artist.timestamp,
+                        timestamp: artist.timestamp.toISOString(),
                         genres: el ? el.genres : []
                     }
                 })

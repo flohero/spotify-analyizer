@@ -3,11 +3,11 @@ import {UserView} from "../../common/src/view/user-view";
 import {TrackService} from "./services/track-service";
 import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
 import {EndpointService} from "./services/endpoint-service";
-import * as Chart from "chart.js";
+import Chart from "chart.js";
 import {ArtistService} from "./services/artist-service";
 import {ArtistView} from "../../common/src/view/artist-view";
 import {GenreHistoryView} from "../../common/src/view/genre-history-view";
-import * as moment from "moment";
+import moment from "moment";
 import {Dictionary} from "./models/dictionary";
 import {GenreSum} from "./models/genre-sum";
 
@@ -40,7 +40,6 @@ function createFeatureItem(name: string, value: number) {
 }
 
 function createFeatureChart(recentFeature: AudioFeatureView, feature: AudioFeatureView) {
-    const chartCanvas = document.getElementById("feature-chart") as HTMLCanvasElement;
 
     const data = {
         labels: ["ACOUSTICNESS", "ENERGY", "HAPPINESS", "INSTRUMENTALNESS", "LIVENESS", "SPEECHINESS", "DANCEABILITY"],
@@ -91,7 +90,7 @@ function createFeatureChart(recentFeature: AudioFeatureView, feature: AudioFeatu
         }
     } as Chart.ChartOptions;
 
-    new Chart(chartCanvas, {
+    new Chart("feature-chart", {
         type: 'radar',
         data: data,
         options: options
@@ -151,14 +150,12 @@ function initTopArtistView(artists: ArtistView[]): ArtistView[] {
     return artists;
 }
 
-function groupGenreHistory(history: GenreHistoryView[]): Dictionary<GenreSum[]> {
+function groupGenreHistory(history: GenreHistoryView[], groupByHours: boolean): Dictionary<GenreSum[]> {
 
     let dict = new Dictionary<GenreSum[]>();
 
     history.forEach(h => {
-        // HACK fix date
-        let date_string = (h.timestamp as any) as string;
-        let date = moment(date_string).startOf('day').toISOString();
+        let date = moment(h.timestamp).startOf(groupByHours ? 'hour' : 'day').toISOString();
 
         if (dict.containsKey(date)) { // date entry already exists
             const value = dict.getItem(date);
@@ -188,7 +185,22 @@ function getRandomColor() {
 }
 
 function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
-    const genres = groupGenreHistory(history);
+    
+    // history = [];
+
+    if(history.length == 0) {
+        return {
+            datasets: [],
+            labels: []
+        } as Chart.ChartData;
+    }
+
+    const max_hours = 48;
+    const minDate = moment(history[0].timestamp);
+    const maxDate = moment(history[length].timestamp);
+    const duration = moment.duration(maxDate.diff(minDate)).hours();
+    const genres = groupGenreHistory(history, duration < max_hours);
+
     const keys = genres.getKeys();
 
     const data = {
@@ -196,31 +208,41 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
         datasets: []
     } as Chart.ChartData;
 
-    const max = 5;
-
     keys.forEach(k => {
+        const max = 5;
         const itemsWithSum = genres.getItem(k).slice(0, max);
 
-        // console.log(groupedSums);
+        // console.log(itemsWithSum);
+
+        let count = 0;
 
         itemsWithSum.forEach(itemWithSum => {
 
-            let dataset = data.datasets.filter(dataset => itemWithSum.genre == dataset.label)?.[0];
+            const dataset = data.datasets.filter(dataset => itemWithSum.genre == dataset.label)?.[0];
             if (dataset) { // dataset already exists
                 dataset.data.push(itemWithSum.count);
             } else { // new dataset is necessary
+
+                let items: number[] = [];
+
+                for (let i = 0; i < count; i++) {
+                    items.push(null);               
+                }
+
+                items.push(itemWithSum.count);
+
                 data.datasets.push({
                     label: itemWithSum.genre,
-                    data: [itemWithSum.count],
-                    borderColor: getRandomColor(), // TODO random color from given color set
+                    data: items,
+                    borderColor: getRandomColor(),
                     fill: false
                 });
             }
+            count++;
         });
         // genre does not exist with current date
         data.datasets.filter(d => itemsWithSum.map(s => s.genre).indexOf(d.label) == -1)
-            .forEach(d => d.data.push(null));
-
+                     .forEach(d => d.data.push(null));
     });
 
     return data;
@@ -244,11 +266,11 @@ function initTimelineView(history: GenreHistoryView[]) {
             xAxes: [{
                 type: "time",
                 ticks: {
-                    maxTicksLimit: 10,
+                    maxTicksLimit: 5,
                 },
                 time: {
-                    tooltipFormat: "YYYY/MM/DD",
-                    minUnit: "day",
+                    tooltipFormat: "YYYY/MM/DD hh:mm",
+                    minUnit: "hour",
                     displayFormats: {
                         day: "YYYY/MM/DD"
                     },
