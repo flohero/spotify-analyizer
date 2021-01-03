@@ -14,10 +14,25 @@
 <body>
 <nav class="navbar navbar--sticky">
     <ul class="navbar__entries navbar__entries--first-left">
-        <li>
-            <a href="#" class="navbar__entry">Spotify-Analyzer</a>
+        <li class="navbar__entry__logo-container">
+            <a href="#" class="navbar__entry navbar__entry__logo">
+                <svg class="logo" viewBox="0 0 170 30" xmlns="http://www.w3.org/2000/svg" fill="url(#rainbow)">
+                    <defs>
+                        <linearGradient id="rainbow" x1="0" x2="100%" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#6f42c1" offset="0%"/>
+                            <stop stop-color="#dc3545" offset="40%"/>
+                            <stop stop-color="#ffc107" offset="60%"/>
+                            <stop stop-color="#28a745" offset="100%"/>
+                        </linearGradient>
+                    </defs>
+                    <text alignment-baseline="central" dominant-baseline="middle" text-anchor="middle" x="50%" y="50%"
+                          font-size="16px">
+                        Spotify-Analyzer
+                    </text>
+                    Sorry, your browser does not support inline SVG.
+                </svg>
+            </a>
         </li>
-        <li class="mr-auto"></li>
         <li>
             <a href="#" class="navbar__entry navbar__entry--md">Genre-Timeline</a>
         </li>
@@ -46,13 +61,13 @@
         </div>
         <table class="artist-table">
             <thead>
-                <tr>
-                    <th class="artist-table__cell">#</th>
-                    <th class="artist-table__cell">Image</th>
-                    <th class="artist-table__cell">Name</th>
-                    <th class="artist-table__cell artist-table__header--md">Popularity</th>
-                    <th class="artist-table__cell artist-table__header--md">Genres</th>
-                </tr>
+            <tr>
+                <th class="artist-table__cell">#</th>
+                <th class="artist-table__cell">Image</th>
+                <th class="artist-table__cell">Name</th>
+                <th class="artist-table__cell artist-table__header--md">Popularity</th>
+                <th class="artist-table__cell artist-table__header--md">Genres</th>
+            </tr>
             </thead>
             <tbody id="artists">
 
