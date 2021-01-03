@@ -3,11 +3,11 @@ import {UserView} from "../../common/src/view/user-view";
 import {TrackService} from "./services/track-service";
 import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
 import {EndpointService} from "./services/endpoint-service";
-import * as Chart from "chart.js";
+import Chart from "chart.js";
 import {ArtistService} from "./services/artist-service";
 import {ArtistView} from "../../common/src/view/artist-view";
 import {GenreHistoryView} from "../../common/src/view/genre-history-view";
-import * as moment from "moment";
+import moment from "moment";
 import {Dictionary} from "./models/dictionary";
 import {GenreSum} from "./models/genre-sum";
 

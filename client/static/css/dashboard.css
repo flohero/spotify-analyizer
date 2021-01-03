@@ -24,6 +24,10 @@
     }
 }
 
+.logo {
+    width: 100%;
+}
+
 .top-artist-area {
     grid-area: area--top-artist;
 }

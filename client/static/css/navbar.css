@@ -59,8 +59,22 @@
     margin-right: 25px;
 }
 
+.navbar__entries li:first-child {
+    margin-right: auto;
+}
+
 .navbar__entries--right {
     justify-content: flex-end;
+}
+
+.navbar__entry__logo {
+}
+
+.navbar__entry__logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 16rem;
 }
 
 .brand--32x32 {
