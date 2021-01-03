@@ -8,16 +8,17 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Montserrat">
 </head>
 <body>
-<nav id="nav">
-    <ul>
-        <li><a href="../login.html">Login</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#learned">Lessons Learned</a></li>
+<nav class="navbar">
+    <ul class="navbar__entries">
+        <li class="navbar__item"><a href="../login.html">Login</a></li>
+        <li class="navbar__item"><a href="#team">Team</a></li>
+        <li class="navbar__item"><a href="#about">About</a></li>
+        <li class="navbar__item"><a href="#tech">Used Technologies</a></li>
+        <li class="navbar__item"><a href="#learned">Lessons Learned</a></li>
     </ul>
 </nav>
-<header>
-    <svg id="logo" viewBox="0 0 150 30" xmlns="http://www.w3.org/2000/svg">
+<header class="hero-header">
+    <svg class="logo logo--big" viewBox="0 0 150 30" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <linearGradient id="rainbow" x1="0" x2="100%" y1="0" y2="0" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#6f42c1" offset="0%"/>
@@ -35,13 +36,11 @@
 <main>
     <section id="team">
         <h1>Our Team</h1>
-        <div id="team-container">
-            <div class="team-member">
-                <p>Team-Member</p>
-                <figure>
-                    <img src="../../static/assets/flo256x256.jpg" alt="Flo in a christmas sweater">
-                </figure>
-                <h2>Florian Weingartshofer</h2>
+        <div id="team-container" class="team">
+            <div class="team__member">
+                <span class="team__member__role">Team-Member</span>
+                <img class="team__member__image" src="../../static/assets/flo256x256.jpg" alt="Florian Weingartshofer">
+                <h2 class="team__member__name">Florian Weingartshofer</h2>
                 <div class="chipset">
                     <div class="chip">
                         Backend
@@ -54,12 +53,11 @@
                     </div>
                 </div>
             </div>
-            <div class="team-member">
-                <p>Team-Member</p>
-                <figure>
-                    <img src="../../static/assets/andi256x256.jpg" alt="Flo in a christmas sweater">
-                </figure>
-                <h2>Andreas Wenzelhuemer</h2>
+            <div class="team__member">
+                <span class="team__member__role">Team-Member</span>
+                <img class="team__member__image" src="../../static/assets/andi256x256.jpg"
+                     alt="Andreas Wenzelhuemer">
+                <h2 class="team__member__name">Andreas Wenzelhuemer</h2>
                 <div class="chipset">
                     <div class="chip">
                         Backend
@@ -76,19 +74,61 @@
     </section>
     <section id="about">
         <h1>About</h1>
-        <p>
-            A tool to analyse your Spotify Listening behaviour.
+        <p class="content">
+            The <strong>SPOTIFY-ANALYZER</strong> is a Web-App, which analyzes your listening behavior on Spotify.<br>
+            To analyze the listening behaviour we access the Spotify API, which provides us with data about
+            artists, tracks and the user themself.
         </p>
+    </section>
+    <section id="tech">
+        <h1>Used Technologies</h1>
+        <div class="tech-stack">
+            <div class="tech-stack__entry">
+                <h2>Frontend</h2>
+                <div class="chipset">
+                    <div class="chip chip--outline">TypeScript</div>
+                    <div class="chip chip--outline">Parcel-Bundler</div>
+                    <div class="chip chip--outline">Chart.JS</div>
+                    <div class="chip chip--outline">material-icons</div>
+                    <div class="chip chip--outline">Montserrat</div>
+                </div>
+            </div>
+            <div class="tech-stack__entry">
+                <h2>Backend</h2>
+                <div class="chipset">
+                    <div class="chip chip--outline">ExpressJS</div>
+                    <div class="chip chip--outline">CORS</div>
+                    <div class="chip chip--outline">MongoDB</div>
+                    <div class="chip chip--outline">Mongoose</div>
+                    <div class="chip chip--outline">node-fetch</div>
+                    <div class="chip chip--outline">winston</div>
+                    <div class="chip chip--outline">nodemon</div>
+                    <div class="chip chip--outline">ts-node</div>
+                    <div class="chip chip--outline">source-map-support</div>
+                </div>
+            </div>
+        </div>
     </section>
     <section id="learned">
         <h1>Lessons Learned</h1>
-        <p>
-            I didn't go to university to learn anything!
-        </p>
+        <ul class="lessons-entries">
+            <li class="lessons__entry">
+                Management of Frontend and Backend Sub-Projects.
+            </li>
+            <li class="lessons__entry">
+                Writing CSS yourself is easier than I thought!
+            </li>
+            <li class="lessons__entry">
+                Using a CSS-Framework saves a lot of time.
+            </li>
+            <li class="lessons__entry">
+                With a JS or TS Framework many things are simpler!
+            </li>
+            <li class="lessons__entry">
+                I like hard-typed Programming-Languages more...
+            </li>
+        </ul>
     </section>
 </main>
-<footer>
-
-</footer>
 </body>
 </html>
