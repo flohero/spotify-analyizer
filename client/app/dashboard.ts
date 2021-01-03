@@ -186,6 +186,8 @@ function getRandomColor() {
 
 function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
 
+    history = history.reverse();
+
     if(history.length == 0) {
         return {
             datasets: [],
@@ -195,7 +197,7 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
 
     const max_hours = 48;
     const minDate = moment(history[0].timestamp);
-    const maxDate = moment(history[length].timestamp);
+    const maxDate = moment(history[history.length - 1].timestamp);
     const duration = moment.duration(maxDate.diff(minDate)).hours();
     const genres = groupGenreHistory(history, duration < max_hours);
 
