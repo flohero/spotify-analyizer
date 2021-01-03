@@ -117,6 +117,12 @@
     }
 }
 
+.timeline-chart-toogle-container {
+    display: flex;
+    margin-top: 0.5rem;
+    justify-content: center;
+}
+
 .timeline-chart-container {
     width: 95%;
     margin-left: auto;

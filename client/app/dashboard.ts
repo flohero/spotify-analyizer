@@ -9,7 +9,8 @@ import {GenreSum} from "./models/genre-sum";
 import {UserProfileViewController} from "./controllers/user-profile-view-controller";
 import {TopArtistViewController} from "./controllers/top-artist-view-controller";
 
-Chart.defaults.global.defaultFontColor = 'white';
+// global chart configuration
+Chart.defaults.global.defaultFontColor = "white";
 
 function createFeatureItem(name: string, value: number) {
     const percent = Math.round(value * 100);
@@ -133,7 +134,6 @@ function getRandomColor() {
     return color;
 }
 
-
 function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
 
     history = history.reverse();
@@ -187,7 +187,6 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
         
     });
 
-
     return data;
 }
 
@@ -238,10 +237,23 @@ function initTimelineView(history: GenreHistoryView[]) {
         }
     } as Chart.ChartOptions;
 
-    new Chart("timeline-chart", {
+    const timelineChart = new Chart("timeline-chart", {
         type: 'line',
         data: createTimelineChartData(history),
         options: options
+    });
+
+    let hidden = false;
+
+    const toggleButton = document.getElementById("toggleGenres");
+
+    toggleButton.addEventListener("click", function() {
+        toggleButton.innerText = hidden ? "Hide all Genres" : "Show all Genres"
+        hidden = !hidden
+        timelineChart.data.datasets.forEach(ds => {
+            ds.hidden = hidden;
+        });
+        timelineChart.update();
     });
 }
 
@@ -259,4 +271,6 @@ window.onload = () => {
     });
 
     trackService.getGenresOfLastHeardTracks(id).then(initTimelineView);
+    
+    
 }
