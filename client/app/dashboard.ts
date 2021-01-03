@@ -3,13 +3,13 @@ import {UserView} from "../../common/src/view/user-view";
 import {TrackService} from "./services/track-service";
 import {AudioFeatureView} from "../../common/src/view/audio-feature-view";
 import {EndpointService} from "./services/endpoint-service";
-import Chart from "chart.js";
+import * as Chart from "chart.js";
 import {ArtistService} from "./services/artist-service";
 import {ArtistView} from "../../common/src/view/artist-view";
-import { GenreHistoryView } from "../../common/src/view/genre-history-view";
-import moment from "moment";
-import { Dictionary } from "./models/dictionary";
-import { GenreSum } from "../app/models/genre-sum";
+import {GenreHistoryView} from "../../common/src/view/genre-history-view";
+import * as moment from "moment";
+import {Dictionary} from "./models/dictionary";
+import {GenreSum} from "./models/genre-sum";
 
 // set chart defaults
 Chart.defaults.global.defaultFontColor = 'white';
@@ -137,13 +137,13 @@ function initTopArtistView(artists: ArtistView[]): ArtistView[] {
                 <td class="artist-table__count artist-table__cell text-size-h5"></td>
                 <td class="artist-table__cell"><img class="artist-table__img" src="${artist.image}" alt="${artist.name} Image"></td>
                 <td class="text-size-h5 artist-table__cell">${artist.name}</td>
-                <td class="artist-table__cell artist-table__popularity ${artist.popularity > 66 ? "artist-table__cell--red" : artist.popularity > 33 ? "artist-table__cell--orange" : "artist-table__cell--blue" }">${artist.popularity}</td>
+                <td class="artist-table__cell artist-table__popularity ${artist.popularity > 66 ? "artist-table__cell--red" : artist.popularity > 33 ? "artist-table__cell--orange" : "artist-table__cell--blue"}">${artist.popularity}</td>
                 <td class="artist-table__cell">
                     <div class="artist-table__genres">
                         ${artist.genres.map(genre => {
-                            return `<div class="chip chip--primary">${genre}</div>`;
-                        })
-                        .join("")}
+                return `<div class="chip chip--primary">${genre}</div>`;
+            })
+                .join("")}
                     <div>
                 </td>
             </tr>`
@@ -154,17 +154,17 @@ function initTopArtistView(artists: ArtistView[]): ArtistView[] {
 function groupGenreHistory(history: GenreHistoryView[]): Dictionary<GenreSum[]> {
 
     let dict = new Dictionary<GenreSum[]>();
-    
+
     history.forEach(h => {
         // HACK fix date
         let date_string = (h.timestamp as any) as string;
         let date = moment(date_string).startOf('day').toISOString();
 
-        if(dict.containsKey(date)) { // date entry already exists
-            var value = dict.getItem(date);
+        if (dict.containsKey(date)) { // date entry already exists
+            const value = dict.getItem(date);
             h.genres.forEach(genre => {
-                
-                if(value.filter(i => i.genre == genre).length == 0) { // genre is new
+
+                if (value.filter(i => i.genre == genre).length == 0) { // genre is new
                     dict.getItem(date).push({genre: genre, count: 1});
                 } else { // genre already exists
                     dict.getItem(date).filter(i => i.genre == genre)[0].count++;
@@ -176,12 +176,12 @@ function groupGenreHistory(history: GenreHistoryView[]): Dictionary<GenreSum[]> 
     });
 
     return dict;
-  };
+}
 
 function getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
+    const letters = '0123456789ABCDEF'.split('');
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
@@ -204,14 +204,14 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
         // console.log(groupedSums);
 
         itemsWithSum.forEach(itemWithSum => {
-            
+
             let dataset = data.datasets.filter(dataset => itemWithSum.genre == dataset.label)?.[0];
-            if(dataset) { // dataset already exists
+            if (dataset) { // dataset already exists
                 dataset.data.push(itemWithSum.count);
             } else { // new dataset is necessary
                 data.datasets.push({
                     label: itemWithSum.genre,
-                    data: [ itemWithSum.count ],
+                    data: [itemWithSum.count],
                     borderColor: getRandomColor(), // TODO random color from given color set
                     fill: false
                 });
@@ -219,16 +219,16 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
         });
         // genre does not exist with current date
         data.datasets.filter(d => itemsWithSum.map(s => s.genre).indexOf(d.label) == -1)
-                     .forEach(d => d.data.push(null));
+            .forEach(d => d.data.push(null));
 
-  });
+    });
 
-  return data;
+    return data;
 }
 
 function initTimelineView(history: GenreHistoryView[]) {
 
-    var options = {
+    const options = {
         responsive: true,
         legend: {
             position: "bottom"
@@ -251,17 +251,17 @@ function initTimelineView(history: GenreHistoryView[]) {
                     minUnit: "day",
                     displayFormats: {
                         day: "YYYY/MM/DD"
-                    },          
+                    },
                 }
             }]
         }
-      } as Chart.ChartOptions;
+    } as Chart.ChartOptions;
 
-      new Chart("timeline-chart", {
+    new Chart("timeline-chart", {
         type: 'line',
         data: createTimelineChartData(history),
         options: options
-      });
+    });
 }
 
 window.onload = () => {
