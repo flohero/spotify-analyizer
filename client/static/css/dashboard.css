@@ -248,18 +248,19 @@
     }
 }
 
-.top-genre {
-    text-align: center;
-}
-
 .top-genre__element {
     text-transform: uppercase;
 }
 
-.text--info {
-    color: var(--info);
+.label {
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
 }
 
-.text--wrap {
+.property {
+    font-size: 1.25em;
+    font-weight: bold;
     word-break: break-word;
+    color: var(--info);
 }
