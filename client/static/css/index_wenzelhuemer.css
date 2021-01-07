@@ -2,7 +2,6 @@
 @import "./font_baseline.css";
 @import "./theme.css";
 @import "./navbar.css";
-@import "./utilities.css";
 @import "./components.css";
 
 body {
@@ -80,6 +79,12 @@ ul li {
     border-top-style: solid;
 }
 
+.team-member-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .team-member-image {
     width: 150px;
     height: 150px;
@@ -118,6 +123,7 @@ ul li {
     }
 }
 
+/* add more margin to default chipset */
 .chipset {
     margin: 0.5rem;
 }

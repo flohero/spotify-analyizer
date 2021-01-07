@@ -22,9 +22,16 @@
     * ts-node
     * source-map-support
 * Zeitaufwand (h): 70
-* Getting started: 
-  * 1. ```npm install``` für server, client & common folder ausführen
-  * 2. Docker Container für Mongo Datenbank starten (docker-compose.yml)
-  * 3. Server starten mit ```npm start```
-  * 4. Client starten mit ```npm run dev:watch```
-  * 5. http://localhost:1234/index.html mit dem Browser öffnen. Mit __LOG IN__ gelangt man dann zur App.
+* Getting started:
+  1. Neue App auf Spotify erstellen: https://developer.spotify.com/dashboard/applications
+  2. Client ID und Client Secret aus der Seite in das aktuelle Terminal, wo danach der Server gestartet wird, kopieren.
+    * Windows (powershell)
+      * $env:SPOTIFY_CLIENT_SECRET = _xxx_
+      * $env:SPOTIFY_CLIENT_ID = _xxx_
+    * Linux:
+      * TODO @Florian Weingartshofer
+  3. ```npm install``` für server, client & common folder ausführen
+  4. Docker Container für Mongo Datenbank starten (docker-compose.yml)
+  5. Server starten mit ```npm start```
+  6. Client starten mit ```npm run dev:watch```
+  7. http://localhost:1234/index.html mit dem Browser öffnen. Mit __LOG IN__ gelangt man dann zur App.

@@ -77,9 +77,3 @@ a:focus, a:hover, a:active {
     border-radius: 5px;
     margin-bottom: 20px;
 }
-
-.label {
-    display: inline-block;
-    width: 100%;
-    font-weight: bold;
-}
