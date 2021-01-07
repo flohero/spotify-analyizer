@@ -7,7 +7,6 @@ import {AccessTokenService} from "./access-token-service";
 import UserHistory, {IUserHistory} from "../model/user-history-model";
 import {UserProfileService} from "./user-profile-service";
 import {ArtistService} from "./artist-service";
-import * as mongoose from "mongoose";
 
 export class TrackService extends SpotifyBaseService {
 
@@ -52,7 +51,11 @@ export class TrackService extends SpotifyBaseService {
             });
     }
 
-    public updateRecentlyPlayedTracks(userId: string): Promise<IUserHistory[]> {
+    /**
+     * Update most recently heard tracks in the Database, and return them.
+     * @param userId
+     */
+    public updateAndGetMostRecentlyHeardTracks(userId: string): Promise<IUserHistory[]> {
         return this.accessTokenService.getAccessTokenById(userId)
             .then(accessToken => {
                 return fetch(`${this.endPoint}/me/player/recently-played?limit=50`, {
@@ -77,27 +80,17 @@ export class TrackService extends SpotifyBaseService {
             })
             .then(histories => {
                 histories.map(track => {
-                    return UserHistory.create(track, () => {
-
-                    });
+                    return UserHistory.create(track)
+                        .then(console.log)
+                        .catch(() => {})
+                        ;
                 });
                 return histories;
             });
     }
 
-    public getAllPlayedTracks(userId: string): Promise<IUserHistory[]> {
-        return this.updateRecentlyPlayedTracks(userId)
-            .then(() => {
-                // @ts-ignore
-                return UserHistory.find({"user": mongoose.Types.ObjectId(userId)}).sort({played_at: 'descending'})
-                    .then(res => {
-                        return res;
-                    });
-            });
-    }
-
     public getGenresOfAllPlayedTracks(userId: string): Promise<GenreHistoryView[]> {
-        return this.getAllPlayedTracks(userId)
+        return this.updateAndGetMostRecentlyHeardTracks(userId)
             .then(histories => {
                 return this.artistService.getGenresOfArtists(userId,
                     histories.map(item => <ArtistPlayedOnView>{timestamp: item.played_at, artist: item.artist_id}));

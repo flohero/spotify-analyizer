@@ -12,7 +12,7 @@ const UserHistory: Schema = new Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},
     track_id: {type: String, required: true},
     artist_id: {type: String, required: true},
-    played_at: {type: Date, required: true, unique: true}
+    played_at: {type: Date, required: true}
 });
 
 export default mongoose.model<IUserHistory>("UserHistory", UserHistory);

@@ -7,9 +7,9 @@ export class UserProfileService extends SpotifyBaseService {
 
     private readonly accessTokenService: AccessTokenService = new AccessTokenService();
 
-    public detailsWithAccessToken(accessToken: string): Promise<IUser> {
+    public createNewUser(tokens: any): Promise<IUser> {
         return fetch(`${this.endPoint}/me`, {
-            headers: this.getAuthenticationHeader(accessToken)
+            headers: this.getAuthenticationHeader(tokens.access_token)
         })
             .then(this.handleErrors)
             .then(res => res.json())
@@ -22,7 +22,9 @@ export class UserProfileService extends SpotifyBaseService {
                                 email: res.email,
                             });
                         }
-                        user.access_token = accessToken;
+                        user.access_token = tokens.access_token;
+                        user.refresh_token = tokens.refresh_token;
+                        user.expires_at = new Date(Date.now() + tokens["expires_in"] * 1000);
                         return user.save();
                     });
             });
