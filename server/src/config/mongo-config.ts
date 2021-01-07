@@ -3,14 +3,14 @@ import {Logger} from "winston";
 
 export class MongoConfig {
     private readonly opts = {useNewUrlParser: true, useUnifiedTopology: true};
-    readonly connection_string = process.env.MONGODB_CONNECTION_STRING;
+    readonly connectionString = process.env.MONGODB_CONNECTION_STRING;
 
     constructor(private readonly logger: Logger) {
 
     }
 
     public connect() {
-        mongoose.connect(this.connection_string, this.opts)
+        mongoose.connect(this.connectionString, this.opts)
             .then(() => {
                 this.logger.info("Established connection to MongoDB");
             })

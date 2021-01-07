@@ -81,9 +81,7 @@ export class TrackService extends SpotifyBaseService {
             .then(histories => {
                 histories.map(track => {
                     return UserHistory.create(track)
-                        .then(console.log)
-                        .catch(() => {})
-                        ;
+                        .catch(() => {});
                 });
                 return histories;
             });

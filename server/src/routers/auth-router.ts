@@ -3,9 +3,11 @@ import { Application } from "express";
 import { AuthService } from "../services/auth-service";
 import * as querystring from "querystring";
 import { BaseRouter } from "./base-router";
+import {ConfigService} from "../services/config-service";
 
 export class AuthRouter extends BaseRouter {
     private readonly authService: AuthService = new AuthService();
+    private readonly configService: ConfigService = new ConfigService();
 
     constructor(app: Application) {
         super(app);
@@ -34,7 +36,7 @@ export class AuthRouter extends BaseRouter {
 
                 this.authService.requestSessionToken(code)
                     .then(user => {
-                        res.redirect(`http://localhost:1234/dashboard.html?${querystring.stringify({
+                        res.redirect(`${this.configService.client()}/dashboard.html?${querystring.stringify({
                             id: user.id
                         })}`);
                     });

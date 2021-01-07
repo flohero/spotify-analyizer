@@ -129,6 +129,10 @@ section {
     margin-bottom: auto;
 }
 
+.section-content--lower {
+    margin-top: 10vh;
+}
+
 .team {
     margin: 1.25rem;
     display: flex;
@@ -260,6 +264,12 @@ section {
 
 .top-btn__img {
     transform: rotate(180deg);
+}
+
+.screenshot {
+    max-width: 80%;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
 }
 
 @media only screen and (min-width: 1024px) {
