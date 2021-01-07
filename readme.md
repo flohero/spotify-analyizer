@@ -27,4 +27,4 @@
   * 2. Docker Container für Mongo Datenbank starten (docker-compose.yml)
   * 3. Server starten mit ```npm start```
   * 4. Client starten mit ```npm run dev:watch```
-  * 5. http://localhost:1234/index.html mit dem Browser öffnen. Mit Log in gelangt man dann zur App.
+  * 5. http://localhost:1234/index.html mit dem Browser öffnen. Mit __LOG IN__ gelangt man dann zur App.
