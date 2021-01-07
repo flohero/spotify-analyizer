@@ -30,8 +30,13 @@
       * $env:SPOTIFY_CLIENT_ID = _xxx_
     * Linux:
       * TODO @Florian Weingartshofer
-  3. ```npm install``` für server, client & common folder ausführen
-  4. Docker Container für Mongo Datenbank starten (docker-compose.yml)
-  5. Server starten mit ```npm start```
-  6. Client starten mit ```npm run dev:watch```
-  7. http://localhost:1234/index.html mit dem Browser öffnen. Mit __LOG IN__ gelangt man dann zur App.
+  3. ```npm install``` für server, client & common folder ausführen.
+  4. Docker Container für Mongo Datenbank starten (docker-compose.yml).
+  5. Mongo DB Connection String beim Server Terminal setzen.
+    * Windows (powershell)
+      * $env:MONGODB_CONNECTION_STRING = "mongodb://root:example@localhost:27017/"
+    * Linux:
+      * TODO @Florian Weingartshofer
+  6. Server starten mit ```npm start```
+  7. Client starten mit ```npm run dev:watch```
+  8. http://localhost:1234/index.html mit dem Browser öffnen. Mit __LOG IN__ gelangt man dann zur App.
