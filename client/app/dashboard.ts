@@ -194,6 +194,8 @@ function createTimelineChartData(history: GenreHistoryView[]): Chart.ChartData {
 function initTimelineView(history: GenreHistoryView[]) {
 
     const gridColor = "gray";
+    const dateFormat = "YYYY/MM/DD"
+    const timeformat = "HH:mm";
 
     const options = {
         responsive: true,
@@ -225,13 +227,14 @@ function initTimelineView(history: GenreHistoryView[]) {
                 },
                 type: "time",
                 ticks: {
-                    maxTicksLimit: 5,
+                    maxTicksLimit: 6,
                 },
                 time: {
-                    tooltipFormat: "YYYY/MM/DD hh:mm",
+                    tooltipFormat: `${dateFormat} ${timeformat}`,
                     minUnit: "hour",
                     displayFormats: {
-                        day: "YYYY/MM/DD"
+                        hour: timeformat,
+                        day: dateFormat
                     }
                 }
             }]
