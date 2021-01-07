@@ -10,7 +10,6 @@
 <nav class="navbar">
     <ul class="navbar__entries">
         <li class="navbar__item"><a href="../login.html">Login</a></li>
-        <li class="navbar__item"><a href="#top">Top</a></li>
         <li class="navbar__item"><a href="#team">Team</a></li>
         <li class="navbar__item"><a href="#about">About</a></li>
         <li class="navbar__item"><a href="#tech">Tech</a></li>
@@ -36,7 +35,10 @@
     </div>
     <div class="next-section">
         <a class="no-underline" href="#team">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021"><path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z" fill="#28a745"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021">
+                <path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z"
+                      fill="#28a745"/>
+            </svg>
         </a>
     </div>
 </header>
@@ -89,7 +91,10 @@
         </div>
         <div class="next-section">
             <a class="no-underline" href="#about">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021"><path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z" fill="#28a745"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021">
+                    <path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z"
+                          fill="#28a745"/>
+                </svg>
             </a>
         </div>
     </section>
@@ -105,7 +110,10 @@
         </div>
         <div class="next-section">
             <a class="no-underline" href="#tech">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021"><path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z" fill="#28a745"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021">
+                    <path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z"
+                          fill="#28a745"/>
+                </svg>
             </a>
         </div>
     </section>
@@ -142,7 +150,10 @@
         </div>
         <div class="next-section">
             <a class="no-underline" href="#learned">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021"><path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z" fill="#28a745"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30.021" height="30.021">
+                    <path d="M28.611 13.385L17.6 22.737a3.99 3.99 0 01-2.589.949 3.996 3.996 0 01-2.589-.949L1.411 13.385A4 4 0 116.59 7.288l8.421 7.151 8.42-7.151a4 4 0 015.18 6.097z"
+                          fill="#28a745"/>
+                </svg>
             </a>
         </div>
     </section>
@@ -169,5 +180,22 @@
         </div>
     </section>
 </main>
+<a id="top-btn" class="top-btn top-btn--hidden" href="#top">
+    <img class="top-btn__img" src="../../static/assets/arrow.svg" alt="Arrow">
+</a>
+<script type="text/javascript">
+    topBtn = document.getElementById("top-btn");
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop >= window.screen.height / 3 || document.documentElement.scrollTop >= window.screen.height / 3) {
+            topBtn.classList.remove("top-btn--hidden");
+        } else {
+            topBtn.classList.add("top-btn--hidden");
+        }
+    }
+</script>
 </body>
 </html>

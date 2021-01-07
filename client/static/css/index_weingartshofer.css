@@ -238,6 +238,30 @@ section {
     background-image: none;
 }
 
+.top-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 5vh;
+    margin-bottom: 5vh;
+    background: none;
+}
+
+.top-btn:hover {
+    -moz-animation: bounce 3s infinite;
+    -webkit-animation: bounce 3s infinite;
+    animation: bounce 3s infinite;
+    background: none;
+}
+
+.top-btn--hidden {
+    display: none;
+}
+
+.top-btn__img {
+    transform: rotate(180deg);
+}
+
 @media only screen and (min-width: 1024px) {
     .navbar__item:not(:first-child) {
         display: inline-block;
