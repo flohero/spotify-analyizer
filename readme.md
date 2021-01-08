@@ -25,9 +25,9 @@
 * Getting started:
   1. Neue App auf Spotify erstellen: https://developer.spotify.com/dashboard/applications
   2. Client ID und Client Secret aus der Seite in das aktuelle Terminal, wo danach der Server gestartet wird, kopieren.
-    * Windows (powershell)
-      * $env:SPOTIFY_CLIENT_SECRET = _xxx_
-      * $env:SPOTIFY_CLIENT_ID = _xxx_
+    * Windows (powershell):
+      * ```$env:SPOTIFY_CLIENT_SECRET = "{xxx}```
+      * ```$env:SPOTIFY_CLIENT_ID = "{xxx}"```
     * Linux:
       * ```export SPOTIFY_CLIENT_SECRET = "{xxx}"```
       * ```export SPOTIFY_CLIENT_ID = "{xxx}"```
@@ -35,11 +35,14 @@
   3. ```npm install``` für server, client & common folder ausführen.
   4. Docker Container für Mongo Datenbank starten (docker-compose.yml).
   5. Mongo DB Connection String beim Server Terminal setzen.
-    * Windows (powershell)
-      * $env:MONGODB_CONNECTION_STRING = "mongodb://root:example@localhost:27017/"
+    * Windows (powershell):
+      * ```$env:MONGODB_CONNECTION_STRING = "{CONNECTION_STRING}"```
     * Linux:
       * ```export MONGODB_CONNECTION_STRING = "{CONNECTION_STRING}"```
   6. Client URl und Server URL angeben. Momentant sollte der Client auf Port 1234 und der Server auf Port 3000 laufen. Es wird auch davon ausgegangen dass Back- und Frontend auf der selben Maschine laufen.
+    * Windows (powershell):
+      * ```$env:CLIENT_URL = "{BASE_URL}"```
+      * ```$env:SERVER_URL = "{BASE_URL}"```
     * Linux:
       * ```export CLIENT_URL = "{BASE_URL}"```
       * ```export SERVER_URL = "{BASE_URL}"```
