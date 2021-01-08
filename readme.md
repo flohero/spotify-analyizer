@@ -1,5 +1,6 @@
-# WDP Projekt von Florian Weingartshofer (1910307103)
-<!--# WDP Projekt von Wenzelhuemer Andreas (1910307106)-->
+# WDP Projekt
+<!-- von Florian Weingartshofer (1910307103)-->
+<!-- von Wenzelhuemer Andreas (1910307106)-->
 
 * Projekt-Name: spotify-analyzer
 * Projekt-Typ: Webapp
