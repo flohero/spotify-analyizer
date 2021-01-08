@@ -1,8 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat");
-@import "./font_baseline.css";
-@import "./theme.css";
-@import "./navbar.css";
-@import "./components.css";
+@import "./styles.css";
 
 body {
     margin: 0;
