@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dashboard</title>
     <link rel="shortcut icon" type="image/x-icon" href="../static/assets/favicon.ico">
-    <script type="text/javascript" src="dashboard.ts"></script>
+    <script src="dashboard.ts"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">
 </head>
@@ -27,7 +27,6 @@
                           font-size="16px">
                         Spotify-Analyzer
                     </text>
-                    Sorry, your browser does not support inline SVG.
                 </svg>
             </a>
         </li>
@@ -51,11 +50,11 @@
              alt="Profile Image">
         <div id="profile-name" class="text-size-h2 user-area__name"></div>
         <div class="area--user__property">
-            <label class="label" for="profile-email">E-Mail</label>
+            <span class="property-name" for="profile-email">E-Mail</span>
             <span class="property" id="profile-email"></span>
         </div>
         <div class="area--user__property">
-            <label class="label" for="top-genre">Top Genre</label>
+            <span class="property-name" for="top-genre">Top Genre</span>
             <span class="property top-genre__element" id="top-genre"></span>
         </div>
         <div class="area--user__property">

@@ -252,7 +252,7 @@
     text-transform: uppercase;
 }
 
-.label {
+.property-name {
     display: inline-block;
     width: 100%;
     font-weight: bold;
