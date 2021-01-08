@@ -26,7 +26,7 @@
   1. Neue App auf Spotify erstellen: https://developer.spotify.com/dashboard/applications
   2. Client ID und Client Secret aus der Seite in das aktuelle Terminal, wo danach der Server gestartet wird, kopieren.
     * Windows (powershell):
-      * ```$env:SPOTIFY_CLIENT_SECRET = "{xxx}```
+      * ```$env:SPOTIFY_CLIENT_SECRET = "{xxx}"```
       * ```$env:SPOTIFY_CLIENT_ID = "{xxx}"```
     * Linux:
       * ```export SPOTIFY_CLIENT_SECRET = "{xxx}"```
