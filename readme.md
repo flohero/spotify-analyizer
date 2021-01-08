@@ -39,7 +39,7 @@
       * $env:MONGODB_CONNECTION_STRING = "mongodb://root:example@localhost:27017/"
     * Linux:
       * ```export MONGODB_CONNECTION_STRING = "{CONNECTION_STRING}"```
-  6. Client URl und Server URL angeben. Momentant sollte der Client auf Port 1234 und der Server auf Port 300 laufen.
+  6. Client URl und Server URL angeben. Momentant sollte der Client auf Port 1234 und der Server auf Port 3000 laufen. Es wird auch davon ausgegangen dass Back- und Frontend auf der selben Maschine laufen.
     * Linux:
       * ```export CLIENT_URL = "{BASE_URL}"```
       * ```export SERVER_URL = "{BASE_URL}"```
